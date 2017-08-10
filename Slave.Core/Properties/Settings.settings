@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Slave.Core.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Position" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="Size" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">150, 20</Value>
+    </Setting>
+    <Setting Name="Backcolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="ForeColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="TypeWordHotKey" Type="System.Windows.Forms.Shortcut" Scope="User">
+      <Value Profile="(Default)">CtrlF12</Value>
+    </Setting>
+    <Setting Name="AddWordHotKey" Type="System.Windows.Forms.Shortcut" Scope="User">
+      <Value Profile="(Default)">CtrlF11</Value>
+    </Setting>
+    <Setting Name="HelpUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://code.google.com/p/Slaves/wiki/Help</Value>
+    </Setting>
+    <Setting Name="RunAtWindowsStart" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
