@@ -157,7 +157,7 @@ namespace Slave.Core {
                         return;
                     }
                 } catch (Exception e) {
-                    Launcher.Current.ChangeLauncherText("error :(");
+                    SetError(e);
                 }
             }
 
@@ -173,7 +173,7 @@ namespace Slave.Core {
                     foreach (var p in pckgs) {
                         lb.Text += p.Name + "\r\n";
                         lb.Text += p.Author + "\r\n";
-                        lb.Text += p.Description + "\r\n=================================\r\n";
+                        lb.Text += p.Description + "\r\n=================================\\r\n";
                     }
 
                     form.Controls.Add(lb);
