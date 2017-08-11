@@ -50,15 +50,15 @@ namespace Slave.Core.Forms
             this.uxInputText.ContextMenuStrip = this.uxInputContextMenuStrip;
             this.uxInputText.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::Slave.Core.Properties.Settings.Default, "ForeColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.uxInputText.DataBindings.Add(new System.Windows.Forms.Binding("BackColor", global::Slave.Core.Properties.Settings.Default, "Backcolor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.uxInputText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uxInputText.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxInputText.ForeColor = global::Slave.Core.Properties.Settings.Default.ForeColor;
-            this.uxInputText.Location = new System.Drawing.Point(0, 0);
+            this.uxInputText.Location = new System.Drawing.Point(10, 10);
             this.uxInputText.Margin = new System.Windows.Forms.Padding(5);
             this.uxInputText.MaximumSize = new System.Drawing.Size(250, 60);
             this.uxInputText.Name = "uxInputText";
             this.uxInputText.Size = new System.Drawing.Size(250, 25);
             this.uxInputText.TabIndex = 0;
+            this.uxInputText.Text = "choose slave";
             this.uxInputText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.uxInputText.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnInputTextBoxKeyUp);
             // 
@@ -133,7 +133,7 @@ namespace Slave.Core.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
             this.ClientSize = new System.Drawing.Size(663, 316);
             this.ContextMenuStrip = this.uxInputContextMenuStrip;
             this.ControlBox = false;

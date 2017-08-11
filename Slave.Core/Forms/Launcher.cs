@@ -30,7 +30,9 @@ namespace Slave.Core.Forms
 		    MyFont = new Font(fonts.Families[0], 16.0F);
 
 		    uxInputText.Font = MyFont;
-		}
+
+		    
+        }
 
         #region Singleton
 
@@ -60,7 +62,8 @@ namespace Slave.Core.Forms
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-			Size = uxInputText.Size;
+			Size = new Size(uxInputText.Size.Width + 20, uxInputText.Size.Height + 20);
+		    BackColor = uxInputText.BackColor;
 
 			UpdateAutoCompletion();
 
