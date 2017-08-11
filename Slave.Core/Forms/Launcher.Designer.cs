@@ -58,7 +58,7 @@ namespace Slave.Core.Forms
             this.uxInputText.Name = "uxInputText";
             this.uxInputText.Size = new System.Drawing.Size(250, 25);
             this.uxInputText.TabIndex = 0;
-            this.uxInputText.Text = "choose slave";
+            this.uxInputText.Text = "choose slave...";
             this.uxInputText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.uxInputText.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnInputTextBoxKeyUp);
             // 

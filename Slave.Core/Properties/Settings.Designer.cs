@@ -37,7 +37,7 @@ namespace Slave.Core.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("250, 20")]
+        [global::System.Configuration.DefaultSettingValueAttribute("150, 20")]
         public global::System.Drawing.Size Size {
             get {
                 return ((global::System.Drawing.Size)(this["Size"]));
