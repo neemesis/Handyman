@@ -182,6 +182,11 @@ namespace Slave.Core.Forms
 			}
 		}
 
+        public void ChangeLauncherText(string text) {
+            uxInputText.Text = text;
+            Show();
+        }
+
         private void OnDeactivate(object sender, EventArgs e) {
             HideForm();
         }

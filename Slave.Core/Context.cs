@@ -22,7 +22,7 @@ namespace Slave.Core {
 
         public List<Commands> Slaves { get; set; }
 
-        public List<ITool> Tools { get; set; }
+        public List<IMaster> Tools { get; set; }
 
         #endregion
 
@@ -48,7 +48,7 @@ namespace Slave.Core {
             }
 
             // TODO load plugins
-            Tools = new List<ITool>();
+            Tools = new List<IMaster>();
             LoadPlugins();
         }
 
@@ -139,15 +139,23 @@ namespace Slave.Core {
 
             foreach (var tool in Tools) {
                 if (alias.StartsWith(tool.Alias)) {
-                    tool.Execute(ParseArguments(alias.Substring(tool.Alias.Length)));
-                    return;
+                    try {
+                        tool.Execute(ParseArguments(alias.Substring(tool.Alias.Length)));
+                        return;
+                    } catch (Exception e) {
+                        SetError(e);
+                    }
                 }
             }
 
             foreach (var word in Slaves) {
                 if (word.Alias.Equals(alias)) {
-                    Execute(word);
-                    return;
+                    try {
+                        Execute(word);
+                        return;
+                    } catch (Exception e) {
+                        SetError(e);
+                    }
                 }
             }
 
@@ -160,6 +168,10 @@ namespace Slave.Core {
             {
                 Execute(alias);
             }
+        }
+
+        private void SetError(Exception e = null) {
+            Launcher.Current.ChangeLauncherText("error :(");
         }
 
         private static string[] ParseArguments(string str) {
@@ -180,9 +192,9 @@ namespace Slave.Core {
             foreach (var filename in Directory.GetFiles(System.Windows.Forms.Application.StartupPath /* + "\\Plugins" */, "*.dll")) {
                 var assembly = System.Reflection.Assembly.LoadFrom(filename);
                 foreach (var type in assembly.GetTypes()) {
-                    var plugin = type.GetInterface("Slave.Framework.Interfaces.ITool");
+                    var plugin = type.GetInterface("Slave.Framework.Interfaces.IMaster");
                     if (plugin != null) {
-                        var tool = (ITool)Activator.CreateInstance(type);
+                        var tool = (IMaster)Activator.CreateInstance(type);
                         tool.Initialize();
 
                         var hotkey = new SystemHotkey(m_Components) {
@@ -356,6 +368,13 @@ namespace Slave.Core {
                 sb.AppendLine("Command: " + s.Alias);
                 sb.AppendLine("Description: " + s.Notes);
                 sb.AppendLine("Filename: " + s.FileName);
+                sb.AppendLine("========================");
+            }
+            foreach (var s in Tools)
+            {
+                sb.AppendLine("Command: " + s.Alias);
+                sb.AppendLine("Description: " + s.Description);
+                sb.AppendLine("Author: " + s.Author);
                 sb.AppendLine("========================");
             }
             txt.Text = sb.ToString();

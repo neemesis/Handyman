@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace Slave.Framework.Interfaces
 {
-	public interface ITool
+	public interface IMaster
 	{
 		string Name { get;}
 		string Description { get;}

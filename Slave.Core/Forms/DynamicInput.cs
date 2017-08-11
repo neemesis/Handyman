@@ -10,9 +10,9 @@ namespace Slave.Core.Forms
 			InitializeComponent();
 		}
 
-		public string Input => comboBox1.Text;
+		public string Input { get { return comboBox1.Text; } set { comboBox1.Text = value; }}
 
-	    public string EncodedInput => System.Web.HttpUtility.UrlEncode(comboBox1.Text);
+        public string EncodedInput { get { return System.Web.HttpUtility.UrlEncode(comboBox1.Text); } }
 
         private void KeyUpSubmit(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter)

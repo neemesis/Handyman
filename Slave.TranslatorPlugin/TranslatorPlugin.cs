@@ -2,7 +2,7 @@ using Slave.Framework.Interfaces;
 
 namespace Slave.TranslatorPlugin
 {
-	public class TranslatorPlugin : ITool
+	public class TranslatorPlugin : IMaster
 	{
 		public TranslatorPlugin()
 		{
@@ -12,20 +12,20 @@ namespace Slave.TranslatorPlugin
 
 		#region ITool Members
 
-		string ITool.Name => "Translator plugin";
+		string IMaster.Name  { get { return  "Translator plugin"; }}
 
-	    string ITool.Description => "This is a Google Translator wrapper";
+	    string IMaster.Description  { get { return  "This is a Google Translator wrapper"; }}
 
-	    string ITool.Author => "John Roland";
+	    string IMaster.Author  { get { return  "John Roland"; }}
 
-	    string ITool.Version => "1.0";
+	    string IMaster.Version  { get { return  "1.0"; }}
 
-	    void ITool.Initialize()
+	    void IMaster.Initialize()
 		{
 			//
 		}
 
-		void ITool.Execute(string[] args)
+		void IMaster.Execute(string[] args)
 		{
             var form = new MainForm {
                 StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -35,19 +35,19 @@ namespace Slave.TranslatorPlugin
 			form.ShowDialog();
 		}
 
-		System.Windows.Forms.Shortcut ITool.HotKey
+		System.Windows.Forms.Shortcut IMaster.HotKey
 		{
-			get => _mHotkey;
-		    set => _mHotkey = value;
+			get { return _mHotkey; }
+		    set { _mHotkey = value; }
 		}
 
 		private string _mAlias;
 		private System.Windows.Forms.Shortcut _mHotkey;
 
-		string ITool.Alias
+		string IMaster.Alias
 		{
-			get => _mAlias;
-		    set => _mAlias = value;
+			get { return _mAlias; }
+		    set { _mAlias = value; }
 		}
 
 		#endregion

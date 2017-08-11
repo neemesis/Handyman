@@ -69,12 +69,12 @@ namespace Slave.Framework.Components {
             return User32.RegisterHotKey(MWindow.Handle, GetType().GetHashCode(), (int)mod, ( (int)key ) - ( (int)k2 ));
         }
 
-        public bool IsRegistered => isRegistered;
+        public bool IsRegistered { get { return isRegistered; } set { isRegistered = value; }}
 
 
         [DefaultValue(Shortcut.None)]
         public Shortcut Shortcut {
-            get => MHotKey;
+            get {return MHotKey; }
             set {
                 if (DesignMode) { MHotKey = value; return; }    //Don't register in Designmode
                 if (( isRegistered ) && ( MHotKey != value ))   //Unregister previous registered Hotkey

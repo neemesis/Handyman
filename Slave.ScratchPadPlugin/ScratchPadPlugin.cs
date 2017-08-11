@@ -3,7 +3,7 @@ using Slave.Framework.Interfaces;
 
 namespace Slave.ScratchPadPlugin
 {
-	public class ScratchPadPlugin : ITool
+	public class ScratchPadPlugin : IMaster
 	{
 		public ScratchPadPlugin()
 		{
@@ -14,20 +14,20 @@ namespace Slave.ScratchPadPlugin
 
 		#region ITool Members
 
-		string ITool.Name => "ScratPad plugin";
+		string IMaster.Name { get { return "ScratPad plugin"; }}
 
-	    string ITool.Description => "The ScratchPad is a simple text editor to collect and keep text.";
+	    string IMaster.Description { get { return "The ScratchPad is a simple text editor to collect and keep text."; }}
 
-	    string ITool.Author => "John Roland";
+	    string IMaster.Author { get { return "John Roland"; }}
 
-	    string ITool.Version => "1.0";
+	    string IMaster.Version  { get { return  "1.0"; }}
 
-	    void ITool.Initialize()
+	    void IMaster.Initialize()
 		{
 			// todo restore settings
 		}
 
-		void ITool.Execute(string[] args)
+		void IMaster.Execute(string[] args)
 		{
 			
 			ScratchPad.Current.Show();
@@ -42,16 +42,16 @@ namespace Slave.ScratchPadPlugin
 		private string _mAlias;
 
  
-		Shortcut ITool.HotKey
+		Shortcut IMaster.HotKey
 		{
-			get => _mHotKey;
-		    set => _mHotKey = value;
+			get { return _mHotKey; }
+		    set { _mHotKey = value; }
 		}
 
-		string ITool.Alias
+		string IMaster.Alias
 		{
-			get => _mAlias;
-		    set => _mAlias = value;
+			get { return _mAlias; }
+		    set { _mAlias = value; }
 		}
 
 		#endregion

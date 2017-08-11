@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using Slave.Framework.Interfaces;
 
 namespace Slave.PowerShellPlugin {
-    public class PowerShellPlugin : ITool {
+    public class PowerShellPlugin : IMaster {
 
         public PowerShellPlugin() {
             _mAlias = "ps";
@@ -17,15 +17,15 @@ namespace Slave.PowerShellPlugin {
             //ScratchPad.Current.Size = new System.Drawing.Size(200, 200);
         }
 
-        public string Name => "PowerShell Plugin";
+        public string Name  { get { return  "PowerShell Plugin"; }}
 
-        public string Description => "Execute PowerShell Scripts";
+        public string Description  { get { return  "Execute PowerShell Scripts"; }}
 
-        public string Author => "Mirche Toshevski";
+        public string Author  { get { return  "Mirche Toshevski"; }}
 
-        public string Version => "1.0.0.0";
+        public string Version  { get { return  "1.0.0.0"; }}
 
-        void ITool.Initialize() {
+        void IMaster.Initialize() {
             // todo restore settings
         }
 
@@ -33,14 +33,14 @@ namespace Slave.PowerShellPlugin {
         private string _mAlias;
 
 
-        Shortcut ITool.HotKey {
-            get => _mHotKey;
-            set => _mHotKey = value;
+        Shortcut IMaster.HotKey {
+            get { return  _mHotKey; }
+            set { _mHotKey = value; }
         }
 
-        string ITool.Alias {
-            get => _mAlias;
-            set => _mAlias = value;
+        string IMaster.Alias {
+            get { return _mAlias; }
+            set { _mAlias = value; }
         }
 
         public void Execute(string[] args) {
