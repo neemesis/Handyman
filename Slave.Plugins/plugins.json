@@ -3,36 +3,36 @@
 	  "Name": "Slave.CommandPromptPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Execute bat scripts",
-	  "HasConfig": "true"
+	  "HasConfig": true
 	},
 	{
 	  "Name": "Slave.PowerShellPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Execute PowerShell Scripts",
-	  "HasConfig": "true"
+	  "HasConfig": true
 	},
 	{
 	  "Name": "Slave.ScratchPadPlugin",
 	  "Author": "John Roland",
 	  "Description": "The ScratchPad is a simple text editor to collect and keep text.",
-	  "HasConfig": "true"
+	  "HasConfig": true
 	},
 	{
 	  "Name": "Slave.ScreenShotPlugin",
 	  "Author": "John Roland",
 	  "Description": "Take a screenshot of the current windows and save it as a PNG file",
-	  "HasConfig": "true"
+	  "HasConfig": true
 	},
 	{
 	  "Name": "Slave.SqlPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Execute queries directly from launcher",
-	  "HasConfig": "false"
+	  "HasConfig": false
 	},
 	{
 	  "Name": "Slave.TranslatorPlugin",
 	  "Author": "John Roland",
 	  "Description": "This is a Google Translator wrapper",
-	  "HasConfig": "true"
+	  "HasConfig": true
 	}
 ]
