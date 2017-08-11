@@ -51,7 +51,7 @@ namespace Slave.Core {
             }
 
             // TODO load plugins
-            Tools = new List<IMaster>();
+            
             LoadPlugins();
         }
 
@@ -142,16 +142,44 @@ namespace Slave.Core {
 
             var parts = alias.Split(' ');
             if (parts[0] == "install") {
+                try {
+                    using (var wc = new WebClient()) {
+                        var json = wc.DownloadString(Properties.Settings.Default.DownloadURL + "plugins.json");
+                        var pckgs = JsonConvert.DeserializeObject<List<Plugin>>(json);
+                        var pckgForInstall = pckgs.SingleOrDefault(x => x.Name == parts[1]);
+                        if (pckgForInstall != null) {
+                            wc.DownloadFile(Properties.Settings.Default.DownloadURL + pckgForInstall.Name + ".dll", pckgForInstall.Name + ".dll");
+                            if (pckgForInstall.HasConfig)
+                                wc.DownloadFile(Properties.Settings.Default.DownloadURL + pckgForInstall.Name + ".dll.config", pckgForInstall.Name + ".dll.config");
+                        }
+                        LoadPlugins();
+                        Launcher.Current.ChangeLauncherText("success :)");
+                        return;
+                    }
+                } catch (Exception e) {
+                    Launcher.Current.ChangeLauncherText("error :(");
+                }
+            }
+
+            if (parts[0] == "packages" && parts.Count() == 1) {
                 using (var wc = new WebClient()) {
                     var json = wc.DownloadString(Properties.Settings.Default.DownloadURL + "plugins.json");
                     var pckgs = JsonConvert.DeserializeObject<List<Plugin>>(json);
-                    var pckgForInstall = pckgs.SingleOrDefault(x => x.Name == parts[1]);
-                    if (pckgForInstall != null) {
-                        wc.DownloadFile(Properties.Settings.Default.DownloadURL + pckgForInstall.Name + ".dll", pckgForInstall.Name + ".dll_test");
-                        if (pckgForInstall.HasConfig)
-                            wc.DownloadFile(Properties.Settings.Default.DownloadURL + pckgForInstall.Name + ".dll.config", pckgForInstall.Name + ".dll.config_test");
+                    var form = new Form { Text = "Packages", Size = new Size(300, 600) };
+                    var lb = new Label { AutoSize = true };
+
+                    lb.Text = "To install package write \"install <packageName>\"\r\n\r\n";
+                    lb.Text += "Packages\r\n=================================\r\n";
+                    foreach (var p in pckgs) {
+                        lb.Text += p.Name + "\r\n";
+                        lb.Text += p.Author + "\r\n";
+                        lb.Text += p.Description + "\r\n=================================\r\n";
                     }
-                    Launcher.Current.ChangeLauncherText("success :)");
+
+                    form.Controls.Add(lb);
+
+                    form.ShowDialog();
+
                     return;
                 }
             }
@@ -203,6 +231,7 @@ namespace Slave.Core {
         private System.ComponentModel.IContainer m_Components;
 
         private void LoadPlugins() {
+            Tools = new List<IMaster>();
             m_Components = new System.ComponentModel.Container();
 
             var pluginPath = string.Empty;
