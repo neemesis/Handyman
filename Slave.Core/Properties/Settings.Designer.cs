@@ -12,7 +12,7 @@ namespace Slave.Core.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.1.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -49,42 +49,6 @@ namespace Slave.Core.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("White")]
-        public global::System.Drawing.Color Backcolor {
-            get {
-                return ((global::System.Drawing.Color)(this["Backcolor"]));
-            }
-            set {
-                this["Backcolor"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("White")]
-        public global::System.Drawing.Color ForeColor {
-            get {
-                return ((global::System.Drawing.Color)(this["ForeColor"]));
-            }
-            set {
-                this["ForeColor"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("CtrlF12")]
-        public global::System.Windows.Forms.Shortcut TypeWordHotKey {
-            get {
-                return ((global::System.Windows.Forms.Shortcut)(this["TypeWordHotKey"]));
-            }
-            set {
-                this["TypeWordHotKey"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("CtrlF11")]
         public global::System.Windows.Forms.Shortcut AddWordHotKey {
             get {
@@ -92,15 +56,6 @@ namespace Slave.Core.Properties {
             }
             set {
                 this["AddWordHotKey"] = value;
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://code.google.com/p/Slaves/wiki/Help")]
-        public string HelpUrl {
-            get {
-                return ((string)(this["HelpUrl"]));
             }
         }
         
@@ -113,6 +68,63 @@ namespace Slave.Core.Properties {
             }
             set {
                 this["RunAtWindowsStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://google.com")]
+        public string HelpUrl {
+            get {
+                return ((string)(this["HelpUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("229, 229, 234")]
+        public global::System.Drawing.Color Backcolor {
+            get {
+                return ((global::System.Drawing.Color)(this["Backcolor"]));
+            }
+            set {
+                this["Backcolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27, 30, 35")]
+        public global::System.Drawing.Color ForeColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ForeColor"]));
+            }
+            set {
+                this["ForeColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("AltBksp")]
+        public global::System.Windows.Forms.Shortcut TypeWordHotKey {
+            get {
+                return ((global::System.Windows.Forms.Shortcut)(this["TypeWordHotKey"]));
+            }
+            set {
+                this["TypeWordHotKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://raw.githubusercontent.com/neemesis/Slave/master/Slave.Plugins/")]
+        public string DownloadURL {
+            get {
+                return ((string)(this["DownloadURL"]));
+            }
+            set {
+                this["DownloadURL"] = value;
             }
         }
     }

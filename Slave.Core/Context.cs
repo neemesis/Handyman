@@ -12,6 +12,9 @@ using Slave.Framework;
 using Slave.Framework.Components;
 using Slave.Framework.Entities;
 using Slave.Framework.Interfaces;
+using System.Net;
+using Newtonsoft.Json;
+using Slave.Core.Models;
 
 namespace Slave.Core {
     public class Context : IDisposable {
@@ -135,6 +138,22 @@ namespace Slave.Core {
                     return;
                 default:
                     break;
+            }
+
+            var parts = alias.Split(' ');
+            if (parts[0] == "install") {
+                using (var wc = new WebClient()) {
+                    var json = wc.DownloadString(Properties.Settings.Default.DownloadURL + "plugins.json");
+                    var pckgs = JsonConvert.DeserializeObject<List<Plugin>>(json);
+                    var pckgForInstall = pckgs.SingleOrDefault(x => x.Name == parts[1]);
+                    if (pckgForInstall != null) {
+                        wc.DownloadFile(Properties.Settings.Default.DownloadURL + pckgForInstall.Name + ".dll", pckgForInstall.Name + ".dll_test");
+                        if (pckgForInstall.HasConfig)
+                            wc.DownloadFile(Properties.Settings.Default.DownloadURL + pckgForInstall.Name + ".dll.config", pckgForInstall.Name + ".dll.config_test");
+                    }
+                    Launcher.Current.ChangeLauncherText("success :)");
+                    return;
+                }
             }
 
             foreach (var tool in Tools) {
