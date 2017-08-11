@@ -9,7 +9,7 @@
 	  "Name": "Slave.PowerShellPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Execute PowerShell Scripts",
-	  "HasConfig": null
+	  "HasConfig": true
 	},
 	{
 	  "Name": "Slave.ScratchPadPlugin",
