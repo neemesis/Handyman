@@ -2,3 +2,5 @@
 **/obj
 **/.svn/
 Backup/
+Packages/
+packages/
