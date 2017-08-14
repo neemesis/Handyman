@@ -86,16 +86,18 @@ namespace Slave.SeriesPlugin {
 
         private static string Search(string sDir, string name, string season, string episode) {
             try {
+                foreach (string f in Directory.GetFiles(sDir)) {
+                    if (IsVideo(f) && CheckFile(f.ToLower(), name, season, episode))
+                        return f;
+                }
                 foreach (string d in Directory.GetDirectories(sDir)) {
                     foreach (string f in Directory.GetFiles(d)) {
                         if (IsVideo(f) && CheckFile(f.ToLower(), name, season, episode))
                             return f;
                     }
-                    Search(d, name, season, episode);
-                }
-                foreach (string f in Directory.GetFiles(sDir)) {
-                    if (IsVideo(f) && CheckFile(f.ToLower(), name, season, episode))
-                        return f;
+                    var s = Search(d, name, season, episode);
+                    if (s != null)
+                        return s;
                 }
                 return null;
             } catch (System.Exception excpt) {

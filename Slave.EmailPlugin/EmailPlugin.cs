@@ -48,6 +48,10 @@ namespace Slave.EmailPlugin {
                     Settings.Default.MyEmail = args[2];
                 } else if (args[1] == "pass") {
                     Settings.Default.MyPassword = args[2];
+                } else if (args[1] == "port") {
+                    Settings.Default.Port = int.Parse(args[2]);
+                } else if (args[1] == "host") {
+                    Settings.Default.Host = args[2];
                 }
                 return;
             }
@@ -94,7 +98,7 @@ namespace Slave.EmailPlugin {
                 AutoSize = true,
                 Text = "\r\nYou need to set Email and Password first!\r\nUsage\r\n==================\r\n"
                 + _mAlias + " help: display help\r\n"
-                + _mAlias + " set email | pass <value>: set either email or password to some value\r\n"
+                + _mAlias + " set email | pass | port | host <value>: set either email or password to some value\r\n"
                 + _mAlias + " s:<subject|optional> b:<body> t:<to>: you can have as many t:<to> as you want\r\n"
                 + "=================="
                 + "example: " + _mAlias + " set email someNewEmail@someNewProvider.com\r\n"

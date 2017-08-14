@@ -1,0 +1,8 @@
+D:\Projects\Slave\Slave.EmailPlugin\bin\Debug\Slave.EmailPlugin.dll.config
+D:\Projects\Slave\Slave.EmailPlugin\bin\Debug\Slave.EmailPlugin.dll
+D:\Projects\Slave\Slave.EmailPlugin\bin\Debug\Slave.EmailPlugin.pdb
+D:\Projects\Slave\Slave.EmailPlugin\bin\Debug\Slave.Framework.dll
+D:\Projects\Slave\Slave.EmailPlugin\bin\Debug\Slave.Framework.pdb
+D:\Projects\Slave\Slave.EmailPlugin\obj\Debug\Slave.EmailPlugin.csprojResolveAssemblyReference.cache
+D:\Projects\Slave\Slave.EmailPlugin\obj\Debug\Slave.EmailPlugin.dll
+D:\Projects\Slave\Slave.EmailPlugin\obj\Debug\Slave.EmailPlugin.pdb

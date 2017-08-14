@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Location" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:/QWE/</Value>
+      <Value Profile="(Default)">D:/Movies/</Value>
     </Setting>
   </Settings>
 </SettingsFile>

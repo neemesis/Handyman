@@ -25,7 +25,7 @@ namespace Slave.SeriesPlugin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:/QWE/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:/Movies/")]
         public string Location {
             get {
                 return ((string)(this["Location"]));

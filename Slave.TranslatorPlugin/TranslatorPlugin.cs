@@ -8,7 +8,7 @@ namespace Slave.TranslatorPlugin
 		public TranslatorPlugin()
 		{
 			_mAlias = "translator";
-			_mHotkey = System.Windows.Forms.Shortcut.ShiftF3;
+			_mHotkey = System.Windows.Forms.Shortcut.None;
 		}
 
 		#region ITool Members

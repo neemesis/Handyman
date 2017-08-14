@@ -1,0 +1,10 @@
+C:\Users\nemesis\Desktop\MagicWords_Src\Slave.Framework\bin\Debug\Slave.Framework.dll
+C:\Users\nemesis\Desktop\MagicWords_Src\Slave.Framework\bin\Debug\Slave.Framework.pdb
+C:\Users\nemesis\Desktop\MagicWords_Src\Slave.Framework\obj\Debug\Slave.Framework.csprojResolveAssemblyReference.cache
+C:\Users\nemesis\Desktop\MagicWords_Src\Slave.Framework\obj\Debug\Slave.Framework.dll
+C:\Users\nemesis\Desktop\MagicWords_Src\Slave.Framework\obj\Debug\Slave.Framework.pdb
+D:\Projects\Slave\Slave.Framework\bin\Debug\Slave.Framework.dll
+D:\Projects\Slave\Slave.Framework\bin\Debug\Slave.Framework.pdb
+D:\Projects\Slave\Slave.Framework\obj\Debug\Slave.Framework.csprojResolveAssemblyReference.cache
+D:\Projects\Slave\Slave.Framework\obj\Debug\Slave.Framework.dll
+D:\Projects\Slave\Slave.Framework\obj\Debug\Slave.Framework.pdb
