@@ -51,7 +51,7 @@ namespace Slave.Core {
             }
 
             // TODO load plugins
-            
+
             LoadPlugins();
         }
 
@@ -141,48 +141,11 @@ namespace Slave.Core {
             }
 
             var parts = alias.Split(' ');
-            if (parts[0] == "install") {
-                try {
-                    using (var wc = new WebClient()) {
-                        var json = wc.DownloadString(Properties.Settings.Default.DownloadURL + "plugins.json");
-                        var pckgs = JsonConvert.DeserializeObject<List<Plugin>>(json);
-                        var pckgForInstall = pckgs.SingleOrDefault(x => x.Name == parts[1]);
-                        if (pckgForInstall != null) {
-                            wc.DownloadFile(Properties.Settings.Default.DownloadURL + pckgForInstall.Name + ".dll", pckgForInstall.Name + ".dll");
-                            if (pckgForInstall.HasConfig)
-                                wc.DownloadFile(Properties.Settings.Default.DownloadURL + pckgForInstall.Name + ".dll.config", pckgForInstall.Name + ".dll.config");
-                        }
-                        LoadPlugins();
-                        Launcher.Current.ChangeLauncherText("success :)");
-                        return;
-                    }
-                } catch (Exception e) {
-                    SetError(e);
-                }
-            }
+            if (parts[0] == "install" && parts.Count() == 2)
+                InstallPlugin(parts[1]);
 
-            if (parts[0] == "packages" && parts.Count() == 1) {
-                using (var wc = new WebClient()) {
-                    var json = wc.DownloadString(Properties.Settings.Default.DownloadURL + "plugins.json");
-                    var pckgs = JsonConvert.DeserializeObject<List<Plugin>>(json);
-                    var form = new Form { Text = "Packages", Size = new Size(300, 600) };
-                    var lb = new Label { AutoSize = true };
-
-                    lb.Text = "To install package write \"install <packageName>\"\r\n\r\n";
-                    lb.Text += "Packages\r\n=================================\r\n";
-                    foreach (var p in pckgs) {
-                        lb.Text += p.Name + "\r\n";
-                        lb.Text += p.Author + "\r\n";
-                        lb.Text += p.Description + "\r\n=================================\\r\n";
-                    }
-
-                    form.Controls.Add(lb);
-
-                    form.ShowDialog();
-
-                    return;
-                }
-            }
+            if (parts[0] == "packages" && parts.Count() == 1)
+                ListPlugins();
 
             foreach (var tool in Tools) {
                 if (alias.StartsWith(tool.Alias)) {
@@ -217,22 +180,82 @@ namespace Slave.Core {
             }
         }
 
+        private void ListPlugins() {
+            using (var wc = new WebClient()) {
+                var json = wc.DownloadString(Properties.Settings.Default.DownloadURL + "plugins.json");
+                var pckgs = JsonConvert.DeserializeObject<List<Plugin>>(json);
+                var form = new Form { Text = "Packages", Size = new Size(300, 600) };
+                var lb = new Label { AutoSize = true };
+
+                lb.Text = "To install package write \"install <packageName>\"\r\n\r\n";
+                lb.Text += "Packages\r\n=================================\r\n";
+                foreach (var p in pckgs) {
+                    lb.Text += p.Name + "\r\n";
+                    lb.Text += p.Author + "\r\n";
+                    lb.Text += p.Description + "\r\n=================================\\r\n";
+                }
+
+                form.Controls.Add(lb);
+
+                form.ShowDialog();
+
+                return;
+            }
+        }
+
+        private void InstallPlugin(string name) {
+            try {
+                using (var wc = new WebClient()) {
+                    var json = wc.DownloadString(Properties.Settings.Default.DownloadURL + "plugins.json");
+                    var pckgs = JsonConvert.DeserializeObject<List<Plugin>>(json);
+                    var pckgForInstall = pckgs.SingleOrDefault(x => x.Name == name);
+                    if (pckgForInstall != null) {
+                        wc.DownloadFile(Properties.Settings.Default.DownloadURL + pckgForInstall.Name + ".dll", pckgForInstall.Name + ".dll");
+                        if (pckgForInstall.HasConfig)
+                            wc.DownloadFile(Properties.Settings.Default.DownloadURL + pckgForInstall.Name + ".dll.config", pckgForInstall.Name + ".dll.config");
+                    }
+                    LoadPlugins();
+                    Launcher.Current.ChangeLauncherText("success :)");
+                    return;
+                }
+            } catch (Exception e) {
+                SetError(e);
+            }
+        }
+
         private void SetError(Exception e = null) {
             Launcher.Current.ChangeLauncherText("error :(");
         }
 
         private static string[] ParseArguments(string str) {
-            return str.Split(' ').Where(x => !string.IsNullOrEmpty(x)).ToArray();
+            return Parse(str);
+            //return str.Split(' ').Where(x => !string.IsNullOrEmpty(x)).ToArray();
+        }
+
+        private static string[] Parse(string str) {
+            var args = new List<string>();
+            var colSplit = str.Split(':');
+            var start = colSplit[0].Split(' ');
+            for (int i = 1; i < (colSplit.Count() == 1 ? start.Count() : start.Count() - 1); ++i) {
+                args.Add(start[i]);
+            }
+            for (int i = 0; i < colSplit.Count() - 1; ++i) {
+                var spl = colSplit[i + 1].Split(' ');
+                var count = spl.Count();
+                var parts = colSplit[i].Split(' ').Last() + ":" + string.Join(" ", spl.Take(count > 1 ? count - 1 : 1));
+                args.Add(parts);
+            }
+            return args.ToArray();
         }
 
         #endregion
 
         #region Private methods
-        private System.ComponentModel.IContainer m_Components;
+        private System.ComponentModel.IContainer _components;
 
         private void LoadPlugins() {
             Tools = new List<IMaster>();
-            m_Components = new System.ComponentModel.Container();
+            _components = new System.ComponentModel.Container();
 
             var pluginPath = string.Empty;
 
@@ -245,7 +268,7 @@ namespace Slave.Core {
                         var tool = (IMaster)Activator.CreateInstance(type);
                         tool.Initialize();
 
-                        var hotkey = new SystemHotkey(m_Components) {
+                        var hotkey = new SystemHotkey(_components) {
                             Shortcut = tool.HotKey
                         };
                         hotkey.Pressed += new EventHandler(delegate (object sender, EventArgs e) {
@@ -364,7 +387,7 @@ namespace Slave.Core {
 
         private string ParseInputText(string inputText, string notes) {
             // TODO preprocess infos
-            if (inputText != null && ( inputText.Contains("$W$") || inputText.Contains("$w$") )) {
+            if (inputText != null && (inputText.Contains("$W$") || inputText.Contains("$w$"))) {
                 var form = new DynamicInput();
                 switch (form.ShowDialog()) {
                     case System.Windows.Forms.DialogResult.OK:
@@ -410,7 +433,7 @@ namespace Slave.Core {
             dlg1.Text = "Help";
             dlg1.AutoScroll = true;
             dlg1.Size = new Size(500, 650);
-            var txt = new Label {AutoSize = true};
+            var txt = new Label { AutoSize = true };
             var sb = new StringBuilder();
             foreach (var s in Slaves) {
                 sb.AppendLine("Command: " + s.Alias);
@@ -418,8 +441,7 @@ namespace Slave.Core {
                 sb.AppendLine("Filename: " + s.FileName);
                 sb.AppendLine("========================");
             }
-            foreach (var s in Tools)
-            {
+            foreach (var s in Tools) {
                 sb.AppendLine("Command: " + s.Alias);
                 sb.AppendLine("Description: " + s.Description);
                 sb.AppendLine("Author: " + s.Author);
@@ -481,8 +503,8 @@ namespace Slave.Core {
         #region IDisposable Members
 
         void IDisposable.Dispose() {
-            if (m_Components != null) {
-                m_Components.Dispose();
+            if (_components != null) {
+                _components.Dispose();
             }
         }
 

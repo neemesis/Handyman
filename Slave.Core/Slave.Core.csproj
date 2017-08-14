@@ -279,9 +279,17 @@
       <Project>{58E14687-40F2-43E2-93BB-B02A6BF90DCD}</Project>
       <Name>Slave.ScreenShotPlugin</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Slave.SeriesPlugin\Slave.SeriesPlugin.csproj">
+      <Project>{a5da5408-76ef-4d69-a360-a02455b3017c}</Project>
+      <Name>Slave.SeriesPlugin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Slave.SqlPlugin\Slave.SqlPlugin.csproj">
       <Project>{97e94af9-617f-48af-8450-f15e6c5f925f}</Project>
       <Name>Slave.SqlPlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Slave.ToDoPlugin\Slave.ToDoPlugin.csproj">
+      <Project>{f16a7066-bf28-415b-b98a-1f3a47b1fc8a}</Project>
+      <Name>Slave.ToDoPlugin</Name>
     </ProjectReference>
     <ProjectReference Include="..\Slave.TranslatorPlugin\Slave.TranslatorPlugin.csproj">
       <Project>{250E1A7A-8FC0-4178-A402-9D7D1743AC64}</Project>
