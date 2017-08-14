@@ -1,8 +1,0 @@
-D:\Projects\Slave\Slave.SeriesPlugin\bin\Debug\Slave.SeriesPlugin.dll.config
-D:\Projects\Slave\Slave.SeriesPlugin\bin\Debug\Slave.SeriesPlugin.dll
-D:\Projects\Slave\Slave.SeriesPlugin\bin\Debug\Slave.SeriesPlugin.pdb
-D:\Projects\Slave\Slave.SeriesPlugin\bin\Debug\Slave.Framework.dll
-D:\Projects\Slave\Slave.SeriesPlugin\bin\Debug\Slave.Framework.pdb
-D:\Projects\Slave\Slave.SeriesPlugin\obj\Debug\Slave.SeriesPlugin.csprojResolveAssemblyReference.cache
-D:\Projects\Slave\Slave.SeriesPlugin\obj\Debug\Slave.SeriesPlugin.dll
-D:\Projects\Slave\Slave.SeriesPlugin\obj\Debug\Slave.SeriesPlugin.pdb

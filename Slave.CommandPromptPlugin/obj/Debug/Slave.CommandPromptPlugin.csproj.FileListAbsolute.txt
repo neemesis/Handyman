@@ -1,8 +1,0 @@
-D:\Projects\Slave\Slave.CommandPromptPlugin\bin\Debug\Slave.CommandPromptPlugin.dll.config
-D:\Projects\Slave\Slave.CommandPromptPlugin\bin\Debug\Slave.CommandPromptPlugin.dll
-D:\Projects\Slave\Slave.CommandPromptPlugin\bin\Debug\Slave.CommandPromptPlugin.pdb
-D:\Projects\Slave\Slave.CommandPromptPlugin\bin\Debug\Slave.Framework.dll
-D:\Projects\Slave\Slave.CommandPromptPlugin\bin\Debug\Slave.Framework.pdb
-D:\Projects\Slave\Slave.CommandPromptPlugin\obj\Debug\Slave.CommandPromptPlugin.csprojResolveAssemblyReference.cache
-D:\Projects\Slave\Slave.CommandPromptPlugin\obj\Debug\Slave.CommandPromptPlugin.dll
-D:\Projects\Slave\Slave.CommandPromptPlugin\obj\Debug\Slave.CommandPromptPlugin.pdb

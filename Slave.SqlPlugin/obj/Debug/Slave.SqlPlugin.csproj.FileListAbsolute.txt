@@ -1,7 +1,0 @@
-D:\Projects\Slave\Slave.SqlPlugin\bin\Debug\Slave.SqlPlugin.dll
-D:\Projects\Slave\Slave.SqlPlugin\bin\Debug\Slave.SqlPlugin.pdb
-D:\Projects\Slave\Slave.SqlPlugin\bin\Debug\Slave.Framework.dll
-D:\Projects\Slave\Slave.SqlPlugin\bin\Debug\Slave.Framework.pdb
-D:\Projects\Slave\Slave.SqlPlugin\obj\Debug\Slave.SqlPlugin.csprojResolveAssemblyReference.cache
-D:\Projects\Slave\Slave.SqlPlugin\obj\Debug\Slave.SqlPlugin.dll
-D:\Projects\Slave\Slave.SqlPlugin\obj\Debug\Slave.SqlPlugin.pdb

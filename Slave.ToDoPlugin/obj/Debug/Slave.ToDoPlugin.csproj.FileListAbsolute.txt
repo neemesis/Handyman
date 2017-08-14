@@ -1,7 +1,0 @@
-D:\Projects\Slave\Slave.ToDoPlugin\bin\Debug\Slave.ToDoPlugin.dll.config
-D:\Projects\Slave\Slave.ToDoPlugin\bin\Debug\Slave.ToDoPlugin.dll
-D:\Projects\Slave\Slave.ToDoPlugin\bin\Debug\Slave.ToDoPlugin.pdb
-D:\Projects\Slave\Slave.ToDoPlugin\bin\Debug\Slave.Framework.dll
-D:\Projects\Slave\Slave.ToDoPlugin\bin\Debug\Slave.Framework.pdb
-D:\Projects\Slave\Slave.ToDoPlugin\obj\Debug\Slave.ToDoPlugin.dll
-D:\Projects\Slave\Slave.ToDoPlugin\obj\Debug\Slave.ToDoPlugin.pdb
