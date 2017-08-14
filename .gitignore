@@ -1,5 +1,7 @@
 **/obj/
 **/obj
+Debug
+**/Debug/
 obj
 **/.svn/
 Backup/
