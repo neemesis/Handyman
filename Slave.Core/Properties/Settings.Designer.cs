@@ -118,7 +118,7 @@ namespace Slave.Core.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://raw.githubusercontent.com/neemesis/Slave/master/Slave.Plugins/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://raw.githubusercontent.com/neemesis/Slave/master/")]
         public string DownloadURL {
             get {
                 return ((string)(this["DownloadURL"]));

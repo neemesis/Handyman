@@ -50,8 +50,6 @@ namespace Slave.Core {
                 SaveSlaves();
             }
 
-            // TODO load plugins
-
             LoadPlugins();
         }
 
@@ -73,16 +71,6 @@ namespace Slave.Core {
                 FileName = @"pbrush.exe"
             };
             Slaves.Add(word1);
-
-            var word2 = new Commands {
-                Alias = "torrentspy",
-                FileName = @"http://www.torrentspy.com/search?query=$W$&submit.x=0&submit.y=0",
-                Arguments = ""
-            };
-            Slaves.Add(word2);
-
-
-
         }
 
         /// <summary>
@@ -206,18 +194,27 @@ namespace Slave.Core {
             using (var wc = new WebClient()) {
                 var json = wc.DownloadString(Properties.Settings.Default.DownloadURL + "plugins.json");
                 var pckgs = JsonConvert.DeserializeObject<List<Plugin>>(json);
-                var form = new Form { Text = "Packages", Size = new Size(300, 600) };
-                var lb = new Label { AutoSize = true };
+                var form = new Form { Text = "Packages", Size = new Size(400, 600)};
+                var lb = new TextBox {
+                    AutoSize = true, ScrollBars = ScrollBars.Vertical, WordWrap = true, ReadOnly = true,
+                    Multiline = true, SelectedText = ""
+                };
 
                 lb.Text = "To install package write \"install <packageName>\"\r\n\r\n";
-                lb.Text += "Packages\r\n=================================\r\n";
+                lb.Text += "Packages\r\n===============================================\r\n";
                 foreach (var p in pckgs) {
-                    lb.Text += p.Name + "\r\n";
-                    lb.Text += p.Author + "\r\n";
-                    lb.Text += p.Description + "\r\n=================================\\r\n";
+                    lb.Text += "Name: " + p.Name + "\r\n";
+                    lb.Text += "Author: " + p.Author + "\r\n";
+                    lb.Text += "Description: " + p.Description + "\r\n===============================================\r\n\r\n";
                 }
 
+                lb.Text += "\r\n\r\n\r\n";
+
+                lb.Size = new Size(form.Size.Width - 10, form.Size.Height);
+                lb.Select(0, 0);
                 form.Controls.Add(lb);
+
+                form.SizeChanged += (o, e) => { lb.Size = new Size(form.Size.Width - 10, form.Size.Height); };
 
                 form.ShowDialog();
 
@@ -449,22 +446,25 @@ namespace Slave.Core {
             dlg1.Size = new Size(500, 650);
             var txt = new Label { AutoSize = true };
             var sb = new StringBuilder();
+
+            foreach (var s in Tools) {
+                sb.AppendLine("Command: " + s.Alias);
+                sb.AppendLine("Description: " + s.Description);
+                sb.AppendLine("Author: " + s.Author);
+                sb.AppendLine("for help type: " + s.Alias + " help");
+                sb.AppendLine("========================");
+            }
+
             foreach (var s in Slaves) {
                 sb.AppendLine("Command: " + s.Alias);
                 sb.AppendLine("Description: " + s.Notes);
                 sb.AppendLine("Filename: " + s.FileName);
                 sb.AppendLine("========================");
             }
-            foreach (var s in Tools) {
-                sb.AppendLine("Command: " + s.Alias);
-                sb.AppendLine("Description: " + s.Description);
-                sb.AppendLine("Author: " + s.Author);
-                sb.AppendLine("========================");
-            }
+            
             txt.Text = sb.ToString();
             dlg1.Controls.Add(txt);
             dlg1.ShowDialog();
-            //Process.Start("http://code.google.com/p/Slaves");
         }
 
         public void Setup() {

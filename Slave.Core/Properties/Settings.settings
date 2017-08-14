@@ -27,7 +27,7 @@
       <Value Profile="(Default)">AltBksp</Value>
     </Setting>
     <Setting Name="DownloadURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://raw.githubusercontent.com/neemesis/Slave/master/Slave.Plugins/</Value>
+      <Value Profile="(Default)">https://raw.githubusercontent.com/neemesis/Slave/master/</Value>
     </Setting>
   </Settings>
 </SettingsFile>
