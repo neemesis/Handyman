@@ -74,7 +74,7 @@ namespace Slave.PowerShellPlugin {
                 var sSplit = s.Split(':');
                 var name = path + (sSplit[0].EndsWith(".ps1") ? sSplit[0] : sSplit[0] + ".ps1");
                 var arguments = " -file \"" + name + "\" ";
-                foreach (var sIn in sSplit[0].Split(',')) {
+                foreach (var sIn in sSplit[1].Split(',')) {
                     arguments += "\"" + sIn + "\"";
                 }
                 var startInfo = new ProcessStartInfo {
