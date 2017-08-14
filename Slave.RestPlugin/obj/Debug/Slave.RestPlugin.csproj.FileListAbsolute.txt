@@ -2,6 +2,5 @@ D:\Projects\Slave\Slave.RestPlugin\bin\Debug\Slave.RestPlugin.dll
 D:\Projects\Slave\Slave.RestPlugin\bin\Debug\Slave.RestPlugin.pdb
 D:\Projects\Slave\Slave.RestPlugin\bin\Debug\Slave.Framework.dll
 D:\Projects\Slave\Slave.RestPlugin\bin\Debug\Slave.Framework.pdb
-D:\Projects\Slave\Slave.RestPlugin\obj\Debug\Slave.RestPlugin.csprojResolveAssemblyReference.cache
 D:\Projects\Slave\Slave.RestPlugin\obj\Debug\Slave.RestPlugin.dll
 D:\Projects\Slave\Slave.RestPlugin\obj\Debug\Slave.RestPlugin.pdb
