@@ -125,6 +125,9 @@ namespace Slave.SqlPlugin
                 var conn = Connections.Single(x => x.Name == args[0]).Connection;
                 var sb = new StringBuilder();
                 sb.Append("select ");
+                var top = args.SingleOrDefault(x => x.StartsWith("top:"));
+                if (!string.IsNullOrEmpty(top))
+                    sb.Append("top " + top.Split(':')[1] + " ");
                 var select = args.SingleOrDefault(x => x.StartsWith("s:") || x.StartsWith("select:"));
                 sb.Append(string.IsNullOrEmpty(select) ? "* " : string.Join(", ", select.Split(',').Where(x => !string.IsNullOrEmpty(x)).Skip(1)));
                 var table = args.Single(x => x.StartsWith("t:") || x.StartsWith("table:"));
@@ -137,6 +140,13 @@ namespace Slave.SqlPlugin
                     sb.Append(" where " + whParts.First());
                     foreach (var p in whParts.Skip(1))
                         sb.Append(" and " + p);
+                }
+
+                var order = args.SingleOrDefault(x => x.StartsWith("o:") || x.StartsWith("order:"));
+                if (!string.IsNullOrEmpty(order)) {
+                    sb.Append(" order by " + order.Split(':')[1].Split(',')[0]);
+                    if (order.Split(':')[1].Split(',').Length == 2)
+                        sb.Append(" " + order.Split(':')[1].Split(',')[1]);
                 }
 
                 var final = sb.ToString();
