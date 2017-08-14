@@ -34,5 +34,17 @@
 	  "Author": "John Roland",
 	  "Description": "This is a Google Translator wrapper",
 	  "HasConfig": true
+	},
+	{
+	  "Name": "Slave.ToDoPlugin",
+	  "Author": "Mirche Toshevski",
+	  "Description": "ToDo Lists",
+	  "HasConfig": true
+	},
+	{
+	  "Name": "Slave.SeriesPlugin",
+	  "Author": "Mirche Toshevski",
+	  "Description": "Track and play TV Series",
+	  "HasConfig": true
 	}
 ]
