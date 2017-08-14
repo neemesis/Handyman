@@ -129,7 +129,7 @@ namespace Slave.SeriesPlugin {
             return null;
         }
 
-        public void Execute(string[] args) {
+        public void Execute(string[] args, Action<string> display) {
             if (args.Count() < 1 || args.Count() > 0 && args[0] == "help") {
                 DisplayHelp();
             } else if (args[0] == "play" && args.Count() == 3) {

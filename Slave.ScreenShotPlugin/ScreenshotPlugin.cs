@@ -19,7 +19,7 @@ namespace Slave.ScreenShotPlugin {
 
         }
 
-        void IMaster.Execute(string[] args) {
+        void IMaster.Execute(string[] args, Action<string> display) {
             var hwnd = (IntPtr)NativeWin32.GetForegroundWindow();
 
 

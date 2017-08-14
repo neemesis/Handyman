@@ -1,5 +1,6 @@
 using System.Windows.Forms;
 using Slave.Framework.Interfaces;
+using System;
 
 namespace Slave.ScratchPadPlugin
 {
@@ -27,7 +28,7 @@ namespace Slave.ScratchPadPlugin
 			// todo restore settings
 		}
 
-		void IMaster.Execute(string[] args)
+		void IMaster.Execute(string[] args, Action<string> display)
 		{
 			
 			ScratchPad.Current.Show();

@@ -43,7 +43,7 @@ namespace Slave.PowerShellPlugin {
             set { _mAlias = value; }
         }
 
-        public void Execute(string[] args) {
+        public void Execute(string[] args, Action<string> display) {
             if (args.Length > 0 && args[0] == "set") {
                 Properties.Settings.Default.PowerShellScriptLocation = string.Join("", args.Skip(1));
                 return;

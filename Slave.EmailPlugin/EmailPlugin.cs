@@ -37,7 +37,7 @@ namespace Slave.EmailPlugin {
             set { _mAlias = value; }
         }
 
-        public void Execute(string[] args) {
+        public void Execute(string[] args, Action<string> display) {
             if (args.Count() < 2 || args[0] == "help") {
                 DisplayHelp();
                 return;

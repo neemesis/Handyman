@@ -275,6 +275,10 @@
       <Project>{7c1410cd-fa01-4e7f-ad5a-f15fd57d2304}</Project>
       <Name>Slave.PowerShellPlugin</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Slave.RestPlugin\Slave.RestPlugin.csproj">
+      <Project>{cd46cc3c-7150-4c0d-ab53-27fbd754fde6}</Project>
+      <Name>Slave.RestPlugin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Slave.ScratchPadPlugin\Slave.ScratchPadPlugin.csproj">
       <Project>{14A071EC-3269-4E2B-9A1A-5EC9789CE924}</Project>
       <Name>Slave.ScratchPadPlugin</Name>

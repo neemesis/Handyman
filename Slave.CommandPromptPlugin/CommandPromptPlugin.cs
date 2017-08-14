@@ -43,7 +43,7 @@ namespace Slave.CommandPromptPlugin
             //throw new NotImplementedException();
         }
 
-        public void Execute(string[] args)
+        public void Execute(string[] args, Action<string> display)
         {
             
             if (args.Length == 0 || args.Length > 0 && args[0] == "help") {

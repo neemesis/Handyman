@@ -81,7 +81,7 @@ namespace Slave.ToDoPlugin {
             LoadToDos();
         }
 
-        public void Execute(string[] args) {
+        public void Execute(string[] args, Action<string> display) {
             if (args.Count() > 0 && args[0] == "help") {
                 DisplayHelp();
             } else if (args.Count() == 0 || args.Count() > 0 && args[0] == "list") {

@@ -91,7 +91,7 @@ namespace Slave.SqlPlugin
             sw.Close();
         }
 
-        public void Execute(string[] args)
+        public void Execute(string[] args, Action<string> display)
         {
             if (args.Count() < 1 || args.Count() > 0 && args[0] == "help")
             {
