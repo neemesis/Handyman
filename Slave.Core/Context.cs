@@ -101,21 +101,23 @@ namespace Slave.Core {
         /// <value>The auto complete source.</value>
         public string[] AutoCompleteSource {
             get {
-                var test = new List<string>();
-                test.Add("add");
-                test.Add("exit");
-                test.Add("help");
-                test.Add("setup");
+                var app = new List<string>();
+                app.Add("add");
+                app.Add("exit");
+                app.Add("help");
+                app.Add("setup");
+                app.Add("google");
+                app.Add("youtube");
 
                 foreach (var word in Slaves) {
-                    test.Add(word.Alias);
+                    app.Add(word.Alias);
                 }
 
                 foreach (var tool in Tools) {
-                    test.Add(tool.Alias);
+                    app.Add(tool.Alias);
                 }
 
-                return test.ToArray();
+                return app.ToArray();
             }
         }
 
@@ -140,24 +142,49 @@ namespace Slave.Core {
                     break;
             }
 
+            #region Google
+            if (alias.StartsWith("google")) {
+                var otherParts = alias.Replace("google", "");
+                if (!string.IsNullOrEmpty(otherParts))
+                    Process.Start(@"https://www.google.com/search?q=" + Uri.EscapeDataString(otherParts));
+                else Process.Start(@"https://www.google.com/");
+                return;
+            }
+            if (alias.StartsWith("youtube")) {
+                var otherParts = alias.Replace("yotube", "");
+                if (!string.IsNullOrEmpty(otherParts))
+                    Process.Start(@"https://www.youtube.com/results?search_query=" + Uri.EscapeDataString(otherParts));
+                else Process.Start(@"https://www.youtube.com/");
+                return;
+            }
+            #endregion
+
+            #region Install Plugins
             var parts = alias.Split(' ');
-            if (parts[0] == "install" && parts.Count() == 2)
+            if (parts[0] == "install" && parts.Count() == 2) {
                 InstallPlugin(parts[1]);
-
-            if (parts[0] == "packages" && parts.Count() == 1)
+                return;
+            }
+            if (parts[0] == "packages" && parts.Count() == 1) {
                 ListPlugins();
+                return;
+            }
+            #endregion
 
+            #region Check Tools
             foreach (var tool in Tools) {
                 if (alias.StartsWith(tool.Alias)) {
                     try {
-                        tool.Execute(ParseArguments(alias.Substring(tool.Alias.Length)));
+                        tool.Execute(ParseArguments(alias.Substring(tool.Alias.Length)), Launcher.Current.ChangeLauncherText);
                         return;
                     } catch (Exception e) {
                         SetError(e);
                     }
                 }
             }
+            #endregion
 
+            #region Check Slaves
             foreach (var word in Slaves) {
                 if (word.Alias.Equals(alias)) {
                     try {
@@ -168,16 +195,11 @@ namespace Slave.Core {
                     }
                 }
             }
+            #endregion
 
-            //Slave word = m_Slaves.Find(delegate(Slave w) { return w.Alias.Equals(alias); });
-            //if (word != null)
-            //{
-            //    Execute(word);
-            //}
-            //else
-            {
-                Execute(alias);
-            }
+            #region CMD Fallback
+            Execute(alias);
+            #endregion
         }
 
         private void ListPlugins() {
@@ -247,7 +269,6 @@ namespace Slave.Core {
             }
             return args.ToArray();
         }
-
         #endregion
 
         #region Private methods
@@ -283,13 +304,6 @@ namespace Slave.Core {
 
         private void AddGoogleSlaves() {
             #region google words
-
-            var googleWord = new Commands {
-                Alias = "google",
-                FileName = @"iexplore",
-                Arguments = "http://www.google.com/search?hl=en&q=$W$"
-            };
-            Slaves.Add(googleWord);
 
             var mailWord = new Commands {
                 Alias = "mail",
