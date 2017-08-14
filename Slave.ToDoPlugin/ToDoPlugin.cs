@@ -1,6 +1,7 @@
 ﻿using Slave.Framework.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -81,8 +82,10 @@ namespace Slave.ToDoPlugin {
         }
 
         public void Execute(string[] args) {
-            if (args.Count() == 0 || args.Count() > 0 && args[0] == "list") {
-                // show list
+            if (args.Count() > 0 && args[0] == "help") {
+                DisplayHelp();
+            } else if (args.Count() == 0 || args.Count() > 0 && args[0] == "list") {
+                DisplayToDoList(ToDos);
             } else if (args[0] == "add" && args.Count() > 1) {
                 var td = new ToDo {
                     Created = DateTime.Now,
@@ -103,9 +106,55 @@ namespace Slave.ToDoPlugin {
                 var td = ToDos.SingleOrDefault(x => x.Name == args[1]);
                 if (td != null) {
                     td.Finished = true;
+                    td.TimeFinished = DateTime.Now;
                     SaveToDos();
                 }
             }
+        }
+
+        private void DisplayToDoList(List<ToDo> items) {
+            var dlg1 = new Form {
+                Text = "ToDo",
+                AutoScroll = true,
+                Size = new Size(500, 650)
+            };
+            var tl = new Label {
+                AutoSize = true,
+                Text = "===============================\r\n"
+            };
+
+            foreach (var i in items)
+                tl.Text += "- " + i.Name + "\r\n";
+
+            tl.Text += "=================================";
+
+            dlg1.Controls.Add(tl);
+
+            dlg1.ShowDialog();
+            return;
+        }
+
+        private void DisplayHelp() {
+            var dlg1 = new Form {
+                Text = "Email Plugin Help",
+                AutoScroll = true,
+                Size = new Size(900, 650),
+                Font = new Font("Arial", 14, FontStyle.Regular)
+            };
+            var tl = new Label {
+                AutoSize = true,
+                Text = "Usage\r\n==================\r\n"
+                + _mAlias + " help: display help\r\n"
+                + _mAlias + " add n:<name> d:<description|optional>: add new ToDo item\r\n"
+                + _mAlias + " delete <name>: delete ToDo item\r\n"
+                + _mAlias + " done <name>: set ToDo item Done\r\n"
+                + _mAlias + " list: show ToDo items\r\n"
+                + "=================="
+            };
+            dlg1.Controls.Add(tl);
+
+            dlg1.ShowDialog();
+            return;
         }
     }
 }

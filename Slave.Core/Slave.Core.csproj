@@ -263,6 +263,10 @@
       <Project>{547308e1-6288-4779-957b-8c4a57ae1702}</Project>
       <Name>Slave.CommandPromptPlugin</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Slave.EmailPlugin\Slave.EmailPlugin.csproj">
+      <Project>{2c411e45-7511-4958-9db4-0aebe9546962}</Project>
+      <Name>Slave.EmailPlugin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Slave.Framework\Slave.Framework.csproj">
       <Project>{1AEF87B4-B549-4408-BBF2-9BC76B9A5121}</Project>
       <Name>Slave.Framework</Name>

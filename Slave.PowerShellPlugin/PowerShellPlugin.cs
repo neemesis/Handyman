@@ -50,9 +50,10 @@ namespace Slave.PowerShellPlugin {
             }
             if (args.Length == 0 || args.Length > 0 && args[0] == "help") {
                 var dlg1 = new Form {
-                    Text = "PowerShell Plugin Help",
+                    Text = "Email Plugin Help",
                     AutoScroll = true,
-                    Size = new Size(500, 650)
+                    Size = new Size(900, 650),
+                    Font = new Font("Arial", 14, FontStyle.Regular)
                 };
                 var tl = new Label {
                     AutoSize = true,
@@ -60,7 +61,7 @@ namespace Slave.PowerShellPlugin {
                     + "ps set <path>: path should be whitout whitespaces\r\n" 
                     + "ps <script1> <script2> ...: you can execute as many as you want scripts\r\n" 
                     + "to send argument to the script use this syntax:\r\n" 
-                    + "ps script1:arg1:arg2 script2:arg3:arg4\r\n"
+                    + "ps script1:arg1,arg2 script2:arg3,arg4\r\n"
                     + "=================="
                 };
                 dlg1.Controls.Add(tl);
@@ -73,7 +74,7 @@ namespace Slave.PowerShellPlugin {
                 var sSplit = s.Split(':');
                 var name = path + (sSplit[0].EndsWith(".ps1") ? sSplit[0] : sSplit[0] + ".ps1");
                 var arguments = " -file \"" + name + "\" ";
-                foreach (var sIn in sSplit.Skip(1)) {
+                foreach (var sIn in sSplit[0].Split(',')) {
                     arguments += "\"" + sIn + "\"";
                 }
                 var startInfo = new ProcessStartInfo {

@@ -126,14 +126,14 @@ namespace Slave.SqlPlugin
                 var sb = new StringBuilder();
                 sb.Append("select ");
                 var select = args.SingleOrDefault(x => x.StartsWith("s:") || x.StartsWith("select:"));
-                sb.Append(string.IsNullOrEmpty(select) ? "* " : string.Join(", ", select.Split(':').Where(x => !string.IsNullOrEmpty(x)).Skip(1)));
+                sb.Append(string.IsNullOrEmpty(select) ? "* " : string.Join(", ", select.Split(',').Where(x => !string.IsNullOrEmpty(x)).Skip(1)));
                 var table = args.Single(x => x.StartsWith("t:") || x.StartsWith("table:"));
                 sb.Append(" from ");
                 sb.Append(table.Split(':')[1]);
 
                 var where = args.SingleOrDefault(x => x.StartsWith("w:") || x.StartsWith("where:"));
                 if (!string.IsNullOrEmpty(where)) {
-                    var whParts = where.Split(':').Where(x => !string.IsNullOrEmpty(x)).Skip(1);
+                    var whParts = where.Split(',').Where(x => !string.IsNullOrEmpty(x)).Skip(1);
                     sb.Append(" where " + whParts.First());
                     foreach (var p in whParts.Skip(1))
                         sb.Append(" and " + p);
@@ -166,11 +166,11 @@ namespace Slave.SqlPlugin
         }
 
         private void DisplayHelp() {
-            var dlg1 = new Form
-            {
-                Text = "SQL Plugin Help",
+            var dlg1 = new Form {
+                Text = "Email Plugin Help",
                 AutoScroll = true,
-                Size = new Size(500, 650)
+                Size = new Size(900, 650),
+                Font = new Font("Arial", 14, FontStyle.Regular)
             };
             var tl = new Label
             {
@@ -180,6 +180,7 @@ namespace Slave.SqlPlugin
                 + _mAlias + " set <name> <connectionString>: add new connection string\r\n"
                 + _mAlias + " delete <name>: delete connection string\r\n"
                 + _mAlias + " update <name> <newConnectionString>: update connection string\r\n"
+                + _mAlias + " <connectionName> s:Col1,Col2,Col3 t:Table w:A<5,B>10 : execute query to \r\n\tselect Col1, Col2, Col3 from table Table with A smaller then 5 and B bigger then 10\r\n"
                 //+ _mAlias + " script1:arg1:arg2 script2:arg3:arg4\r\n"
                 + "=================="
             };

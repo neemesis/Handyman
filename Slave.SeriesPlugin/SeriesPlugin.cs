@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -129,7 +130,9 @@ namespace Slave.SeriesPlugin {
         }
 
         public void Execute(string[] args) {
-            if (args[0] == "play" && args.Count() == 3) {
+            if (args.Count() < 1 || args.Count() > 0 && args[0] == "help") {
+                DisplayHelp();
+            } else if (args[0] == "play" && args.Count() == 3) {
                 var path = Search(Properties.Settings.Default.Location, args[1].ToLower(), args[2].Substring(0, 3).ToLower(), args[2].Substring(3, 3).ToLower());
                 if (!string.IsNullOrEmpty(path)) {
                     var s = new Series {
@@ -161,7 +164,39 @@ namespace Slave.SeriesPlugin {
                     string path = res.Item3;
                     Process.Start(path);
                 }
+            } else if (args[0] == "set" && args.Count() == 3) {
+                var s = SeriesList.SingleOrDefault(x => x.Name == args[1]);
+                if (s == null) {
+                    s = new Series { Name = args[1] };
+                    SeriesList.Add(s);
+                }
+                s.Season = args[2].Substring(0, 3).ToLower();
+                s.Episode = args[2].Substring(3, 3).ToLower();
+                SaveSeriesList();
             }
+        }
+
+        private void DisplayHelp() {
+            var dlg1 = new Form {
+                Text = "Email Plugin Help",
+                AutoScroll = true,
+                Size = new Size(900, 650),
+                Font = new Font("Arial", 14, FontStyle.Regular)
+            };
+            var tl = new Label {
+                AutoSize = true,
+                Text = "Usage\r\n==================\r\n"
+                + _mAlias + " help: display help\r\n"
+                + _mAlias + " set <name> <sXXeYY>: set current watched episode for tv show\r\n"
+                + _mAlias + " play <name> <sXXeYY>: play specific episode\r\n"
+                + _mAlias + " next <name>: play next episode\r\n"
+                + _mAlias + " prev <name>: play previous episode\r\n"
+                + "=================="
+            };
+            dlg1.Controls.Add(tl);
+
+            dlg1.ShowDialog();
+            return;
         }
 
     }

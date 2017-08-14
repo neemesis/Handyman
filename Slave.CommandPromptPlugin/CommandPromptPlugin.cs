@@ -48,9 +48,10 @@ namespace Slave.CommandPromptPlugin
             
             if (args.Length == 0 || args.Length > 0 && args[0] == "help") {
                 var dlg1 = new Form {
-                    Text = "Command Prompt Plugin Help",
+                    Text = "Email Plugin Help",
                     AutoScroll = true,
-                    Size = new Size(500, 650)
+                    Size = new Size(900, 650),
+                    Font = new Font("Arial", 14, FontStyle.Regular)
                 };
                 var tl = new Label {
                     AutoSize = true,
@@ -58,7 +59,7 @@ namespace Slave.CommandPromptPlugin
                     + _mAlias + " set <path>: path should be whitout whitespaces\r\n"
                     + _mAlias + " <script1> <script2> ...: you can execute as many as you want scripts\r\n" 
                     + "to send argument to the script use this syntax:\r\n"
-                    + _mAlias + " script1:arg1:arg2 script2:arg3:arg4\r\n"
+                    + _mAlias + " script1:arg1,arg2 script2:arg3,arg4\r\n"
                     + "=================="
                 };
                 dlg1.Controls.Add(tl);
@@ -79,7 +80,7 @@ namespace Slave.CommandPromptPlugin
                 var sSplit = s.Split(':');
                 var name = path + (sSplit[0].EndsWith(".bat") ? sSplit[0] : sSplit[0] + ".bat");
                 var arguments = " /c \"" + name + "\" ";
-                foreach (var sIn in sSplit.Skip(1))
+                foreach (var sIn in sSplit[1].Split(','))
                 {
                     arguments += "\"" + sIn + "\"";
                 }
