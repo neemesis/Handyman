@@ -3,48 +3,70 @@
 	  "Name": "Slave.CommandPromptPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Execute bat scripts",
-	  "HasConfig": true
+	  "HasConfig": true,
+	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.CommandPromptPlugin/bin/Release/Slave.CommandPromptPlugin.dll"
 	},
 	{
 	  "Name": "Slave.PowerShellPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Execute PowerShell Scripts",
-	  "HasConfig": true
+	  "HasConfig": true,
+	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.PowerShellPlugin/bin/Release/Slave.PowerShellPlugin.dll"
 	},
 	{
 	  "Name": "Slave.ScratchPadPlugin",
 	  "Author": "John Roland",
 	  "Description": "The ScratchPad is a simple text editor to collect and keep text.",
-	  "HasConfig": true
+	  "HasConfig": true,
+	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.ScratchPadPlugin/bin/Release/Slave.ScratchPadPlugin.dll"
 	},
 	{
 	  "Name": "Slave.ScreenShotPlugin",
 	  "Author": "John Roland",
 	  "Description": "Take a screenshot of the current windows and save it as a PNG file",
-	  "HasConfig": true
+	  "HasConfig": true,
+	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.ScreenShotPlugin/bin/Release/Slave.ScreenShotPlugin.dll"
 	},
 	{
 	  "Name": "Slave.SqlPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Execute queries directly from launcher",
-	  "HasConfig": false
+	  "HasConfig": false,
+	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.SqlPlugin/bin/Release/Slave.SqlPlugin.dll"
 	},
 	{
 	  "Name": "Slave.TranslatorPlugin",
 	  "Author": "John Roland",
 	  "Description": "This is a Google Translator wrapper",
-	  "HasConfig": true
+	  "HasConfig": true,
+	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.TranslatorPlugin/bin/Release/Slave.TranslatorPlugin.dll"
 	},
 	{
 	  "Name": "Slave.ToDoPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "ToDo Lists",
-	  "HasConfig": true
+	  "HasConfig": true,
+	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.ToDoPlugin/bin/Release/Slave.ToDoPlugin.dll"
 	},
 	{
 	  "Name": "Slave.SeriesPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Track and play TV Series",
-	  "HasConfig": true
+	  "HasConfig": true,
+	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.SeriesPlugin/bin/Release/Slave.SeriesPlugin.dll"
+	},
+	{
+	  "Name": "Slave.RestPlugin",
+	  "Author": "Mirche Toshevski",
+	  "Description": "Send requests to REST endpoints",
+	  "HasConfig": true,
+	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.RestPlugin/bin/Release/Slave.RestPlugin.dll"
+	},
+	{
+	  "Name": "Slave.EmailPlugin",
+	  "Author": "Mirche Toshevski",
+	  "Description": "Send email fast and easy",
+	  "HasConfig": true,
+	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.EmailPlugin/bin/Release/Slave.EmailPlugin.dll"
 	}
 ]

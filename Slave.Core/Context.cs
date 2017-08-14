@@ -232,9 +232,9 @@ namespace Slave.Core {
                     var pckgs = JsonConvert.DeserializeObject<List<Plugin>>(json);
                     var pckgForInstall = pckgs.SingleOrDefault(x => x.Name == name);
                     if (pckgForInstall != null) {
-                        wc.DownloadFile(Properties.Settings.Default.DownloadURL + pckgForInstall.Name + ".dll", pckgForInstall.Name + ".dll");
+                        wc.DownloadFile(pckgForInstall.URL, pckgForInstall.Name + ".dll");
                         if (pckgForInstall.HasConfig)
-                            wc.DownloadFile(Properties.Settings.Default.DownloadURL + pckgForInstall.Name + ".dll.config", pckgForInstall.Name + ".dll.config");
+                            wc.DownloadFile(pckgForInstall + ".config", pckgForInstall.Name + ".dll.config");
                     }
                     LoadPlugins();
                     Launcher.Current.ChangeLauncherText("success :)");
