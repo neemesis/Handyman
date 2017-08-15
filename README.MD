@@ -13,7 +13,7 @@ Currently implemented plugins:
 - [ToDoPlugin](https://github.com/neemesis/Slave/tree/master/Slave.ToDoPlugin)
 - [TranslatorPlugin](https://github.com/neemesis/Slave/tree/master/Slave.TranslatorPlugin)
 
-## Download $$$Slave^beta$$$
+## Download Slave Beta
 Download all the files from **[HERE](https://github.com/neemesis/Slave/tree/master/Slave.Core/bin/Release)**
 
 ## How to use Slave
