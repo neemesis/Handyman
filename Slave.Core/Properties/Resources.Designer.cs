@@ -39,7 +39,7 @@ namespace Slave.Core.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Slave.Core.Properties.Resources", typeof(Resources).Assembly);
+                    var temp = new global::System.Resources.ResourceManager("Slave.Core.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -65,7 +65,7 @@ namespace Slave.Core.Properties {
         /// </summary>
         internal static System.Drawing.Icon if_robot_88068 {
             get {
-                object obj = ResourceManager.GetObject("if_robot_88068", resourceCulture);
+                var obj = ResourceManager.GetObject("if_robot_88068", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -75,7 +75,7 @@ namespace Slave.Core.Properties {
         /// </summary>
         internal static byte[] Raleway_Thin {
             get {
-                object obj = ResourceManager.GetObject("Raleway_Thin", resourceCulture);
+                var obj = ResourceManager.GetObject("Raleway_Thin", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -85,7 +85,7 @@ namespace Slave.Core.Properties {
         /// </summary>
         internal static byte[] Ubuntu_L {
             get {
-                object obj = ResourceManager.GetObject("Ubuntu_L", resourceCulture);
+                var obj = ResourceManager.GetObject("Ubuntu_L", resourceCulture);
                 return ((byte[])(obj));
             }
         }

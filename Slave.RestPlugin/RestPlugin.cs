@@ -16,25 +16,23 @@ namespace Slave.RestPlugin {
         }
 
         public string Name => "REST Plugin";
-
         public string Description => "Send requests to REST endpoints";
-
         public string Author => "Mirche Toshevski";
-
         public string Version => "1.0.0.0";
+        public string HelpUrl => "https://github.com/neemesis/Slave/blob/master/Slave.RestPlugin/README.MD";
 
         private Shortcut _mHotKey;
         private string _mAlias;
 
 
         Shortcut IMaster.HotKey {
-            get { return _mHotKey; }
-            set { _mHotKey = value; }
+            get => _mHotKey;
+            set => _mHotKey = value;
         }
 
         string IMaster.Alias {
-            get { return _mAlias; }
-            set { _mAlias = value; }
+            get => _mAlias;
+            set => _mAlias = value;
         }
 
         public void Initialize() {
@@ -52,9 +50,9 @@ namespace Slave.RestPlugin {
                 }
 
                 using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate })) {
-                    HttpResponseMessage response = client.GetAsync(url + sb.ToString()).Result;
+                    var response = client.GetAsync(url + sb.ToString()).Result;
                     response.EnsureSuccessStatusCode();
-                    string result = response.Content.ReadAsStringAsync().Result;
+                    var result = response.Content.ReadAsStringAsync().Result;
                     Console.WriteLine("Result: " + result);
                 }
 

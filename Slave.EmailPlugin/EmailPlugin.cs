@@ -17,24 +17,22 @@ namespace Slave.EmailPlugin {
         }
 
         public string Name => "Email Plugin";
-
         public string Description => "Send email fast and easy";
-
         public string Author => "Mirche Toshevski";
-
         public string Version => "1.0.0.0";
+        public string HelpUrl => "https://github.com/neemesis/Slave/blob/master/Slave.EmailPlugin/README.MD";
 
         private Shortcut _mHotKey;
         private string _mAlias;
 
         Shortcut IMaster.HotKey {
-            get { return _mHotKey; }
-            set { _mHotKey = value; }
+            get => _mHotKey;
+            set => _mHotKey = value;
         }
 
         string IMaster.Alias {
-            get { return _mAlias; }
-            set { _mAlias = value; }
+            get => _mAlias;
+            set => _mAlias = value;
         }
 
         public void Execute(string[] args, Action<string> display) {
@@ -62,7 +60,7 @@ namespace Slave.EmailPlugin {
             }
 
 
-            SmtpClient client = new SmtpClient();
+            var client = new SmtpClient();
             client.Port = Settings.Default.Port;
             client.Host = Settings.Default.Host;
             client.EnableSsl = true;
@@ -71,7 +69,7 @@ namespace Slave.EmailPlugin {
             client.UseDefaultCredentials = false;
             client.Credentials = new System.Net.NetworkCredential(Settings.Default.MyEmail, Settings.Default.MyPassword);
 
-            MailMessage mm = new MailMessage();
+            var mm = new MailMessage();
             mm.From = new MailAddress(Settings.Default.MyEmail);
             mm.Subject = args.SingleOrDefault(x => x.StartsWith("s:") || x.StartsWith("subject:")).Split(':')[1];
             mm.Body = args.SingleOrDefault(x => x.StartsWith("b:") || x.StartsWith("body:")).Split(':')[1];

@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Slave.Core.Parsers {
+    public class DefaultParser : IParse {
+        public string[] Parse(string str) {
+            var args = new List<string>();
+            var colSplit = str.Split(':');
+            var start = colSplit[0].Split(' ');
+            for (var i = 1; i < ( colSplit.Count() == 1 ? start.Count() : start.Count() - 1 ); ++i) {
+                args.Add(start[i]);
+            }
+            for (var i = 0; i < colSplit.Count() - 1; ++i) {
+                var spl = colSplit[i + 1].Split(' ');
+                var count = spl.Count();
+                var parts = colSplit[i].Split(' ').Last() + ":" + string.Join(" ", spl.Take(count > 1 ? count - 1 : 1));
+                args.Add(parts);
+            }
+            return args.ToArray();
+        }
+    }
+}

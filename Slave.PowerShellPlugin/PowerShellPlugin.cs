@@ -17,13 +17,11 @@ namespace Slave.PowerShellPlugin {
             //ScratchPad.Current.Size = new System.Drawing.Size(200, 200);
         }
 
-        public string Name  { get { return  "PowerShell Plugin"; }}
-
-        public string Description  { get { return  "Execute PowerShell Scripts"; }}
-
-        public string Author  { get { return  "Mirche Toshevski"; }}
-
-        public string Version  { get { return  "1.0.0.0"; }}
+        public string Name => "PowerShell Plugin";
+        public string Description => "Execute PowerShell Scripts";
+        public string Author => "Mirche Toshevski";
+        public string Version => "1.0.0.0";
+        public string HelpUrl => "https://github.com/neemesis/Slave/blob/master/Slave.PowerShellPlugin/README.MD";
 
         void IMaster.Initialize() {
             // todo restore settings
@@ -34,13 +32,13 @@ namespace Slave.PowerShellPlugin {
 
 
         Shortcut IMaster.HotKey {
-            get { return  _mHotKey; }
-            set { _mHotKey = value; }
+            get => _mHotKey;
+            set => _mHotKey = value;
         }
 
         string IMaster.Alias {
-            get { return _mAlias; }
-            set { _mAlias = value; }
+            get => _mAlias;
+            set => _mAlias = value;
         }
 
         public void Execute(string[] args, Action<string> display) {

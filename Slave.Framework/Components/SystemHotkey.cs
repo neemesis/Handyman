@@ -8,9 +8,9 @@ namespace Slave.Framework.Components {
     /// </summary>
     public class SystemHotkey : Component, IDisposable {
         private Container _components = null;
-        protected DummyWindowWithEvent MWindow = new DummyWindowWithEvent();    //window for WM_Hotkey Messages
-        protected Shortcut MHotKey = Shortcut.None;
-        protected bool isRegistered = false;
+        private readonly DummyWindowWithEvent MWindow = new DummyWindowWithEvent();    //window for WM_Hotkey Messages
+        private Shortcut MHotKey = Shortcut.None;
+        private bool isRegistered = false;
         public event EventHandler Pressed;
         public event EventHandler Error;
 
@@ -69,12 +69,14 @@ namespace Slave.Framework.Components {
             return User32.RegisterHotKey(MWindow.Handle, GetType().GetHashCode(), (int)mod, ( (int)key ) - ( (int)k2 ));
         }
 
-        public bool IsRegistered { get { return isRegistered; } set { isRegistered = value; }}
+        public bool IsRegistered { get => isRegistered;
+            set => isRegistered = value;
+        }
 
 
         [DefaultValue(Shortcut.None)]
         public Shortcut Shortcut {
-            get {return MHotKey; }
+            get => MHotKey;
             set {
                 if (DesignMode) { MHotKey = value; return; }    //Don't register in Designmode
                 if (( isRegistered ) && ( MHotKey != value ))   //Unregister previous registered Hotkey

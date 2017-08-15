@@ -39,7 +39,7 @@ namespace Slave.TranslatorPlugin.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Slave.TranslatorPlugin.Properties.Resources", typeof(Resources).Assembly);
+                    var temp = new global::System.Resources.ResourceManager("Slave.TranslatorPlugin.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -65,7 +65,7 @@ namespace Slave.TranslatorPlugin.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap enfr {
             get {
-                object obj = ResourceManager.GetObject("enfr", resourceCulture);
+                var obj = ResourceManager.GetObject("enfr", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -75,7 +75,7 @@ namespace Slave.TranslatorPlugin.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap fren {
             get {
-                object obj = ResourceManager.GetObject("fren", resourceCulture);
+                var obj = ResourceManager.GetObject("fren", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

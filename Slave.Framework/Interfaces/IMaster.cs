@@ -9,6 +9,7 @@ namespace Slave.Framework.Interfaces
 		string Description { get;}
 		string Author { get;}
 		string Version { get;}
+        string HelpUrl { get; }
 
 		void Initialize();
 		void Execute(string[] args, Action<string> display = null);

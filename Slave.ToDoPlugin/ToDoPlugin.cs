@@ -12,7 +12,7 @@ using System.Xml.Serialization;
 namespace Slave.ToDoPlugin {
     public class ToDoPlugin : IMaster {
         private List<ToDo> ToDos { get; set; }
-        private string _path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + Environment.UserName + ".todoslave";
+        private readonly string _path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + Environment.UserName + ".todoslave";
 
         public ToDoPlugin() {
             _mAlias = "todo";
@@ -20,12 +20,10 @@ namespace Slave.ToDoPlugin {
         }
 
         public string Name => "ToDo Plugin";
-
         public string Description => "ToDo Lists";
-
         public string Author => "Mirche Toshevski";
-
         public string Version => "1.0.0.0";
+        public string HelpUrl => "https://github.com/neemesis/Slave/blob/master/Slave.ToDoPlugin/README.MD";
 
         private void DeleteToDo(string name) {
             if (ToDos == null)
@@ -68,13 +66,13 @@ namespace Slave.ToDoPlugin {
 
 
         Shortcut IMaster.HotKey {
-            get { return _mHotKey; }
-            set { _mHotKey = value; }
+            get => _mHotKey;
+            set => _mHotKey = value;
         }
 
         string IMaster.Alias {
-            get { return _mAlias; }
-            set { _mAlias = value; }
+            get => _mAlias;
+            set => _mAlias = value;
         }
 
         public void Initialize() {

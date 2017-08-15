@@ -11,118 +11,82 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
-namespace Slave.SqlPlugin
-{
-    public class SqlPlugin : IMaster
-    {
+namespace Slave.SqlPlugin {
+    public class SqlPlugin : IMaster {
         public SqlPlugin() {
             _mAlias = "sql";
             _mHotKey = Shortcut.ShiftF5;
         }
 
-        private List<ConnectionString> Connections;
-        private string _path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + Environment.UserName + ".sqlslave";
+        private List<ConnectionString> _connections;
+        private readonly string _path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + Environment.UserName + ".sqlslave";
 
-        public string Name
-        {
-            get { return "SQL Plugin"; }
-        }
+        public string Name => "SQL Plugin";
+        public string Description => "Execute queries directly from launcher";
+        public string Author => "Mirche Toshevski";
+        public string Version => "1.0.0.0";
+        public string HelpUrl => "https://github.com/neemesis/Slave/blob/master/Slave.SqlPlugin/README.MD";
 
-        public string Description
-        {
-            get { return "Execute queries directly from launcher"; }
-        }
-
-        public string Author
-        {
-            get { return "Mirche Toshevski"; }
-        }
-
-        public string Version
-        {
-            get { return "1.0.0.0"; }
-        }
-
-        public void Initialize()
-        {
+        public void Initialize() {
             LoadConnections();
         }
 
-        private void LoadConnections()
-        {
-            if (File.Exists(_path))
-            {
+        private void LoadConnections() {
+            if (File.Exists(_path)) {
                 var serializer = new XmlSerializer(typeof(List<ConnectionString>));
                 var reader = File.OpenText(_path);
-                Connections = (List<ConnectionString>)serializer.Deserialize(reader);
+                _connections = (List<ConnectionString>)serializer.Deserialize(reader);
                 reader.Close();
-            }
-            else
-            {
-                Connections = new List<ConnectionString>();
+            } else {
+                _connections = new List<ConnectionString>();
                 SaveConnections();
             }
         }
 
-        private void InsertConnection(ConnectionString cs)
-        {
-            if (Connections == null)
+        private void InsertConnection(ConnectionString cs) {
+            if (_connections == null)
                 LoadConnections();
 
-            Connections.Add(cs);
+            _connections.Add(cs);
             SaveConnections();
         }
 
-        private void DeleteConnection(string name)
-        {
-            if (Connections == null)
+        private void DeleteConnection(string name) {
+            if (_connections == null)
                 return;
 
-            Connections.Remove(Connections.First(x => x.Name == name));
+            _connections.Remove(_connections.First(x => x.Name == name));
             SaveConnections();
         }
 
 
-        private void SaveConnections()
-        {
+        private void SaveConnections() {
             var ser = new XmlSerializer(typeof(List<ConnectionString>));
             var sw = new StreamWriter(_path);
-            ser.Serialize(sw, Connections);
+            ser.Serialize(sw, _connections);
             sw.Close();
         }
 
-        public void Execute(string[] args, Action<string> display)
-        {
-            if (args.Count() < 1 || args.Count() > 0 && args[0] == "help")
-            {
+        public void Execute(string[] args, Action<string> display) {
+            if (args.Count() < 1 || args.Count() > 0 && args[0] == "help") {
                 DisplayHelp();
-            }
-            else if (args.Count() > 2 && args[0] == "set")
-            {
-                var cs = new ConnectionString
-                {
+            } else if (args.Count() > 2 && args[0] == "set") {
+                var cs = new ConnectionString {
                     Name = args[1],
                     Connection = string.Join(" ", args.Skip(2))
                 };
                 InsertConnection(cs);
-            }
-            else if (args.Count() == 2 && args[0] == "delete")
-            {
+            } else if (args.Count() == 2 && args[0] == "delete") {
                 DeleteConnection(args[1]);
-            }
-            else if (args.Count() > 2 && args[0] == "update")
-            {
-                var cs = Connections.First(x => x.Name == args[1]);
+            } else if (args.Count() > 2 && args[0] == "update") {
+                var cs = _connections.First(x => x.Name == args[1]);
                 cs.Connection = string.Join(" ", args.Skip(2));
                 SaveConnections();
-            }
-            else if (args.Count() > 2 && args[0] == "raw") {
-                var conn = Connections.Single(x => x.Name == args[1]).Connection;
+            } else if (args.Count() > 2 && args[0] == "raw") {
+                var conn = _connections.Single(x => x.Name == args[1]).Connection;
                 RawQuery(conn, string.Join(" ", args.Skip(2)));
-            }
-            else if (args.Count() >= 2)
-            {
-                var conn = Connections.Single(x => x.Name == args[0]).Connection;
+            } else if (args.Count() >= 2) {
+                var conn = _connections.Single(x => x.Name == args[0]).Connection;
                 var sb = new StringBuilder();
                 sb.Append("select ");
                 var top = args.SingleOrDefault(x => x.StartsWith("top:"));
@@ -155,14 +119,14 @@ namespace Slave.SqlPlugin
         }
 
         private void RawQuery(string connection, string query) {
-            using (SqlConnection conn = new SqlConnection(connection))
-            using (SqlCommand cmd = new SqlCommand(query, conn)) {
+            using (var conn = new SqlConnection(connection))
+            using (var cmd = new SqlCommand(query, conn)) {
                 conn.Open();
                 var result = cmd.ExecuteReader();
 
                 var form = new Form { Text = "Result for: " + query, MinimumSize = new Size(800, 300) };
                 var fv = new DataGridView { Size = form.Size, ScrollBars = ScrollBars.Both, Dock = DockStyle.Fill };
-                DataTable dt = new DataTable();
+                var dt = new DataTable();
                 dt.Load(result);
                 fv.DataSource = dt;
                 form.Controls.Add(fv);
@@ -182,8 +146,7 @@ namespace Slave.SqlPlugin
                 Size = new Size(900, 650),
                 Font = new Font("Arial", 14, FontStyle.Regular)
             };
-            var tl = new Label
-            {
+            var tl = new Label {
                 AutoSize = true,
                 Text = "Usage\r\n==================\r\n"
                 + _mAlias + " help: display help\r\n"
@@ -204,16 +167,14 @@ namespace Slave.SqlPlugin
         private string _mAlias;
 
 
-        Shortcut IMaster.HotKey
-        {
-            get { return _mHotKey; }
-            set { _mHotKey = value; }
+        Shortcut IMaster.HotKey {
+            get => _mHotKey;
+            set => _mHotKey = value;
         }
 
-        string IMaster.Alias
-        {
-            get { return _mAlias; }
-            set { _mAlias = value; }
+        string IMaster.Alias {
+            get => _mAlias;
+            set => _mAlias = value;
         }
     }
 }

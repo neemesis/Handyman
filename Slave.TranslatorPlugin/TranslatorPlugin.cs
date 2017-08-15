@@ -1,56 +1,47 @@
 using Slave.Framework.Interfaces;
 using System;
 
-namespace Slave.TranslatorPlugin
-{
-	public class TranslatorPlugin : IMaster
-	{
-		public TranslatorPlugin()
-		{
-			_mAlias = "translator";
-			_mHotkey = System.Windows.Forms.Shortcut.None;
-		}
+namespace Slave.TranslatorPlugin {
+    public class TranslatorPlugin : IMaster {
+        public TranslatorPlugin() {
+            _mAlias = "translator";
+            _mHotkey = System.Windows.Forms.Shortcut.None;
+        }
 
-		#region ITool Members
+        #region ITool Members
 
-		string IMaster.Name  { get { return  "Translator plugin"; }}
+        string IMaster.Name => "Translator plugin";
+        string IMaster.Description => "This is a Google Translator wrapper";
+        string IMaster.Author => "John Roland";
+        string IMaster.Version => "1.0";
+        public string HelpUrl => "https://github.com/neemesis/Slave/blob/master/Slave.TranslatorPlugin/README.MD";
 
-	    string IMaster.Description  { get { return  "This is a Google Translator wrapper"; }}
+        void IMaster.Initialize() {
+            //
+        }
 
-	    string IMaster.Author  { get { return  "John Roland"; }}
-
-	    string IMaster.Version  { get { return  "1.0"; }}
-
-	    void IMaster.Initialize()
-		{
-			//
-		}
-
-		void IMaster.Execute(string[] args, Action<string> display)
-		{
+        void IMaster.Execute(string[] args, Action<string> display) {
             var form = new MainForm {
                 StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             };
             form.Select();
-			form.Focus();
-			form.ShowDialog();
-		}
+            form.Focus();
+            form.ShowDialog();
+        }
 
-		System.Windows.Forms.Shortcut IMaster.HotKey
-		{
-			get { return _mHotkey; }
-		    set { _mHotkey = value; }
-		}
+        System.Windows.Forms.Shortcut IMaster.HotKey {
+            get => _mHotkey;
+            set => _mHotkey = value;
+        }
 
-		private string _mAlias;
-		private System.Windows.Forms.Shortcut _mHotkey;
+        private string _mAlias;
+        private System.Windows.Forms.Shortcut _mHotkey;
 
-		string IMaster.Alias
-		{
-			get { return _mAlias; }
-		    set { _mAlias = value; }
-		}
+        string IMaster.Alias {
+            get => _mAlias;
+            set => _mAlias = value;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

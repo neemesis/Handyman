@@ -13,8 +13,6 @@ namespace Slave.ScreenShotPlugin {
             _mHotKey = Shortcut.ShiftF1;
         }
 
-        #region ITool Members
-
         void IMaster.Initialize() {
 
         }
@@ -37,23 +35,22 @@ namespace Slave.ScreenShotPlugin {
         }
 
         string IMaster.Alias {
-            get { return _mAlias; }
-            set { _mAlias = value;}
+            get => _mAlias;
+            set => _mAlias = value;
         }
 
         Shortcut IMaster.HotKey {
-            get { return _mHotKey; }
-            set { _mHotKey = value; }
+            get => _mHotKey;
+            set => _mHotKey = value;
         }
 
-        string IMaster.Name { get { return "Screenshot maker"; }}
+        string IMaster.Name => "Screenshot maker";
 
-        string IMaster.Description { get { return "Take a screenshot of the current windows and save it as a PNG file"; }}
+        string IMaster.Description => "Take a screenshot of the current windows and save it as a PNG file";
 
-        string IMaster.Author { get { return "John Roland"; }}
+        string IMaster.Author => "John Roland";
 
-        string IMaster.Version { get { return "1.0"; } }
-
-        #endregion
+        string IMaster.Version => "1.0";
+        public string HelpUrl => "https://github.com/neemesis/Slave/blob/master/Slave.ScreenShotPlugin/README.MD";
     }
 }

@@ -178,7 +178,14 @@
     <Compile Include="Forms\SlaveForm.Designer.cs">
       <DependentUpon>SlaveForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AppForms.cs" />
+    <Compile Include="Helpers\Defaults.cs" />
+    <Compile Include="Helpers\Executor.cs" />
+    <Compile Include="Helpers\SlavesManager.cs" />
+    <Compile Include="Helpers\PluginManager.cs" />
     <Compile Include="Models\Plugin.cs" />
+    <Compile Include="Parsers\DefaultParser.cs" />
+    <Compile Include="Parsers\IParse.cs" />
     <Compile Include="SlaveContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

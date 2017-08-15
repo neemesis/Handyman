@@ -18,25 +18,11 @@ namespace Slave.CommandPromptPlugin
             _mHotKey = Shortcut.ShiftF4;
         }
 
-        public string Name
-        {
-            get { return "Command Prompt Plugin"; }
-        }
-
-        public string Description
-        {
-            get { return "Execute bat scripts"; }
-        }
-
-        public string Author
-        {
-            get { return "Mirche Toshevski"; }
-        }
-
-        public string Version
-        {
-            get { return "1.0.0.0"; }
-        }
+        public string Name => "Command Prompt Plugin";
+        public string Description => "Execute bat scripts";
+        public string Author => "Mirche Toshevski";
+        public string Version => "1.0.0.0";
+        public string HelpUrl => "https://github.com/neemesis/Slave/blob/master/Slave.CommandPromptPlugin/README.MD";
 
         public void Initialize()
         {
@@ -123,14 +109,14 @@ namespace Slave.CommandPromptPlugin
 
         Shortcut IMaster.HotKey
         {
-            get { return _mHotKey; }
-            set { _mHotKey = value; }
+            get => _mHotKey;
+            set => _mHotKey = value;
         }
 
         string IMaster.Alias
         {
-            get { return _mAlias; }
-            set { _mAlias = value; }
+            get => _mAlias;
+            set => _mAlias = value;
         }
     }
 }
