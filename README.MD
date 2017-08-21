@@ -1,5 +1,5 @@
 # Slave - automate your PC
-Slave is text-based launcher that you can esily activate with shortcut. Slave is easy to use, has a lot of plugins and also provides interface to create your own plugin.
+Slave is text-based launcher that you can esily activate with shortcut. Slave is easy to use, has a lot of plugins and also provides interface to create your own plugins.
 
 Currently implemented plugins:
 - [CommandPromptPlugin](https://github.com/neemesis/Slave/tree/master/Slave.CommandPromptPlugin)
@@ -12,6 +12,7 @@ Currently implemented plugins:
 - [SqlPlugin](https://github.com/neemesis/Slave/tree/master/Slave.SqlPlugin)
 - [ToDoPlugin](https://github.com/neemesis/Slave/tree/master/Slave.ToDoPlugin)
 - [TranslatorPlugin](https://github.com/neemesis/Slave/tree/master/Slave.TranslatorPlugin)
+- [SysPlugin](https://github.com/neemesis/Slave/tree/master/Slave.SysPlugin)
 
 ## Download Slave Beta
 Download all the files from **[HERE](https://github.com/neemesis/Slave/tree/master/Slave.Core/bin/Release)**
@@ -22,7 +23,7 @@ Download all the files from **[HERE](https://github.com/neemesis/Slave/tree/mast
 - Type **add** to add new slave.
 - Type **setup** to see options.
 - You can modify all config files in base directory for all the plugins, just open **[PluginName].dll.config**
-- To see help for specific slave type **[SlaveName] help**
+- To see help for specific slave type **help [SlaveName]**
 - To exit type **exit**
 - To start **Slave** at system boot, either use options or change directly in  **Slave.Core.dll.config**
 
@@ -33,7 +34,7 @@ Download all the files from **[HERE](https://github.com/neemesis/Slave/tree/mast
 - Use **Execute** to act on commands.
 - See some of the other projects for easy how-to.
 
-Send me your newly created plugin and I will add it to **plugins.json** for easier installation.
+Send me your created plugins and I will add them to **plugins.json** for easier installation.
 
 ## Video
 TBA
