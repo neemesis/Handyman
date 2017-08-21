@@ -184,8 +184,6 @@
     <Compile Include="Helpers\SlavesManager.cs" />
     <Compile Include="Helpers\PluginManager.cs" />
     <Compile Include="Models\Plugin.cs" />
-    <Compile Include="Parsers\DefaultParser.cs" />
-    <Compile Include="Parsers\IParse.cs" />
     <Compile Include="SlaveContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

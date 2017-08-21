@@ -40,6 +40,7 @@ namespace Slave.PowerShellPlugin {
             get => _mAlias;
             set => _mAlias = value;
         }
+        public IParse Parser { get; set; }
 
         public void Execute(string[] args, Action<string> display) {
             if (args.Length > 0 && args[0] == "set") {
@@ -104,5 +105,6 @@ namespace Slave.PowerShellPlugin {
                 dlg1.ShowDialog();
             }
         }
+
     }
 }

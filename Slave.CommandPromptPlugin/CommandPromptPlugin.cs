@@ -23,6 +23,7 @@ namespace Slave.CommandPromptPlugin
         public string Author => "Mirche Toshevski";
         public string Version => "1.0.0.0";
         public string HelpUrl => "https://github.com/neemesis/Slave/blob/master/Slave.CommandPromptPlugin/README.MD";
+        public IParse Parser { get; set; }
 
         public void Initialize()
         {

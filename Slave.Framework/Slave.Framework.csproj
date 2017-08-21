@@ -101,6 +101,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Commands.cs" />
+    <Compile Include="Parsers\DefaultParser.cs" />
+    <Compile Include="Interfaces\IParse.cs" />
     <Compile Include="SlavesHelper.cs" />
     <Compile Include="Components\SystemHotkey.cs">
       <SubType>Component</SubType>

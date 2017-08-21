@@ -24,7 +24,7 @@ namespace Slave.ToDoPlugin {
         public string Author => "Mirche Toshevski";
         public string Version => "1.0.0.0";
         public string HelpUrl => "https://github.com/neemesis/Slave/blob/master/Slave.ToDoPlugin/README.MD";
-
+        public IParse Parser { get; set; }
         private void DeleteToDo(string name) {
             if (ToDos == null)
                 return;

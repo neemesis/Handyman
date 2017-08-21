@@ -8,14 +8,12 @@ namespace Slave.TranslatorPlugin {
             _mHotkey = System.Windows.Forms.Shortcut.None;
         }
 
-        #region ITool Members
-
         string IMaster.Name => "Translator plugin";
         string IMaster.Description => "This is a Google Translator wrapper";
         string IMaster.Author => "John Roland";
         string IMaster.Version => "1.0";
         public string HelpUrl => "https://github.com/neemesis/Slave/blob/master/Slave.TranslatorPlugin/README.MD";
-
+        public IParse Parser { get; set; }
         void IMaster.Initialize() {
             //
         }
@@ -41,7 +39,5 @@ namespace Slave.TranslatorPlugin {
             get => _mAlias;
             set => _mAlias = value;
         }
-
-        #endregion
     }
 }

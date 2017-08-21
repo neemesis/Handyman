@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Slave.Core.Forms;
-using Slave.Core.Parsers;
+using Slave.Framework.Parsers;
 using Slave.Framework.Entities;
 using Slave.Framework.Interfaces;
 
@@ -16,7 +16,8 @@ namespace Slave.Core.Helpers {
             foreach (var tool in tools) {
                 if (alias.StartsWith(tool.Alias)) {
                     try {
-                        tool.Execute(parser.Parse(alias.Substring(tool.Alias.Length)), Launcher.Current.ChangeLauncherText);
+                        var args = tool.Parser != null ? tool.Parser.Parse(alias.Substring(tool.Alias.Length)) : parser.Parse(alias.Substring(tool.Alias.Length));
+                        tool.Execute(args, Launcher.Current.ChangeLauncherText);
                         return true;
                     } catch (Exception e) {
                         setError(e);

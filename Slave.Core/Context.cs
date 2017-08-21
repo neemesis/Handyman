@@ -7,7 +7,7 @@ using Slave.Framework;
 using Slave.Framework.Entities;
 using Slave.Framework.Interfaces;
 using Slave.Core.Helpers;
-using Slave.Core.Parsers;
+using Slave.Framework.Parsers;
 
 namespace Slave.Core {
     public class Context : IDisposable {

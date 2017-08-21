@@ -15,7 +15,7 @@ namespace Slave.ScratchPadPlugin {
         string IMaster.Author => "John Roland";
         string IMaster.Version => "1.0";
         public string HelpUrl => "https://github.com/neemesis/Slave/blob/master/Slave.ScratchPadPlugin/README.MD";
-
+        public IParse Parser { get; set; }
         void IMaster.Initialize() {
             // todo restore settings
         }

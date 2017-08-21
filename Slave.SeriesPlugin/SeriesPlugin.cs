@@ -29,7 +29,7 @@ namespace Slave.SeriesPlugin {
         public string Author => "Mirche Toshevski";
         public string Version => "1.0.0.0";
         public string HelpUrl => "https://github.com/neemesis/Slave/blob/master/Slave.SeriesPlugin/README.MD";
-
+        public IParse Parser { get; set; }
         private Shortcut _mHotKey;
         private string _mAlias;
 

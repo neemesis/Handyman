@@ -43,7 +43,7 @@ namespace Slave.ScreenShotPlugin {
             get => _mHotKey;
             set => _mHotKey = value;
         }
-
+        public IParse Parser { get; set; }
         string IMaster.Name => "Screenshot maker";
 
         string IMaster.Description => "Take a screenshot of the current windows and save it as a PNG file";
