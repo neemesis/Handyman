@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.EmailPlugin", "Slave.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.RestPlugin", "Slave.RestPlugin\Slave.RestPlugin.csproj", "{CD46CC3C-7150-4C0D-AB53-27FBD754FDE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.SysPugin", "Slave.SysPugin\Slave.SysPugin.csproj", "{6FAC9762-B064-44F9-B897-52D28835699D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -178,6 +180,18 @@ Global
 		{CD46CC3C-7150-4C0D-AB53-27FBD754FDE6}.Release|x64.Build.0 = Release|Any CPU
 		{CD46CC3C-7150-4C0D-AB53-27FBD754FDE6}.Release|x86.ActiveCfg = Release|Any CPU
 		{CD46CC3C-7150-4C0D-AB53-27FBD754FDE6}.Release|x86.Build.0 = Release|Any CPU
+		{6FAC9762-B064-44F9-B897-52D28835699D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FAC9762-B064-44F9-B897-52D28835699D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FAC9762-B064-44F9-B897-52D28835699D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6FAC9762-B064-44F9-B897-52D28835699D}.Debug|x64.Build.0 = Debug|Any CPU
+		{6FAC9762-B064-44F9-B897-52D28835699D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6FAC9762-B064-44F9-B897-52D28835699D}.Debug|x86.Build.0 = Debug|Any CPU
+		{6FAC9762-B064-44F9-B897-52D28835699D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FAC9762-B064-44F9-B897-52D28835699D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FAC9762-B064-44F9-B897-52D28835699D}.Release|x64.ActiveCfg = Release|Any CPU
+		{6FAC9762-B064-44F9-B897-52D28835699D}.Release|x64.Build.0 = Release|Any CPU
+		{6FAC9762-B064-44F9-B897-52D28835699D}.Release|x86.ActiveCfg = Release|Any CPU
+		{6FAC9762-B064-44F9-B897-52D28835699D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

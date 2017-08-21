@@ -1,9 +1,6 @@
 ﻿using Slave.Framework.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Slave.SysPugin {
     public class SysPlugin : IMaster {
@@ -27,14 +24,22 @@ namespace Slave.SysPugin {
             set => _mAlias = value;
         }
 
-        public IParse Parser { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IParse Parser { get; set; }
 
         public void Execute(string[] args, Action<string> display = null) {
-            throw new NotImplementedException();
+            if (args[0] == "shutdown") {
+
+            } else if (args[0] == "restart") {
+
+            } else if (args[0] == "sleep") {
+
+            } else if (args[0] == "hibernate") {
+
+            }
         }
 
         public void Initialize() {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }
