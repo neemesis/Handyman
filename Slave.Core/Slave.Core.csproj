@@ -300,6 +300,10 @@
       <Project>{97e94af9-617f-48af-8450-f15e6c5f925f}</Project>
       <Name>Slave.SqlPlugin</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Slave.SysPugin\Slave.SysPugin.csproj">
+      <Project>{6fac9762-b064-44f9-b897-52d28835699d}</Project>
+      <Name>Slave.SysPugin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Slave.ToDoPlugin\Slave.ToDoPlugin.csproj">
       <Project>{f16a7066-bf28-415b-b98a-1f3a47b1fc8a}</Project>
       <Name>Slave.ToDoPlugin</Name>
