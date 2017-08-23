@@ -5,12 +5,12 @@ using Slave.Framework.Interfaces;
 
 namespace Slave.ScreenShotPlugin {
     public class ScreenshotPlugin : IMaster {
-        private string _mAlias;
-        private Shortcut _mHotKey;
+        private string _alias;
+        private Shortcut _hotKey;
 
         public ScreenshotPlugin() {
-            _mAlias = "screenshot";
-            _mHotKey = Shortcut.ShiftF1;
+            _alias = "screenshot";
+            _hotKey = Shortcut.ShiftF1;
         }
 
         void IMaster.Initialize() {
@@ -35,13 +35,13 @@ namespace Slave.ScreenShotPlugin {
         }
 
         string IMaster.Alias {
-            get => _mAlias;
-            set => _mAlias = value;
+            get => _alias;
+            set => _alias = value;
         }
 
         Shortcut IMaster.HotKey {
-            get => _mHotKey;
-            set => _mHotKey = value;
+            get => _hotKey;
+            set => _hotKey = value;
         }
         public IParse Parser { get; set; }
         string IMaster.Name => "Screenshot maker";

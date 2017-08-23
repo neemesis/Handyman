@@ -65,9 +65,9 @@ namespace Slave.Core.Helpers {
             }
         }
 
-        public static List<IMaster> LoadPlugins(out IContainer components) {
+        public static List<IMaster> LoadPlugins(out IContainer _components) {
             var tools = new List<IMaster>();
-            components = new Container();
+            _components = new Container();
 
             // we extract all the IAttributeDefinition implementations 
             foreach (var filename in Directory.GetFiles(Application.StartupPath /* + "\\Plugins" */, "*.dll")) {
@@ -78,7 +78,7 @@ namespace Slave.Core.Helpers {
                         var tool = (IMaster)Activator.CreateInstance(type);
                         tool.Initialize();
 
-                        var hotkey = new SystemHotkey(components) {
+                        var hotkey = new SystemHotkey(_components) {
                             Shortcut = tool.HotKey
                         };
                         hotkey.Pressed += delegate {

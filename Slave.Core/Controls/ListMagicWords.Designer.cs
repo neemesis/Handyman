@@ -5,7 +5,7 @@ namespace Slave.Core.Controls
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+		private System.ComponentModel.IContainer _components = null;
 
 		/// <summary> 
 		/// Clean up any resources being used.
@@ -13,9 +13,9 @@ namespace Slave.Core.Controls
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected override void Dispose(bool disposing)
 		{
-			if (disposing && (components != null))
+			if (disposing && (_components != null))
 			{
-				components.Dispose();
+				_components.Dispose();
 			}
 			base.Dispose(disposing);
 		}
@@ -28,10 +28,10 @@ namespace Slave.Core.Controls
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
+			this._components = new System.ComponentModel.Container();
 			this.uxDataGridView = new System.Windows.Forms.DataGridView();
-			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+			this.bindingSource1 = new System.Windows.Forms.BindingSource(this._components);
+			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this._components);
 			this.uxAliasColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.uxFilenameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.uxArgumentsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();

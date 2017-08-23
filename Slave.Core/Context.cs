@@ -15,7 +15,7 @@ namespace Slave.Core {
         public List<Commands> Slaves { get; set; }
         public List<IMaster> Tools { get; set; }
         private static IParse Parser { get; set; }
-        private System.ComponentModel.IContainer _components;
+        private System.ComponentModel.IContainer __components;
         #endregion
 
         private Context() {
@@ -29,10 +29,10 @@ namespace Slave.Core {
 
             Parser = new DefaultParser();
             Slaves = SlavesManager.Load();
-            Tools = PluginManager.LoadPlugins(out _components);
+            Tools = PluginManager.LoadPlugins(out __components);
         }
 
-        #region public methods
+        #region Public Methods
 
         /// <summary>
         /// Gets the auto complete source.
@@ -98,7 +98,7 @@ namespace Slave.Core {
         }
         #endregion
 
-        public void AddActiveApplicationSlave(string appExeName, string appExePath) {
+        public static void AddActiveApplicationSlave(string appExeName, string appExePath) {
             var word = new Commands {
                 Alias = appExeName,
                 FileName = appExePath
@@ -110,7 +110,7 @@ namespace Slave.Core {
         #region IDisposable Members
 
         void IDisposable.Dispose() {
-            _components?.Dispose();
+            __components?.Dispose();
         }
 
         #endregion

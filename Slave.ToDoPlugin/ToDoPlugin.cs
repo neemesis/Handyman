@@ -15,8 +15,8 @@ namespace Slave.ToDoPlugin {
         private readonly string _path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + Environment.UserName + ".todoslave";
 
         public ToDoPlugin() {
-            _mAlias = "todo";
-            _mHotKey = Shortcut.None;
+            _alias = "todo";
+            _hotKey = Shortcut.None;
         }
 
         public string Name => "ToDo Plugin";
@@ -61,18 +61,18 @@ namespace Slave.ToDoPlugin {
             sw.Close();
         }
 
-        private Shortcut _mHotKey;
-        private string _mAlias;
+        private Shortcut _hotKey;
+        private string _alias;
 
 
         Shortcut IMaster.HotKey {
-            get => _mHotKey;
-            set => _mHotKey = value;
+            get => _hotKey;
+            set => _hotKey = value;
         }
 
         string IMaster.Alias {
-            get => _mAlias;
-            set => _mAlias = value;
+            get => _alias;
+            set => _alias = value;
         }
 
         public void Initialize() {
@@ -142,11 +142,11 @@ namespace Slave.ToDoPlugin {
             var tl = new Label {
                 AutoSize = true,
                 Text = "Usage\r\n==================\r\n"
-                + _mAlias + " help: display help\r\n"
-                + _mAlias + " add n:<name> d:<description|optional>: add new ToDo item\r\n"
-                + _mAlias + " delete <name>: delete ToDo item\r\n"
-                + _mAlias + " done <name>: set ToDo item Done\r\n"
-                + _mAlias + " list: show ToDo items\r\n"
+                + _alias + " help: display help\r\n"
+                + _alias + " add n:<name> d:<description|optional>: add new ToDo item\r\n"
+                + _alias + " delete <name>: delete ToDo item\r\n"
+                + _alias + " done <name>: set ToDo item Done\r\n"
+                + _alias + " list: show ToDo items\r\n"
                 + "=================="
             };
             dlg1.Controls.Add(tl);

@@ -4,8 +4,8 @@ using System;
 namespace Slave.TranslatorPlugin {
     public class TranslatorPlugin : IMaster {
         public TranslatorPlugin() {
-            _mAlias = "translator";
-            _mHotkey = System.Windows.Forms.Shortcut.None;
+            _alias = "translator";
+            _hotKey = System.Windows.Forms.Shortcut.None;
         }
 
         string IMaster.Name => "Translator plugin";
@@ -28,16 +28,16 @@ namespace Slave.TranslatorPlugin {
         }
 
         System.Windows.Forms.Shortcut IMaster.HotKey {
-            get => _mHotkey;
-            set => _mHotkey = value;
+            get => _hotKey;
+            set => _hotKey = value;
         }
 
-        private string _mAlias;
-        private System.Windows.Forms.Shortcut _mHotkey;
+        private string _alias;
+        private System.Windows.Forms.Shortcut _hotKey;
 
         string IMaster.Alias {
-            get => _mAlias;
-            set => _mAlias = value;
+            get => _alias;
+            set => _alias = value;
         }
     }
 }

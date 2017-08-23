@@ -14,8 +14,8 @@ using System.Xml.Serialization;
 namespace Slave.SqlPlugin {
     public class SqlPlugin : IMaster {
         public SqlPlugin() {
-            _mAlias = "sql";
-            _mHotKey = Shortcut.ShiftF5;
+            _alias = "sql";
+            _hotKey = Shortcut.ShiftF5;
         }
 
         private List<ConnectionString> _connections;
@@ -149,12 +149,12 @@ namespace Slave.SqlPlugin {
             var tl = new Label {
                 AutoSize = true,
                 Text = "Usage\r\n==================\r\n"
-                + _mAlias + " help: display help\r\n"
-                + _mAlias + " set <name> <connectionString>: add new connection string\r\n"
-                + _mAlias + " delete <name>: delete connection string\r\n"
-                + _mAlias + " update <name> <newConnectionString>: update connection string\r\n"
-                + _mAlias + " <connectionName> s:Col1,Col2,Col3 t:Table w:A<5,B>10 : execute query to \r\n\tselect Col1, Col2, Col3 from table Table with A smaller then 5 and B bigger then 10\r\n"
-                //+ _mAlias + " script1:arg1:arg2 script2:arg3:arg4\r\n"
+                + _alias + " help: display help\r\n"
+                + _alias + " set <name> <connectionString>: add new connection string\r\n"
+                + _alias + " delete <name>: delete connection string\r\n"
+                + _alias + " update <name> <newConnectionString>: update connection string\r\n"
+                + _alias + " <connectionName> s:Col1,Col2,Col3 t:Table w:A<5,B>10 : execute query to \r\n\tselect Col1, Col2, Col3 from table Table with A smaller then 5 and B bigger then 10\r\n"
+                //+ _alias + " script1:arg1:arg2 script2:arg3:arg4\r\n"
                 + "=================="
             };
             dlg1.Controls.Add(tl);
@@ -163,18 +163,18 @@ namespace Slave.SqlPlugin {
             return;
         }
 
-        private Shortcut _mHotKey;
-        private string _mAlias;
+        private Shortcut _hotKey;
+        private string _alias;
 
 
         Shortcut IMaster.HotKey {
-            get => _mHotKey;
-            set => _mHotKey = value;
+            get => _hotKey;
+            set => _hotKey = value;
         }
 
         string IMaster.Alias {
-            get => _mAlias;
-            set => _mAlias = value;
+            get => _alias;
+            set => _alias = value;
         }
     }
 }

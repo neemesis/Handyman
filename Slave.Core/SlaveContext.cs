@@ -9,17 +9,17 @@ using Slave.Framework.Components;
 
 namespace Slave.Core {
     /// <summary>
-    /// CalendarApplicationContext.
+    /// SlaveContext.
     /// This class has several jobs:
     ///		- Create the NotifyIcon UI
     ///		- Manage the Input form that pops up
     ///		- Determines when the Application should exit
     /// </summary>
     public class SlaveContext : ApplicationContext {
-        private System.ComponentModel.IContainer components;    // a list of components to dispose when the context is disposed
-        private NotifyIcon _mNotifyIcon;    // the icon that sits in the system tray 
-        private SystemHotkey _mSystemHotkey;
-        private SystemHotkey _mAddWordSystemHotkey;
+        private System.ComponentModel.IContainer _components;    // a list of _components to dispose when the context is disposed
+        private NotifyIcon _notifyIcon;    // the icon that sits in the system tray 
+        private SystemHotkey _systemHotkey;
+        private SystemHotkey _addWord;
 
         /// <summary>
         /// This class should be created and passed into Application.Run( ... )
@@ -28,38 +28,31 @@ namespace Slave.Core {
             // create the notify icon and it's associated context menu
             InitializeContext();
 
-            //m_MainForm = new LauncherForm();
-            //Console.WriteLine(Forms.LauncherForm.Current.Name);
             Console.WriteLine("# Slaves: " + Context.Current.Slaves.Count);
-
-            _mNotifyIcon.ContextMenuStrip = Launcher.Current.ContextMenuStrip;
+            _notifyIcon.ContextMenuStrip = Launcher.Current.ContextMenuStrip;
         }
 
         /// <summary>
         /// Create the NotifyIcon UI, the ContextMenu for the NotifyIcon and an Exit menu item. 
         /// </summary>
         private void InitializeContext() {
-            components = new System.ComponentModel.Container();
-            _mNotifyIcon = new NotifyIcon(components);
-            _mSystemHotkey = new SystemHotkey(components);
-            _mAddWordSystemHotkey = new SystemHotkey(components);
+            _components = new System.ComponentModel.Container();
+            _notifyIcon = new NotifyIcon(_components);
+            _systemHotkey = new SystemHotkey(_components);
+            _addWord = new SystemHotkey(_components);
 
-            _mNotifyIcon.DoubleClick += OnNotifyIconDoubleClick;
-            _mNotifyIcon.Icon = Properties.Resources.if_robot_88068;
-            _mNotifyIcon.Text = "Slaves Master at your service!";
-            _mNotifyIcon.Visible = true;
+            _notifyIcon.DoubleClick += OnNotifyIconDoubleClick;
+            _notifyIcon.Icon = Properties.Resources.if_robot_88068;
+            _notifyIcon.Text = "Slaves Master at your service!";
+            _notifyIcon.Visible = true;
 
-            //
             // m_SystemHotkey
-            //
-            _mSystemHotkey.Shortcut = Properties.Settings.Default.TypeWordHotKey; //Shortcut.AltBcksp;
-            _mSystemHotkey.Pressed += OnSystemHotkeyPressed;
+            _systemHotkey.Shortcut = Properties.Settings.Default.TypeWordHotKey; //Shortcut.AltBcksp;
+            _systemHotkey.Pressed += OnSystemHotkeyPressed;
 
-            //
             // m_AddWordSystemHotkey
-            //
-            _mAddWordSystemHotkey.Shortcut = Properties.Settings.Default.AddWordHotKey;//Shortcut.CtrlF11;
-            _mAddWordSystemHotkey.Pressed += OnAddWordSystemHotkeyPressed;
+            _addWord.Shortcut = Properties.Settings.Default.AddWordHotKey; //Shortcut.CtrlF11;
+            _addWord.Pressed += OnAddWordSystemHotkeyPressed;
 
             Application.ApplicationExit += OnApplicationExit;
         }
@@ -70,9 +63,8 @@ namespace Slave.Core {
         /// <param name="disposing"></param>
         protected override void Dispose(bool disposing) {
             if (disposing) {
-                components?.Dispose();
-
-                _mNotifyIcon?.Dispose();
+                _components?.Dispose();
+                _notifyIcon?.Dispose();
             }
         }
 
@@ -97,11 +89,11 @@ namespace Slave.Core {
             var appExePath = NativeWin32.GetFocusesApp();
             var appExeName = System.IO.Path.GetFileNameWithoutExtension(appExePath);
 
-            Context.Current.AddActiveApplicationSlave(appExeName, appExePath);
+            Context.AddActiveApplicationSlave(appExeName, appExePath);
         }
 
         /// <summary>
-        /// This function will either create a new CalendarForm or activate the existing one, bringing the 
+        /// This function will either create a new Form or activate the existing one, bringing the 
         /// window to front.
         /// </summary>
         private void ShowForm() {

@@ -11,8 +11,8 @@ using System.Windows.Forms;
 namespace Slave.RestPlugin {
     public class RestPlugin : IMaster {
         public RestPlugin() {
-            _mAlias = "rest";
-            _mHotKey = Shortcut.None;
+            _alias = "rest";
+            _hotKey = Shortcut.None;
         }
 
         public string Name => "REST Plugin";
@@ -21,18 +21,18 @@ namespace Slave.RestPlugin {
         public string Version => "1.0.0.0";
         public string HelpUrl => "https://github.com/neemesis/Slave/blob/master/Slave.RestPlugin/README.MD";
         public IParse Parser { get; set; }
-        private Shortcut _mHotKey;
-        private string _mAlias;
+        private Shortcut _hotKey;
+        private string _alias;
 
 
         Shortcut IMaster.HotKey {
-            get => _mHotKey;
-            set => _mHotKey = value;
+            get => _hotKey;
+            set => _hotKey = value;
         }
 
         string IMaster.Alias {
-            get => _mAlias;
-            set => _mAlias = value;
+            get => _alias;
+            set => _alias = value;
         }
 
         public void Initialize() {
@@ -50,7 +50,7 @@ namespace Slave.RestPlugin {
                 }
 
                 using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate })) {
-                    var response = client.GetAsync(url + sb.ToString()).Result;
+                    var response = client.GetAsync(url + sb).Result;
                     response.EnsureSuccessStatusCode();
                     var result = response.Content.ReadAsStringAsync().Result;
                     Console.WriteLine("Result: " + result);

@@ -6,8 +6,8 @@ using System.Windows.Forms;
 namespace Slave.SysPugin {
     public class SysPlugin : IMaster {
         public SysPlugin() {
-            _mAlias = "sys";
-            _mHotKey = Shortcut.None;
+            _alias = "sys";
+            _hotKey = Shortcut.None;
         }
 
         public string Name => "System Plugin";
@@ -16,18 +16,18 @@ namespace Slave.SysPugin {
         public string Version => "1.0.0.0";
         public string HelpUrl => "https://github.com/neemesis/Slave/blob/master/Slave.SysPlugin/README.MD";
 
-        private Shortcut _mHotKey;
-        private string _mAlias;
+        private Shortcut _hotKey;
+        private string _alias;
 
 
         Shortcut IMaster.HotKey {
-            get => _mHotKey;
-            set => _mHotKey = value;
+            get => _hotKey;
+            set => _hotKey = value;
         }
 
         string IMaster.Alias {
-            get => _mAlias;
-            set => _mAlias = value;
+            get => _alias;
+            set => _alias = value;
         }
 
         public IParse Parser { get; set; }
@@ -39,7 +39,7 @@ namespace Slave.SysPugin {
                     cmdArgs += "/s";
                 } else {
                     var mins = int.Parse(args[1]);
-                    cmdArgs += "/s /t " + (mins * 60).ToString();
+                    cmdArgs += "/s /t " + (mins * 60);
                 } 
             } else if (args[0] == "restart") {
                 cmdArgs += "/r";

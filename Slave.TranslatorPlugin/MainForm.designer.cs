@@ -23,7 +23,7 @@ namespace Slave.TranslatorPlugin
 		private System.Windows.Forms.ToolStripButton uxFrenchToEnglishToolStripButton;
 		private System.Windows.Forms.ToolStripButton uxEnglishToFrenchToolStripButton;
 		private System.Windows.Forms.ToolTip toolTip1;
-		private System.ComponentModel.IContainer components;
+		private System.ComponentModel.IContainer _components;
 				
 		/// <summary>
 		/// Clean up any resources being used.
@@ -32,9 +32,9 @@ namespace Slave.TranslatorPlugin
 		{
 			if( disposing )
 			{
-				if (components != null) 
+				if (_components != null) 
 				{
-					components.Dispose();
+					_components.Dispose();
 				}
 			}
 			base.Dispose( disposing );
@@ -47,7 +47,7 @@ namespace Slave.TranslatorPlugin
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
+			this._components = new System.ComponentModel.Container();
 			var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.uxTranslateButton = new System.Windows.Forms.Button();
@@ -65,7 +65,7 @@ namespace Slave.TranslatorPlugin
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.uxFrenchToEnglishToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.uxEnglishToFrenchToolStripButton = new System.Windows.Forms.ToolStripButton();
-			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this._components);
 			this.statusStrip1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();

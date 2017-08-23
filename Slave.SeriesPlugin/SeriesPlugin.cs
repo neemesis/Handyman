@@ -20,8 +20,8 @@ namespace Slave.SeriesPlugin {
         };
 
         public SeriesPlugin() {
-            _mAlias = "tv";
-            _mHotKey = Shortcut.None;
+            _alias = "tv";
+            _hotKey = Shortcut.None;
         }
 
         public string Name => "Series Plugin";
@@ -30,18 +30,18 @@ namespace Slave.SeriesPlugin {
         public string Version => "1.0.0.0";
         public string HelpUrl => "https://github.com/neemesis/Slave/blob/master/Slave.SeriesPlugin/README.MD";
         public IParse Parser { get; set; }
-        private Shortcut _mHotKey;
-        private string _mAlias;
+        private Shortcut _hotKey;
+        private string _alias;
 
 
         Shortcut IMaster.HotKey {
-            get => _mHotKey;
-            set => _mHotKey = value;
+            get => _hotKey;
+            set => _hotKey = value;
         }
 
         string IMaster.Alias {
-            get => _mAlias;
-            set => _mAlias = value;
+            get => _alias;
+            set => _alias = value;
         }
 
         private void LoadSeriesList() {
@@ -192,11 +192,11 @@ namespace Slave.SeriesPlugin {
             var tl = new Label {
                 AutoSize = true,
                 Text = "Usage\r\n==================\r\n"
-                + _mAlias + " help: display help\r\n"
-                + _mAlias + " set <name> <sXXeYY>: set current watched episode for tv show\r\n"
-                + _mAlias + " play <name> <sXXeYY>: play specific episode\r\n"
-                + _mAlias + " next <name>: play next episode\r\n"
-                + _mAlias + " prev <name>: play previous episode\r\n"
+                + _alias + " help: display help\r\n"
+                + _alias + " set <name> <sXXeYY>: set current watched episode for tv show\r\n"
+                + _alias + " play <name> <sXXeYY>: play specific episode\r\n"
+                + _alias + " next <name>: play next episode\r\n"
+                + _alias + " prev <name>: play previous episode\r\n"
                 + "=================="
             };
             dlg1.Controls.Add(tl);

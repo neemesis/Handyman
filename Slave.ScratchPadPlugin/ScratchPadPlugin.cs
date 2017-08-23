@@ -5,8 +5,8 @@ using System;
 namespace Slave.ScratchPadPlugin {
     public class ScratchPadPlugin : IMaster {
         public ScratchPadPlugin() {
-            _mAlias = "scratchpad";
-            _mHotKey = Shortcut.ShiftF2;
+            _alias = "scratchpad";
+            _hotKey = Shortcut.ShiftF2;
             //ScratchPad.Current.Size = new System.Drawing.Size(200, 200);
         }
 
@@ -30,18 +30,18 @@ namespace Slave.ScratchPadPlugin {
             ScratchPad.Current.Focus();
         }
 
-        private Shortcut _mHotKey;
-        private string _mAlias;
+        private Shortcut _hotKey;
+        private string _alias;
 
 
         Shortcut IMaster.HotKey {
-            get => _mHotKey;
-            set => _mHotKey = value;
+            get => _hotKey;
+            set => _hotKey = value;
         }
 
         string IMaster.Alias {
-            get => _mAlias;
-            set => _mAlias = value;
+            get => _alias;
+            set => _alias = value;
         }
     }
 }

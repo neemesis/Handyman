@@ -12,8 +12,8 @@ namespace Slave.PowerShellPlugin {
     public class PowerShellPlugin : IMaster {
 
         public PowerShellPlugin() {
-            _mAlias = "ps";
-            _mHotKey = Shortcut.ShiftF3;
+            _alias = "ps";
+            _hotKey = Shortcut.ShiftF3;
             //ScratchPad.Current.Size = new System.Drawing.Size(200, 200);
         }
 
@@ -27,18 +27,18 @@ namespace Slave.PowerShellPlugin {
             // todo restore settings
         }
 
-        private Shortcut _mHotKey;
-        private string _mAlias;
+        private Shortcut _hotKey;
+        private string _alias;
 
 
         Shortcut IMaster.HotKey {
-            get => _mHotKey;
-            set => _mHotKey = value;
+            get => _hotKey;
+            set => _hotKey = value;
         }
 
         string IMaster.Alias {
-            get => _mAlias;
-            set => _mAlias = value;
+            get => _alias;
+            set => _alias = value;
         }
         public IParse Parser { get; set; }
 
