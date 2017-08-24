@@ -276,6 +276,10 @@
       <Project>{1AEF87B4-B549-4408-BBF2-9BC76B9A5121}</Project>
       <Name>Slave.Framework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Slave.GitPlugin\Slave.GitPlugin.csproj">
+      <Project>{3d4dcd65-4f56-4a59-8638-162a0727d441}</Project>
+      <Name>Slave.GitPlugin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Slave.PowerShellPlugin\Slave.PowerShellPlugin.csproj">
       <Project>{7c1410cd-fa01-4e7f-ad5a-f15fd57d2304}</Project>
       <Name>Slave.PowerShellPlugin</Name>
