@@ -17,7 +17,8 @@ namespace Slave.Framework.Parsers {
             for (var i = 0; i < colSplit.Length - 1; ++i) {
                 var spl = colSplit[i + 1].Split(' ');
                 var count = spl.Length;
-                var parts = colSplit[i].Split(' ').Last() + ":" + string.Join(" ", spl.Take(count > 1 ? count - 1 : 1));
+                var take = count > 1 ? i + 1 == colSplit.Length - 1 ? count : count - 1 : 1;
+                var parts = colSplit[i].Split(' ').Last() + ":" + string.Join(" ", spl.Take(take));
                 args.Add(parts);
             }
             return args.ToArray();
