@@ -36,8 +36,8 @@
 	},
 	{
 	  "Name": "Slave.TranslatorPlugin",
-	  "Author": "John Roland",
-	  "Description": "This is a Google Translator wrapper",
+	  "Author": "Mirche Toshevski",
+	  "Description": "This is a Google Translator opener",
 	  "HasConfig": true,
 	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.TranslatorPlugin/bin/Release/Slave.TranslatorPlugin.dll"
 	},
@@ -68,5 +68,26 @@
 	  "Description": "Send email fast and easy",
 	  "HasConfig": true,
 	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.EmailPlugin/bin/Release/Slave.EmailPlugin.dll"
+	},
+	{
+	  "Name": "Slave.Calculator",
+	  "Author": "Mirche Toshevski",
+	  "Description": "Calculate expressions in launcher",
+	  "HasConfig": false,
+	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.Calculator/bin/Release/Slave.Calculator.dll"
+	},
+	{
+	  "Name": "Slave.SysPlugin",
+	  "Author": "Mirche Toshevski",
+	  "Description": "Execute system commands.",
+	  "HasConfig": false,
+	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.SysPlugin/bin/Release/Slave.SysPlugin.dll"
+	},
+	{
+	  "Name": "Slave.GitPlugin",
+	  "Author": "Mirche Toshevski",
+	  "Description": "Execute system commands.",
+	  "HasConfig": false,
+	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.GitPlugin/bin/Release/Slave.GitPlugin.dll"
 	}
 ]

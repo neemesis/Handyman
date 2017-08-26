@@ -10,8 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.ScreenShotPlugin", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.ScratchPadPlugin", "Slave.ScratchPadPlugin\Slave.ScratchPadPlugin.csproj", "{14A071EC-3269-4E2B-9A1A-5EC9789CE924}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.TranslatorPlugin", "Slave.TranslatorPlugin\Slave.TranslatorPlugin.csproj", "{250E1A7A-8FC0-4178-A402-9D7D1743AC64}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.PowerShellPlugin", "Slave.PowerShellPlugin\Slave.PowerShellPlugin.csproj", "{7C1410CD-FA01-4E7F-AD5A-F15FD57D2304}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.CommandPromptPlugin", "Slave.CommandPromptPlugin\Slave.CommandPromptPlugin.csproj", "{547308E1-6288-4779-957B-8C4A57AE1702}"
@@ -31,6 +29,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.GitPlugin", "Slave.GitPlugin\Slave.GitPlugin.csproj", "{3D4DCD65-4F56-4A59-8638-162A0727D441}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.CalculatorPlugin", "Slave.CalculatorPlugin\Slave.CalculatorPlugin.csproj", "{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.TranslatorPlugin", "Slave.TranslatorPlugin\Slave.TranslatorPlugin.csproj", "{402F3724-C5D3-4148-8819-4453E37C8813}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -90,18 +90,6 @@ Global
 		{14A071EC-3269-4E2B-9A1A-5EC9789CE924}.Release|x64.Build.0 = Release|x64
 		{14A071EC-3269-4E2B-9A1A-5EC9789CE924}.Release|x86.ActiveCfg = Release|x86
 		{14A071EC-3269-4E2B-9A1A-5EC9789CE924}.Release|x86.Build.0 = Release|x86
-		{250E1A7A-8FC0-4178-A402-9D7D1743AC64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{250E1A7A-8FC0-4178-A402-9D7D1743AC64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{250E1A7A-8FC0-4178-A402-9D7D1743AC64}.Debug|x64.ActiveCfg = Debug|x64
-		{250E1A7A-8FC0-4178-A402-9D7D1743AC64}.Debug|x64.Build.0 = Debug|x64
-		{250E1A7A-8FC0-4178-A402-9D7D1743AC64}.Debug|x86.ActiveCfg = Debug|x86
-		{250E1A7A-8FC0-4178-A402-9D7D1743AC64}.Debug|x86.Build.0 = Debug|x86
-		{250E1A7A-8FC0-4178-A402-9D7D1743AC64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{250E1A7A-8FC0-4178-A402-9D7D1743AC64}.Release|Any CPU.Build.0 = Release|Any CPU
-		{250E1A7A-8FC0-4178-A402-9D7D1743AC64}.Release|x64.ActiveCfg = Release|x64
-		{250E1A7A-8FC0-4178-A402-9D7D1743AC64}.Release|x64.Build.0 = Release|x64
-		{250E1A7A-8FC0-4178-A402-9D7D1743AC64}.Release|x86.ActiveCfg = Release|x86
-		{250E1A7A-8FC0-4178-A402-9D7D1743AC64}.Release|x86.Build.0 = Release|x86
 		{7C1410CD-FA01-4E7F-AD5A-F15FD57D2304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7C1410CD-FA01-4E7F-AD5A-F15FD57D2304}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C1410CD-FA01-4E7F-AD5A-F15FD57D2304}.Debug|x64.ActiveCfg = Debug|x64
@@ -220,6 +208,18 @@ Global
 		{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}.Release|x64.Build.0 = Release|Any CPU
 		{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}.Release|x86.ActiveCfg = Release|Any CPU
 		{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}.Release|x86.Build.0 = Release|Any CPU
+		{402F3724-C5D3-4148-8819-4453E37C8813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{402F3724-C5D3-4148-8819-4453E37C8813}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{402F3724-C5D3-4148-8819-4453E37C8813}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{402F3724-C5D3-4148-8819-4453E37C8813}.Debug|x64.Build.0 = Debug|Any CPU
+		{402F3724-C5D3-4148-8819-4453E37C8813}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{402F3724-C5D3-4148-8819-4453E37C8813}.Debug|x86.Build.0 = Debug|Any CPU
+		{402F3724-C5D3-4148-8819-4453E37C8813}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{402F3724-C5D3-4148-8819-4453E37C8813}.Release|Any CPU.Build.0 = Release|Any CPU
+		{402F3724-C5D3-4148-8819-4453E37C8813}.Release|x64.ActiveCfg = Release|Any CPU
+		{402F3724-C5D3-4148-8819-4453E37C8813}.Release|x64.Build.0 = Release|Any CPU
+		{402F3724-C5D3-4148-8819-4453E37C8813}.Release|x86.ActiveCfg = Release|Any CPU
+		{402F3724-C5D3-4148-8819-4453E37C8813}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

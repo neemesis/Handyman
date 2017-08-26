@@ -317,7 +317,7 @@
       <Name>Slave.ToDoPlugin</Name>
     </ProjectReference>
     <ProjectReference Include="..\Slave.TranslatorPlugin\Slave.TranslatorPlugin.csproj">
-      <Project>{250E1A7A-8FC0-4178-A402-9D7D1743AC64}</Project>
+      <Project>{402f3724-c5d3-4148-8819-4453e37c8813}</Project>
       <Name>Slave.TranslatorPlugin</Name>
     </ProjectReference>
   </ItemGroup>
