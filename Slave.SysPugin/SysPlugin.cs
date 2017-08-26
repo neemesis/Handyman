@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using Slave.Framework.Entities;
 
 namespace Slave.SysPugin {
     public class SysPlugin : IMaster {
@@ -32,7 +33,7 @@ namespace Slave.SysPugin {
 
         public IParse Parser { get; set; }
 
-        public void Execute(string[] args, Action<string> display = null) {
+        public void Execute(string[] args, Action<string, DisplayData> display = null) {
             var cmdArgs = "shutdown ";
             if (args[0] == "shutdown") {
                 if (args.Length == 1) {

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Slave.Framework.Interfaces;
 using System.Windows.Forms;
 using System.Diagnostics;
+using Slave.Framework.Entities;
 
 namespace Slave.CommandPromptPlugin {
     public class CommandPromptPlugin : IMaster {
@@ -26,7 +27,7 @@ namespace Slave.CommandPromptPlugin {
             //throw new NotImplementedException();
         }
 
-        public void Execute(string[] args, Action<string> display) {
+        public void Execute(string[] args, Action<string, DisplayData> display) {
 
             if (args.Length == 0 || args.Length > 0 && args[0] == "help") {
                 var dlg1 = new Form {

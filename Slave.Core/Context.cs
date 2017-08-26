@@ -75,7 +75,7 @@ namespace Slave.Core {
         }
 
         private static void SetError(Exception e = null) {
-            Launcher.Current.ChangeLauncherText("error :(");
+            Launcher.Current.ShowData("error :(");
         }
         #endregion
 

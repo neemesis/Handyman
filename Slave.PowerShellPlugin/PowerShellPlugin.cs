@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Slave.Framework.Entities;
 using Slave.Framework.Interfaces;
 
 namespace Slave.PowerShellPlugin {
@@ -42,7 +43,7 @@ namespace Slave.PowerShellPlugin {
         }
         public IParse Parser { get; set; }
 
-        public void Execute(string[] args, Action<string> display) {
+        public void Execute(string[] args, Action<string, DisplayData> display) {
             if (args.Length > 0 && args[0] == "set") {
                 Properties.Settings.Default.PowerShellScriptLocation = string.Join("", args.Skip(1));
                 return;

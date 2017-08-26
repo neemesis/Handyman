@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Commands.cs" />
+    <Compile Include="Entities\DisplayData.cs" />
     <Compile Include="Parsers\DefaultParser.cs" />
     <Compile Include="Interfaces\IParse.cs" />
     <Compile Include="Persistence\Persist.cs" />

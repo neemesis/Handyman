@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -16,8 +17,12 @@ namespace Slave.Core.Helpers {
             foreach (var tool in tools) {
                 if (alias.StartsWith(tool.Alias)) {
                     try {
-                        var args = tool.Parser != null ? tool.Parser.Parse(alias.Substring(tool.Alias.Length)) : parser.Parse(alias.Substring(tool.Alias.Length));
-                        tool.Execute(args, Launcher.Current.ChangeLauncherText);
+                        var args = tool.Parser?.Parse(alias.Replace(tool.Alias, "")) ?? parser.Parse(alias.Replace(tool.Alias, ""));
+                        if (args.Any() && args[0] == "dev") {
+                            HandleDev(args[1], alias, tool.Parser ?? parser);
+                            return true;
+                        }
+                        tool.Execute(args, Launcher.Current.ShowData);
                         return true;
                     } catch (Exception e) {
                         setError(e);
@@ -83,21 +88,20 @@ namespace Slave.Core.Helpers {
         #region Helpers
         private static string ParseInputText(string inputText, string notes, string[] args) {
             if (!string.IsNullOrEmpty(inputText)) {
-                //if (inputText.Contains("$W$") || inputText.Contains("$w$")) {
-                //    var form = new DynamicInput();
-                //    switch (form.ShowDialog()) {
-                //        case DialogResult.OK:
-                //            inputText = inputText.Replace("$W$", form.EncodedInput).Replace("$w$", form.Input);
-                //            break;
-                //    }
-                //}
-
+                inputText = inputText.Replace("{F}", string.Join(" ", args));
                 for (var i = 0; i < args.Length; ++i) {
                     inputText = inputText.Replace("{" + i + "}", System.Web.HttpUtility.UrlEncode(args[i]));
                 }
             }
 
             return inputText;
+        }
+
+        private static void HandleDev(string command, string args, IParse parser) {
+            if (command == "parse") {
+                var res = parser.Parse(args);
+                Launcher.Current.ShowData(string.Join(" || ", res.Skip(2)));
+            }
         }
         #endregion
     }

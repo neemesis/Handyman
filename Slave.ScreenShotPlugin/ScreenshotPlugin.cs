@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using Slave.Framework.Components;
+using Slave.Framework.Entities;
 using Slave.Framework.Interfaces;
 
 namespace Slave.ScreenShotPlugin {
@@ -17,7 +18,7 @@ namespace Slave.ScreenShotPlugin {
 
         }
 
-        void IMaster.Execute(string[] args, Action<string> display) {
+        void IMaster.Execute(string[] args, Action<string, DisplayData> display) {
             var hwnd = (IntPtr)NativeWin32.GetForegroundWindow();
 
 

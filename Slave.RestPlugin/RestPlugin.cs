@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Slave.Framework.Entities;
 
 namespace Slave.RestPlugin {
     public class RestPlugin : IMaster {
@@ -38,8 +39,8 @@ namespace Slave.RestPlugin {
         public void Initialize() {
         }
 
-        public void Execute(string[] args, Action<string> display = null) {
-            if (args.Count() < 2 || args[0] == "help") {
+        public void Execute(string[] args, Action<string, DisplayData> display = null) {
+            if (args.Length < 2 || args[0] == "help") {
                 return;
             } else if (args[0] == "get") {
                 var url = args[1];

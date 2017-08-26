@@ -44,7 +44,7 @@ namespace Slave.Framework {
         /// <returns>Output</returns>
         public static string Application(string application, string commandWithArguments, string path, out string error) {
             var info = new ProcessStartInfo(application, commandWithArguments) {
-                WindowStyle = ProcessWindowStyle.Maximized,
+                WindowStyle = ProcessWindowStyle.Hidden,
                 WorkingDirectory = path,
                 ErrorDialog = true,
                 RedirectStandardError = true,

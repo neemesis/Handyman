@@ -89,6 +89,10 @@ namespace Slave.Core.Forms {
                 Context.Current.Start(alias);
             } else if (e.KeyCode == Keys.Escape) {
                 HideForm();
+            } else if (e.KeyCode == Keys.Tab) {
+                uxInputText.Text = uxInputText.Text + " ";
+                uxInputText.SelectionStart = Math.Max(0, uxInputText.Text.Length);
+                uxInputText.SelectionLength = 0;
             }
         }
 
@@ -144,13 +148,29 @@ namespace Slave.Core.Forms {
             }
         }
 
-        public void ChangeLauncherText(string text) {
-            uxInputText.Text = text;
-            Show();
+        public void ShowData(string text, DisplayData dd = DisplayData.Launcher) {
+            if (dd == DisplayData.Launcher) {
+                uxInputText.Text = text;
+                uxInputText.SelectionStart = uxInputText.Text.Length;
+                uxInputText.SelectionLength = 0;
+                Show();
+            } else if (dd == DisplayData.PopUp) {
+                
+            }
         }
 
         private void OnDeactivate(object sender, EventArgs e) {
             HideForm();
+        }
+
+        private void OnInputTextBoxMouseDown(object sender, MouseEventArgs e) {
+            //if (uxInputText.Text == "enter command") {
+            //    uxInputText.Text = "";
+            //}
+        }
+
+        private void reloadToolStripMenuItem_Click(object sender, EventArgs e) {
+            Context.Current.Slaves = SlavesManager.Load();
         }
     }
 }

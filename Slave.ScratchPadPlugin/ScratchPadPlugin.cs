@@ -1,6 +1,7 @@
 using System.Windows.Forms;
 using Slave.Framework.Interfaces;
 using System;
+using Slave.Framework.Entities;
 
 namespace Slave.ScratchPadPlugin {
     public class ScratchPadPlugin : IMaster {
@@ -20,9 +21,10 @@ namespace Slave.ScratchPadPlugin {
             // todo restore settings
         }
 
-        void IMaster.Execute(string[] args, Action<string> display) {
+        void IMaster.Execute(string[] args, Action<string, DisplayData> display) {
 
             ScratchPad.Current.Show();
+            ScratchPad.Current.Height = Screen.PrimaryScreen.WorkingArea.Height;
             ScratchPad.Current.Left = Screen.PrimaryScreen.WorkingArea.Width - ScratchPad.Current.Width;
             ScratchPad.Current.Top = Screen.PrimaryScreen.WorkingArea.Height - ScratchPad.Current.Height;
 

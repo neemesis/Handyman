@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using Slave.Framework.Entities;
 
 namespace Slave.Framework.Interfaces {
     public interface IMaster {
@@ -45,7 +46,7 @@ namespace Slave.Framework.Interfaces {
         /// Called when your alias was entered in the launcher
         /// </summary>
         /// <param name="args">List of arguments returned from the parser.</param>
-        /// <param name="display">Function used to display short data on the launcher. Use it like this display("Some string Data")</param>
-        void Execute(string[] args, Action<string> display);
+        /// <param name="display">Function used to display short data on the launcher. Use it like this display("Some string Data", DisplayData)</param>
+        void Execute(string[] args, Action<string, DisplayData> display);
     }
 }

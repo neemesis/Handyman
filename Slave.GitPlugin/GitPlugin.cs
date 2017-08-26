@@ -5,6 +5,7 @@ using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Slave.Framework.Entities;
 using Slave.Framework.Interfaces;
 
 namespace Slave.GitPlugin {
@@ -66,21 +67,21 @@ namespace Slave.GitPlugin {
             var path = _namePaths.Single(x => x.Name == name).Path;
             Framework.Utilities.CMD("git add .", path, out _);
             Framework.Utilities.CMD("git commit -m " + (string.IsNullOrEmpty(msg) ? " " : msg), path, out _);
-            Framework.Utilities.CMD("git psuh -u origin master", path, out _);
+            Framework.Utilities.CMD("git push -u origin master", path, out _);
         }
 
-        public void Execute(string[] args, Action<string> display) {
+        public void Execute(string[] args, Action<string, DisplayData> display) {
             if (args[0] == "add") {
                 var name = args.SingleOrDefault(x => x.StartsWith("n:"));
                 var path = args.SingleOrDefault(x => x.StartsWith("p:"));
-                Add(string.IsNullOrEmpty(name) ? args[1] : name, string.IsNullOrEmpty(path) ? args[2] : path);
+                Add(string.IsNullOrEmpty(name) ? args[1] : name.Split(':')[1], string.IsNullOrEmpty(path) ? args[2] : path.Split(':')[1]);
             } else if (args[0] == "set") {
                 var name = args.SingleOrDefault(x => x.StartsWith("n:"));
                 var path = args.SingleOrDefault(x => x.StartsWith("p:"));
-                Change(string.IsNullOrEmpty(name) ? args[1] : name, string.IsNullOrEmpty(path) ? args[2] : path);
+                Change(string.IsNullOrEmpty(name) ? args[1] : name.Split(':')[1], string.IsNullOrEmpty(path) ? args[2] : path.Split(':')[1]);
             } else if (args[0] == "delete") {
                 var name = args.SingleOrDefault(x => x.StartsWith("n:"));
-                Delete(string.IsNullOrEmpty(name) ? args[1] : name);
+                Delete(string.IsNullOrEmpty(name) ? args[1] : name.Split(':')[1]);
             } else if (args[0] == "pull") {
                 Pull(args[1]);
             } else if (args[0] == "clone") {
@@ -88,8 +89,10 @@ namespace Slave.GitPlugin {
             } else if (args[0] == "commit") {
                 var name = args.SingleOrDefault(x => x.StartsWith("n:"));
                 var msg = args.SingleOrDefault(x => x.StartsWith("m:"));
-                Commit(string.IsNullOrEmpty(name) ? args[1] : name, string.IsNullOrEmpty(msg) ? args[2] : msg);
+                Commit(string.IsNullOrEmpty(name) ? args[1] : name.Split(':')[1], string.IsNullOrEmpty(msg) ? args[2] : msg.Split(':')[1]);
             }
+
+            display("Done", DisplayData.Launcher);
         }
     }
 }

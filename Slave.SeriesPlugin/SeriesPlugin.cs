@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using Slave.Framework.Entities;
 
 namespace Slave.SeriesPlugin {
     public class SeriesPlugin : IMaster {
@@ -135,10 +136,10 @@ namespace Slave.SeriesPlugin {
             return null;
         }
 
-        public void Execute(string[] args, Action<string> display) {
-            if (args.Count() < 1 || args.Count() > 0 && args[0] == "help") {
+        public void Execute(string[] args, Action<string, DisplayData> display) {
+            if (args.Length < 1 || args.Length > 0 && args[0] == "help") {
                 DisplayHelp();
-            } else if (args[0] == "play" && args.Count() == 3) {
+            } else if (args[0] == "play" && args.Length == 3) {
                 var path = Search(Properties.Settings.Default.Location, args[1].ToLower(), args[2].Substring(0, 3).ToLower(), args[2].Substring(3, 3).ToLower());
                 if (!string.IsNullOrEmpty(path)) {
                     var s = new Series {
@@ -150,7 +151,7 @@ namespace Slave.SeriesPlugin {
                     SaveSeriesList();
                     Process.Start(path);
                 }
-            } else if (args[0] == "next" && args.Count() == 2) {
+            } else if (args[0] == "next" && args.Length == 2) {
                 var s = SeriesList.SingleOrDefault(x => x.Name == args[1]);
                 var res = SearchBySeasonEpisode(s, s.Season, s.Episode);
                 if (res != null) {
@@ -160,7 +161,7 @@ namespace Slave.SeriesPlugin {
                     var path = res.Item3;
                     Process.Start(path);
                 }
-            } else if (args[0] == "prev" && args.Count() == 2) {
+            } else if (args[0] == "prev" && args.Length == 2) {
                 var s = SeriesList.SingleOrDefault(x => x.Name == args[1]);
                 var res = SearchBySeasonEpisode(s, s.Season, s.Episode, false);
                 if (res != null) {
@@ -170,7 +171,7 @@ namespace Slave.SeriesPlugin {
                     var path = res.Item3;
                     Process.Start(path);
                 }
-            } else if (args[0] == "set" && args.Count() == 3) {
+            } else if (args[0] == "set" && args.Length == 3) {
                 var s = SeriesList.SingleOrDefault(x => x.Name == args[1]);
                 if (s == null) {
                     s = new Series { Name = args[1] };

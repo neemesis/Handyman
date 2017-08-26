@@ -57,11 +57,11 @@ namespace Slave.Core.Helpers {
                         if (pckgForInstall.HasConfig)
                             wc.DownloadFile(pckgForInstall + ".config", pckgForInstall.Name + ".dll.config");
                     }
-                    Launcher.Current.ChangeLauncherText("success :)");
+                    Launcher.Current.ShowData("success :)");
                     return;
                 }
             } catch (Exception e) {
-                Launcher.Current.ChangeLauncherText("error :(");
+                Launcher.Current.ShowData("error :(");
             }
         }
 
@@ -82,7 +82,7 @@ namespace Slave.Core.Helpers {
                             Shortcut = tool.HotKey
                         };
                         hotkey.Pressed += delegate {
-                            tool.Execute(null, Launcher.Current.ChangeLauncherText);
+                            tool.Execute(null, Launcher.Current.ShowData);
                         };
                         tools.Add(tool);
                     }
@@ -94,7 +94,7 @@ namespace Slave.Core.Helpers {
         public static bool Handle(string alias) {
             var parts = alias.Split(' ');
 
-            if (parts[0] == "install" && parts.Count() == 2) {
+            if (parts[0] == "install" && parts.Length == 2) {
                 InstallPlugin(parts[1]);
                 return true;
             }

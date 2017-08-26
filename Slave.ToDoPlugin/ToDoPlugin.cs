@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using Slave.Framework.Entities;
 
 namespace Slave.ToDoPlugin {
     public class ToDoPlugin : IMaster {
@@ -79,12 +80,12 @@ namespace Slave.ToDoPlugin {
             LoadToDos();
         }
 
-        public void Execute(string[] args, Action<string> display) {
-            if (args.Count() > 0 && args[0] == "help") {
+        public void Execute(string[] args, Action<string, DisplayData> display) {
+            if (args.Length > 0 && args[0] == "help") {
                 DisplayHelp();
-            } else if (args.Count() == 0 || args.Count() > 0 && args[0] == "list") {
+            } else if (args.Length == 0 || args.Length > 0 && args[0] == "list") {
                 DisplayToDoList(ToDos);
-            } else if (args[0] == "add" && args.Count() > 1) {
+            } else if (args[0] == "add" && args.Length > 1) {
                 var td = new ToDo {
                     Created = DateTime.Now,
                     Finished = false,

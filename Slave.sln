@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.SysPugin", "Slave.Sys
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.GitPlugin", "Slave.GitPlugin\Slave.GitPlugin.csproj", "{3D4DCD65-4F56-4A59-8638-162A0727D441}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.CalculatorPlugin", "Slave.CalculatorPlugin\Slave.CalculatorPlugin.csproj", "{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -206,6 +208,18 @@ Global
 		{3D4DCD65-4F56-4A59-8638-162A0727D441}.Release|x64.Build.0 = Release|Any CPU
 		{3D4DCD65-4F56-4A59-8638-162A0727D441}.Release|x86.ActiveCfg = Release|Any CPU
 		{3D4DCD65-4F56-4A59-8638-162A0727D441}.Release|x86.Build.0 = Release|Any CPU
+		{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}.Debug|x64.Build.0 = Debug|Any CPU
+		{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}.Debug|x86.Build.0 = Debug|Any CPU
+		{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}.Release|x64.ActiveCfg = Release|Any CPU
+		{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}.Release|x64.Build.0 = Release|Any CPU
+		{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}.Release|x86.ActiveCfg = Release|Any CPU
+		{0F37EFA7-FC50-470A-BB65-FD3F72224AA6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

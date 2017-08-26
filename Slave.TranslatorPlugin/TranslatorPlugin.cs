@@ -1,5 +1,6 @@
 using Slave.Framework.Interfaces;
 using System;
+using Slave.Framework.Entities;
 
 namespace Slave.TranslatorPlugin {
     public class TranslatorPlugin : IMaster {
@@ -18,7 +19,7 @@ namespace Slave.TranslatorPlugin {
             //
         }
 
-        void IMaster.Execute(string[] args, Action<string> display) {
+        void IMaster.Execute(string[] args, Action<string, DisplayData> display) {
             var form = new MainForm {
                 StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             };

@@ -8,6 +8,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Slave.Framework.Entities;
 
 namespace Slave.EmailPlugin {
     public class EmailPlugin : IMaster {
@@ -35,13 +36,13 @@ namespace Slave.EmailPlugin {
             set => _alias = value;
         }
 
-        public void Execute(string[] args, Action<string> display) {
-            if (args.Count() < 2 || args[0] == "help") {
+        public void Execute(string[] args, Action<string, DisplayData> display) {
+            if (args.Length < 2 || args[0] == "help") {
                 DisplayHelp();
                 return;
             }
 
-            if (args[0] == "set" && args.Count() == 3) {
+            if (args[0] == "set" && args.Length == 3) {
                 if (args[1] == "email") {
                     Settings.Default.MyEmail = args[2];
                 } else if (args[1] == "pass") {

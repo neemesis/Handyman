@@ -28,11 +28,12 @@ namespace Slave.Core.Forms
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this._components = new System.ComponentModel.Container();
+            this.components = new System.ComponentModel.Container();
             this.uxInputText = new System.Windows.Forms.TextBox();
-            this.uxInputContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this._components);
-            this.uxSlavesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uxInputContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.uxNewSlaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uxSlavesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.uxSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uxHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,16 +59,17 @@ namespace Slave.Core.Forms
             this.uxInputText.Name = "uxInputText";
             this.uxInputText.Size = new System.Drawing.Size(250, 25);
             this.uxInputText.TabIndex = 0;
-            this.uxInputText.Text = "choose slave...";
             this.uxInputText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.uxInputText.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnInputTextBoxKeyUp);
+            this.uxInputText.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnInputTextBoxMouseDown);
             // 
             // uxInputContextMenuStrip
             // 
             this.uxInputContextMenuStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.uxInputContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.uxSlavesToolStripMenuItem,
             this.uxNewSlaveToolStripMenuItem,
+            this.uxSlavesToolStripMenuItem,
+            this.reloadToolStripMenuItem,
             this.toolStripSeparator3,
             this.uxSetupToolStripMenuItem,
             this.uxHelpToolStripMenuItem,
@@ -75,14 +77,8 @@ namespace Slave.Core.Forms
             this.toolStripSeparator1,
             this.uxExitToolStripMenuItem});
             this.uxInputContextMenuStrip.Name = "contextMenuStrip1";
-            this.uxInputContextMenuStrip.Size = new System.Drawing.Size(143, 148);
+            this.uxInputContextMenuStrip.Size = new System.Drawing.Size(143, 170);
             this.uxInputContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.uxInputContextMenuStrip_Opening);
-            // 
-            // uxSlavesToolStripMenuItem
-            // 
-            this.uxSlavesToolStripMenuItem.Name = "uxSlavesToolStripMenuItem";
-            this.uxSlavesToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.uxSlavesToolStripMenuItem.Text = "Slaves";
             // 
             // uxNewSlaveToolStripMenuItem
             // 
@@ -90,6 +86,19 @@ namespace Slave.Core.Forms
             this.uxNewSlaveToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.uxNewSlaveToolStripMenuItem.Text = "New Slave...";
             this.uxNewSlaveToolStripMenuItem.Click += new System.EventHandler(this.OnNewSlaveToolStripMenuItemClick);
+            // 
+            // uxSlavesToolStripMenuItem
+            // 
+            this.uxSlavesToolStripMenuItem.Name = "uxSlavesToolStripMenuItem";
+            this.uxSlavesToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.uxSlavesToolStripMenuItem.Text = "Slaves";
+            // 
+            // reloadToolStripMenuItem
+            // 
+            this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
+            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.reloadToolStripMenuItem.Text = "Reload";
+            this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -168,5 +177,7 @@ namespace Slave.Core.Forms
 		private System.Windows.Forms.ToolStripMenuItem uxHideToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem uxSetupToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem uxHelpToolStripMenuItem;
-	}
+        private System.ComponentModel.IContainer components;
+        private System.Windows.Forms.ToolStripMenuItem reloadToolStripMenuItem;
+    }
 }

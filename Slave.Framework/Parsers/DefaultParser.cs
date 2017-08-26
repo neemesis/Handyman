@@ -11,12 +11,12 @@ namespace Slave.Framework.Parsers {
             var args = new List<string>();
             var colSplit = str.Split(':');
             var start = colSplit[0].Split(' ');
-            for (var i = 1; i < ( colSplit.Count() == 1 ? start.Count() : start.Count() - 1 ); ++i) {
+            for (var i = 1; i < ( colSplit.Length == 1 ? start.Length : start.Length - 1 ); ++i) {
                 args.Add(start[i]);
             }
-            for (var i = 0; i < colSplit.Count() - 1; ++i) {
+            for (var i = 0; i < colSplit.Length - 1; ++i) {
                 var spl = colSplit[i + 1].Split(' ');
-                var count = spl.Count();
+                var count = spl.Length;
                 var parts = colSplit[i].Split(' ').Last() + ":" + string.Join(" ", spl.Take(count > 1 ? count - 1 : 1));
                 args.Add(parts);
             }
