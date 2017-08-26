@@ -46,7 +46,7 @@ namespace Slave.RestPlugin {
                 var url = args[1];
                 var sb = new StringBuilder();
                 sb.Append("/?");
-                foreach (var at in args.Where(x => !x.StartsWith("u:") && !x.StartsWith("url:"))) {
+                foreach (var at in args.Skip(1).Where(x => !x.StartsWith("u:") && !x.StartsWith("url:"))) {
                     sb.Append("&" + at.Split(':')[0] + "=" + at.Split(':')[1]);
                 }
 

@@ -164,9 +164,9 @@ namespace Slave.Core.Forms {
         }
 
         private void OnInputTextBoxMouseDown(object sender, MouseEventArgs e) {
-            //if (uxInputText.Text == "enter command") {
-            //    uxInputText.Text = "";
-            //}
+            if (uxInputText.Text == "error :(") {
+                uxInputText.Text = "";
+            }
         }
 
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e) {

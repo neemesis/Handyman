@@ -30,7 +30,7 @@ namespace Slave.CalculatorPlugin {
         }
 
         public Calculator() {
-            _alias = "c";
+            _alias = "=";
             _hotKey = Shortcut.None;
         }
 

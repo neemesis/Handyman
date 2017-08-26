@@ -11,8 +11,9 @@ Currently implemented plugins:
 - [SeriesPlugin](https://github.com/neemesis/Slave/tree/master/Slave.SeriesPlugin)
 - [SqlPlugin](https://github.com/neemesis/Slave/tree/master/Slave.SqlPlugin)
 - [ToDoPlugin](https://github.com/neemesis/Slave/tree/master/Slave.ToDoPlugin)
-- [TranslatorPlugin](https://github.com/neemesis/Slave/tree/master/Slave.TranslatorPlugin)
 - [SysPlugin](https://github.com/neemesis/Slave/tree/master/Slave.SysPlugin)
+- [CalculatorPlugin](https://github.com/neemesis/Slave/tree/master/Slave.CalculatorPlugin)
+- [GitPlugin](https://github.com/neemesis/Slave/tree/master/Slave.GitPlugin)
 
 ## Download Slave Beta
 Download all the files from **[HERE](https://github.com/neemesis/Slave/tree/master/Slave.Core/bin/Release)**

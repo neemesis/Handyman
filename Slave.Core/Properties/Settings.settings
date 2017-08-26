@@ -15,7 +15,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="HelpUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://google.com</Value>
+      <Value Profile="(Default)">https://github.com/neemesis/Slave</Value>
     </Setting>
     <Setting Name="Backcolor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">229, 229, 234</Value>
@@ -26,7 +26,7 @@
     <Setting Name="TypeWordHotKey" Type="System.Windows.Forms.Shortcut" Scope="User">
       <Value Profile="(Default)">AltBksp</Value>
     </Setting>
-    <Setting Name="DownloadURL" Type="System.String" Scope="User">
+    <Setting Name="DownloadURL" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://raw.githubusercontent.com/neemesis/Slave/master/</Value>
     </Setting>
   </Settings>

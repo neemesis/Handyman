@@ -44,12 +44,30 @@ namespace Slave.SysPugin {
                 } 
             } else if (args[0] == "restart") {
                 cmdArgs += "/r";
+                if (args.Length == 1) {
+                    cmdArgs += "/r";
+                } else {
+                    var mins = int.Parse(args[1]);
+                    cmdArgs += "/r /t " + ( mins * 60 );
+                }
             } else if (args[0] == "hibernate") {
                 cmdArgs += "/h";
+                if (args.Length == 1) {
+                    cmdArgs += "/h";
+                } else {
+                    var mins = int.Parse(args[1]);
+                    cmdArgs += "/h /t " + ( mins * 60 );
+                }
             } else if (args[0] == "abort") {
                 cmdArgs += "/a";
             } else if (args[0] == "logoff") {
                 cmdArgs += "/l";
+                if (args.Length == 1) {
+                    cmdArgs += "/l";
+                } else {
+                    var mins = int.Parse(args[1]);
+                    cmdArgs += "/l /t " + ( mins * 60 );
+                }
             }
 
             var startInfo = new ProcessStartInfo {

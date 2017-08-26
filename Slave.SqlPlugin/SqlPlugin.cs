@@ -97,7 +97,7 @@ namespace Slave.SqlPlugin {
             var conn = _connections.Single(x => x.Name == args[1]).Connection;
             var sb = new StringBuilder();
             var table = args.Single(x => x.StartsWith("t:") || x.StartsWith("table:"));
-            var values = args.Single(x => x.StartsWith("v:") || x.StartsWith("values:")).Split(':');
+            var values = args.Single(x => x.StartsWith("v:") || x.StartsWith("values:")).Split(':')[1];
             sb.Append("insert into " + table);
             sb.Append(" values (" + values[0]);
             foreach (var v in values.Skip(1))
