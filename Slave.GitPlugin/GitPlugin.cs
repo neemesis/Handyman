@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,16 +28,68 @@ namespace Slave.GitPlugin {
             set => _alias = value;
         }
 
+        private List<GitRepo> _namePaths;
+
         public GitPlugin() {
             _alias = "git";
             _hotKey = Shortcut.None;
         }
 
         public void Initialize() {
+            _namePaths = Framework.Persistence.Persist.Load<GitRepo>(_alias);
         }
 
-        public void Execute(string[] args, Action<string> display = null) {
-            //
+        private void Add(string name, string path) {
+            _namePaths.Add(new GitRepo {Name = name, Path = path});
+            Framework.Persistence.Persist.Save(_namePaths, _alias);
+        }
+
+        private void Change(string name, string path) {
+            _namePaths.Remove(_namePaths.Single(x => x.Name == name));
+            Add(name, path);
+        }
+        private void Delete(string name) {
+            _namePaths.Remove(_namePaths.Single(x => x.Name == name));
+            Framework.Persistence.Persist.Save(_namePaths, _alias);
+        }
+
+        private void Pull(string repo) {
+            Framework.Utilities.CMD("git pull", _namePaths.Single(x => x.Name == repo).Path, out _);
+        }
+
+        private void Clone(string name, string repo, string path) {
+            Framework.Utilities.CMD("git clone " + repo, path, out _);
+            Add(name, path);
+        }
+
+        private void Commit(string name, string msg) {
+            var path = _namePaths.Single(x => x.Name == name).Path;
+            Framework.Utilities.CMD("git add .", path, out _);
+            Framework.Utilities.CMD("git commit -m " + (string.IsNullOrEmpty(msg) ? " " : msg), path, out _);
+            Framework.Utilities.CMD("git psuh -u origin master", path, out _);
+        }
+
+        public void Execute(string[] args, Action<string> display) {
+            if (args[0] == "add") {
+                var name = args.SingleOrDefault(x => x.StartsWith("n:"));
+                var path = args.SingleOrDefault(x => x.StartsWith("p:"));
+                Add(string.IsNullOrEmpty(name) ? args[1] : name, string.IsNullOrEmpty(path) ? args[2] : path);
+            } else if (args[0] == "set") {
+                var name = args.SingleOrDefault(x => x.StartsWith("n:"));
+                var path = args.SingleOrDefault(x => x.StartsWith("p:"));
+                Change(string.IsNullOrEmpty(name) ? args[1] : name, string.IsNullOrEmpty(path) ? args[2] : path);
+            } else if (args[0] == "delete") {
+                var name = args.SingleOrDefault(x => x.StartsWith("n:"));
+                Delete(string.IsNullOrEmpty(name) ? args[1] : name);
+            } else if (args[0] == "pull") {
+                Pull(args[1]);
+            } else if (args[0] == "clone") {
+                Clone(args[1], args[2], args[3]);
+            } else if (args[0] == "commit") {
+                var name = args.SingleOrDefault(x => x.StartsWith("n:"));
+                var msg = args.SingleOrDefault(x => x.StartsWith("m:"));
+                Commit(string.IsNullOrEmpty(name) ? args[1] : name, string.IsNullOrEmpty(msg) ? args[2] : msg);
+            }
         }
     }
 }

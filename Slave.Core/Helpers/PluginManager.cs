@@ -82,7 +82,7 @@ namespace Slave.Core.Helpers {
                             Shortcut = tool.HotKey
                         };
                         hotkey.Pressed += delegate {
-                            tool.Execute(null);
+                            tool.Execute(null, Launcher.Current.ChangeLauncherText);
                         };
                         tools.Add(tool);
                     }

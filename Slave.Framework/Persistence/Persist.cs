@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Slave.Framework.Persistance {
+namespace Slave.Framework.Persistence {
     public static class Persist {
         private static readonly string Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\";
 
@@ -27,7 +27,7 @@ namespace Slave.Framework.Persistance {
                 sw.Close();
                 return true;
             }
-            catch {
+            catch (Exception e) {
                 return false;
             }
             
