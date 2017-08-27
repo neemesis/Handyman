@@ -20,7 +20,7 @@ Currently implemented plugins:
 Download the zip from **[HERE](https://github.com/neemesis/Slave/raw/master/Releases/Slave_Release_1.0.0.0.zip)**
 
 ## How to use Slave
-- Initial shortcut for starting Slave is **Alt-Backspace**, but you can change it.
+- Initial shortcut for starting Slave is **Shift - F1**, but you can change it.
 - Type **help** to get info about all slaves.
 - Type **add** to add new slave.
 - Type **setup** to see options.

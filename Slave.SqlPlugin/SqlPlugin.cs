@@ -7,7 +7,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using Slave.Framework.Entities;
@@ -74,7 +73,7 @@ namespace Slave.SqlPlugin {
             } else if (args.Length > 2 && args[0] == "set") {
                 var cs = new ConnectionString {
                     Name = args[1],
-                    Connection = string.Join(" ", args.Skip(2))
+                    Connection = string.Join(" ", args.Skip(2)).Replace(@"\\", @"\")
                 };
                 InsertConnection(cs);
             } else if (args.Length == 2 && args[0] == "remove") {

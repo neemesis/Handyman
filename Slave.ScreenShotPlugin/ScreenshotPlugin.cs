@@ -11,7 +11,7 @@ namespace Slave.ScreenShotPlugin {
 
         public ScreenshotPlugin() {
             _alias = "screenshot";
-            _hotKey = Shortcut.ShiftF1;
+            _hotKey = Shortcut.ShiftF12;
         }
 
         void IMaster.Initialize() {
