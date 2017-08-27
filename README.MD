@@ -18,7 +18,7 @@ Currently implemented plugins:
 - [DaysPlugin](https://github.com/neemesis/Slave/tree/master/Slave.DaysPlugin)
 
 ## Download Slave Beta
-Download the zip from **[HERE](https://github.com/neemesis/Slave/raw/master/Releases/Slave_Release_1.0.0.1.zip)**
+Download the zip from **[HERE](https://github.com/neemesis/Slave/raw/master/Releases/Slave_Release_Latest.zip)**
 
 ## How to use Slave
 - Initial shortcut for starting Slave is **Shift - F1**, but you can change it.
