@@ -89,9 +89,10 @@ namespace Slave.SeriesPlugin {
             return MediaExtensions.Contains(Path.GetExtension(filename), StringComparer.OrdinalIgnoreCase);
         }
 
-        private static string Search(string sDir, string name, string season, string episode) {
+        private static string Search(string sDir, string name, string season, string episode, Action<string, DisplayData> display) {
             try {
                 foreach (var f in Directory.GetFiles(sDir)) {
+                    display(f, DisplayData.Launcher);
                     if (IsVideo(f) && CheckFile(f.ToLower(), name, season, episode))
                         return f;
                 }
@@ -100,7 +101,7 @@ namespace Slave.SeriesPlugin {
                         if (IsVideo(f) && CheckFile(f.ToLower(), name, season, episode))
                             return f;
                     }
-                    var s = Search(d, name, season, episode);
+                    var s = Search(d, name, season, episode, display);
                     if (s != null)
                         return s;
                 }
@@ -115,11 +116,11 @@ namespace Slave.SeriesPlugin {
             LoadSeriesList();
         }
 
-        private static Tuple<int, int, string> SearchBySeasonEpisode(Series s, string ses, string ep, bool forward = true) {
+        private static Tuple<int, int, string> SearchBySeasonEpisode(Series s, string ses, string ep, Action<string, DisplayData> display, bool forward = true) {
             if (forward) {
                 for (var i = int.Parse(ses.Substring(1)); i < 30; ++i) {
                     for (var j = int.Parse(ep.Substring(1)) + 1; j < 30; ++j) {
-                        var path = Search(Properties.Settings.Default.Location, s.Name, "s" + i.ToString("00"), "e" + j.ToString("00"));
+                        var path = Search(Properties.Settings.Default.Location, s.Name, "s" + i.ToString("00"), "e" + j.ToString("00"), display);
                         if (!string.IsNullOrEmpty(path))
                             return new Tuple<int, int, string>(i, j, path);
                     }
@@ -127,7 +128,7 @@ namespace Slave.SeriesPlugin {
             } else {
                 for (var i = int.Parse(ses.Substring(1)); i >= 0; --i) {
                     for (var j = int.Parse(ep.Substring(1)) - 1; j >= 0; --j) {
-                        var path = Search(Properties.Settings.Default.Location, s.Name, "s" + i.ToString("00"), "e" + j.ToString("00"));
+                        var path = Search(Properties.Settings.Default.Location, s.Name, "s" + i.ToString("00"), "e" + j.ToString("00"), display);
                         if (!string.IsNullOrEmpty(path))
                             return new Tuple<int, int, string>(i, j, path);
                     }
@@ -140,7 +141,11 @@ namespace Slave.SeriesPlugin {
             if (args.Length < 1 || args.Length > 0 && args[0] == "help") {
                 DisplayHelp();
             } else if (args[0] == "play" && args.Length == 3) {
-                var path = Search(Properties.Settings.Default.Location, args[1].ToLower(), args[2].Substring(0, 3).ToLower(), args[2].Substring(3, 3).ToLower());
+                var path = Search(Properties.Settings.Default.Location, args[1].ToLower(), args[2].Substring(0, 3).ToLower(), args[2].Substring(3, 3).ToLower(), display);
+                if (string.IsNullOrEmpty(path))
+                    display("No results! " + Properties.Settings.Default.Location, DisplayData.Launcher);
+                else
+                    display("Found!", DisplayData.Launcher);
                 if (!string.IsNullOrEmpty(path)) {
                     var s = new Series {
                         Name = args[1].ToLower(),
@@ -153,7 +158,7 @@ namespace Slave.SeriesPlugin {
                 }
             } else if (args[0] == "next" && args.Length == 2) {
                 var s = SeriesList.SingleOrDefault(x => x.Name == args[1]);
-                var res = SearchBySeasonEpisode(s, s.Season, s.Episode);
+                var res = SearchBySeasonEpisode(s, s.Season, s.Episode, display);
                 if (res != null) {
                     s.Season = "s" + res.Item1.ToString("00");
                     s.Episode = "e" + res.Item2.ToString("00");
@@ -163,7 +168,7 @@ namespace Slave.SeriesPlugin {
                 }
             } else if (args[0] == "prev" && args.Length == 2) {
                 var s = SeriesList.SingleOrDefault(x => x.Name == args[1]);
-                var res = SearchBySeasonEpisode(s, s.Season, s.Episode, false);
+                var res = SearchBySeasonEpisode(s, s.Season, s.Episode, display, false);
                 if (res != null) {
                     s.Season = "s" + res.Item1.ToString("00");
                     s.Episode = "e" + res.Item2.ToString("00");

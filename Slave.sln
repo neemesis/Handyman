@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.CalculatorPlugin", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.TranslatorPlugin", "Slave.TranslatorPlugin\Slave.TranslatorPlugin.csproj", "{402F3724-C5D3-4148-8819-4453E37C8813}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave.DaysPlugin", "Slave.DaysPlugin\Slave.DaysPlugin.csproj", "{86A9EFAC-4F5A-47B0-9105-A681D5632DC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -220,6 +222,18 @@ Global
 		{402F3724-C5D3-4148-8819-4453E37C8813}.Release|x64.Build.0 = Release|Any CPU
 		{402F3724-C5D3-4148-8819-4453E37C8813}.Release|x86.ActiveCfg = Release|Any CPU
 		{402F3724-C5D3-4148-8819-4453E37C8813}.Release|x86.Build.0 = Release|Any CPU
+		{86A9EFAC-4F5A-47B0-9105-A681D5632DC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86A9EFAC-4F5A-47B0-9105-A681D5632DC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86A9EFAC-4F5A-47B0-9105-A681D5632DC3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{86A9EFAC-4F5A-47B0-9105-A681D5632DC3}.Debug|x64.Build.0 = Debug|Any CPU
+		{86A9EFAC-4F5A-47B0-9105-A681D5632DC3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{86A9EFAC-4F5A-47B0-9105-A681D5632DC3}.Debug|x86.Build.0 = Debug|Any CPU
+		{86A9EFAC-4F5A-47B0-9105-A681D5632DC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86A9EFAC-4F5A-47B0-9105-A681D5632DC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86A9EFAC-4F5A-47B0-9105-A681D5632DC3}.Release|x64.ActiveCfg = Release|Any CPU
+		{86A9EFAC-4F5A-47B0-9105-A681D5632DC3}.Release|x64.Build.0 = Release|Any CPU
+		{86A9EFAC-4F5A-47B0-9105-A681D5632DC3}.Release|x86.ActiveCfg = Release|Any CPU
+		{86A9EFAC-4F5A-47B0-9105-A681D5632DC3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
