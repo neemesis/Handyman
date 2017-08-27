@@ -1,93 +1,93 @@
 [
 	{
-	  "Name": "Slave.CommandPromptPlugin",
+	  "Name": "Handyman.CommandPromptPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Execute bat scripts",
 	  "HasConfig": true,
-	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.CommandPromptPlugin/bin/Release/Slave.CommandPromptPlugin.dll"
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.CommandPromptPlugin/bin/Release/Handyman.CommandPromptPlugin.dll"
 	},
 	{
-	  "Name": "Slave.PowerShellPlugin",
+	  "Name": "Handyman.PowerShellPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Execute PowerShell Scripts",
 	  "HasConfig": true,
-	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.PowerShellPlugin/bin/Release/Slave.PowerShellPlugin.dll"
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.PowerShellPlugin/bin/Release/Handyman.PowerShellPlugin.dll"
 	},
 	{
-	  "Name": "Slave.ScratchPadPlugin",
+	  "Name": "Handyman.ScratchPadPlugin",
 	  "Author": "John Roland",
 	  "Description": "The ScratchPad is a simple text editor to collect and keep text.",
 	  "HasConfig": true,
-	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.ScratchPadPlugin/bin/Release/Slave.ScratchPadPlugin.dll"
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.ScratchPadPlugin/bin/Release/Handyman.ScratchPadPlugin.dll"
 	},
 	{
-	  "Name": "Slave.ScreenShotPlugin",
+	  "Name": "Handyman.ScreenShotPlugin",
 	  "Author": "John Roland",
 	  "Description": "Take a screenshot of the current windows and save it as a PNG file",
 	  "HasConfig": true,
-	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.ScreenShotPlugin/bin/Release/Slave.ScreenShotPlugin.dll"
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.ScreenShotPlugin/bin/Release/Handyman.ScreenShotPlugin.dll"
 	},
 	{
-	  "Name": "Slave.SqlPlugin",
+	  "Name": "Handyman.SqlPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Execute queries directly from launcher",
 	  "HasConfig": false,
-	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.SqlPlugin/bin/Release/Slave.SqlPlugin.dll"
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.SqlPlugin/bin/Release/Handyman.SqlPlugin.dll"
 	},
 	{
-	  "Name": "Slave.TranslatorPlugin",
+	  "Name": "Handyman.TranslatorPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "This is a Google Translator opener",
 	  "HasConfig": true,
-	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.TranslatorPlugin/bin/Release/Slave.TranslatorPlugin.dll"
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.TranslatorPlugin/bin/Release/Handyman.TranslatorPlugin.dll"
 	},
 	{
-	  "Name": "Slave.ToDoPlugin",
+	  "Name": "Handyman.ToDoPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "ToDo Lists",
 	  "HasConfig": true,
-	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.ToDoPlugin/bin/Release/Slave.ToDoPlugin.dll"
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.ToDoPlugin/bin/Release/Handyman.ToDoPlugin.dll"
 	},
 	{
-	  "Name": "Slave.SeriesPlugin",
+	  "Name": "Handyman.SeriesPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Track and play TV Series",
 	  "HasConfig": true,
-	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.SeriesPlugin/bin/Release/Slave.SeriesPlugin.dll"
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.SeriesPlugin/bin/Release/Handyman.SeriesPlugin.dll"
 	},
 	{
-	  "Name": "Slave.RestPlugin",
+	  "Name": "Handyman.RestPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Send requests to REST endpoints",
 	  "HasConfig": true,
-	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.RestPlugin/bin/Release/Slave.RestPlugin.dll"
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.RestPlugin/bin/Release/Handyman.RestPlugin.dll"
 	},
 	{
-	  "Name": "Slave.EmailPlugin",
+	  "Name": "Handyman.EmailPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Send email fast and easy",
 	  "HasConfig": true,
-	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.EmailPlugin/bin/Release/Slave.EmailPlugin.dll"
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.EmailPlugin/bin/Release/Handyman.EmailPlugin.dll"
 	},
 	{
-	  "Name": "Slave.Calculator",
+	  "Name": "Handyman.Calculator",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Calculate expressions in launcher",
 	  "HasConfig": false,
-	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.Calculator/bin/Release/Slave.Calculator.dll"
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.Calculator/bin/Release/Handyman.Calculator.dll"
 	},
 	{
-	  "Name": "Slave.SysPlugin",
+	  "Name": "Handyman.SysPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Execute system commands.",
 	  "HasConfig": false,
-	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.SysPlugin/bin/Release/Slave.SysPlugin.dll"
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.SysPlugin/bin/Release/Handyman.SysPlugin.dll"
 	},
 	{
-	  "Name": "Slave.GitPlugin",
+	  "Name": "Handyman.GitPlugin",
 	  "Author": "Mirche Toshevski",
 	  "Description": "Execute system commands.",
 	  "HasConfig": false,
-	  "URL": "https://github.com/neemesis/Slave/raw/master/Slave.GitPlugin/bin/Release/Slave.GitPlugin.dll"
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.GitPlugin/bin/Release/Handyman.GitPlugin.dll"
 	}
 ]

@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Handyman.Core.ScreenShotPlugin.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Hotkey" Type="System.Windows.Forms.Shortcut" Scope="User">
+      <Value Profile="(Default)">ShiftF1</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
