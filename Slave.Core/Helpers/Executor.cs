@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,8 +90,16 @@ namespace Slave.Core.Helpers {
         private static string ParseInputText(string inputText, string notes, string[] args) {
             if (!string.IsNullOrEmpty(inputText)) {
                 inputText = inputText.Replace("{F}", string.Join(" ", args));
+                inputText = inputText.Replace("{FU}", System.Web.HttpUtility.UrlEncode(string.Join(" ", args)));
+                inputText = inputText.Replace("{DTN}", System.Web.HttpUtility.UrlEncode(DateTime.Now.ToString(CultureInfo.CurrentCulture)));
+                inputText = inputText.Replace("{U}", Environment.UserName);
+                inputText = inputText.Replace("{UD}", Environment.UserDomainName);
+                inputText = inputText.Replace("{DD}", DateTime.Now.DayOfWeek.ToString());
+                inputText = inputText.Replace("{MM}", DateTime.Now.Month.ToString());
+                inputText = inputText.Replace("{YY}", DateTime.Now.Year.ToString());
                 for (var i = 0; i < args.Length; ++i) {
-                    inputText = inputText.Replace("{" + i + "}", System.Web.HttpUtility.UrlEncode(args[i]));
+                    inputText = inputText.Replace("{" + i + "U}", System.Web.HttpUtility.UrlEncode(args[i]));
+                    inputText = inputText.Replace("{" + i + "}", args[i]);
                 }
             }
 
