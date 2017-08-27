@@ -21,9 +21,9 @@ namespace Handyman.Core {
         private Context() {
             #region Register app at windows startup
             if (Properties.Settings.Default.RunAtWindowsStart) {
-                Utilities.RunOnStart("Handymanr", Application.ExecutablePath);
+                Utilities.RunOnStart("Handyman", Application.ExecutablePath);
             } else {
-                Utilities.RemoveRunOnStart("Handymanr");
+                Utilities.RemoveRunOnStart("Handyman");
             }
             #endregion
 
