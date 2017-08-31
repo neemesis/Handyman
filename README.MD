@@ -1,4 +1,6 @@
 # Handyman - automate your PC
+
+[![Join the chat at https://gitter.im/NeemesisHandyman/Lobby](https://badges.gitter.im/NeemesisHandyman/Lobby.svg)](https://gitter.im/NeemesisHandyman/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Handyman is text-based launcher that you can esily activate with shortcut. Handyman is easy to use, has a lot of plugins and also provides interface to create your own plugins.
 
 Currently implemented plugins:
