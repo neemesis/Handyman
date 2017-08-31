@@ -7,7 +7,7 @@ Currently implemented plugins:
 - [PowerShellPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.PowerShellPlugin)
 - [RestPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.RestPlugin)
 - [ScratchPadPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.ScratchPadPlugin)
-- [ScrenShotPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.ScreenShotPlugin)
+- [ScreenShotPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.ScreenShotPlugin)
 - [SeriesPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.SeriesPlugin)
 - [SqlPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.SqlPlugin)
 - [ToDoPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.ToDoPlugin)
