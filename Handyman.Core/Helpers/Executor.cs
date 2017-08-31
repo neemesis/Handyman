@@ -15,13 +15,14 @@ using Handyman.Framework.Interfaces;
 namespace Handyman.Core.Helpers {
     public static class Executor {
 
-        public static bool ExecuteTool(List<IMaster> tools, string alias, IParse parser, Action<Exception> setError) {
+        public static bool ExecuteTool(IEnumerable<IMaster> tools, string alias, IParse parser, Action<Exception> setError) {
             foreach (var tool in tools) {
                 if (alias.StartsWith(tool.Alias)) {
                     try {
-                        var args = tool.Parser?.Parse(alias.Replace(tool.Alias, "")) ?? parser.Parse(alias.Replace(tool.Alias, ""));
-                        if (args.Any() && args[0] == "dev") {
-                            HandleDev(args[1], alias, tool.Parser ?? parser);
+                        var a = alias.Replace(tool.Alias, "").Trim();
+                        var args = tool.Parser?.Parse(a) ?? parser.Parse(a);
+                        if (args.Any() && args[0].Split(' ')[0].StartsWith("dev")) {
+                            HandleDev(alias, tool.Parser ?? parser);
                             return true;
                         }
                         tool.Execute(args, Launcher.Current.ShowData);
@@ -35,8 +36,8 @@ namespace Handyman.Core.Helpers {
             return false;
         }
 
-        public static bool ExecuteHandyman(List<Commands> Handymans, string alias, Action<Exception> setError) {
-            foreach (var word in Handymans) {
+        public static bool ExecuteHandyman(IEnumerable<Commands> handymans, string alias, Action<Exception> setError) {
+            foreach (var word in handymans) {
                 if (alias.StartsWith(word.Alias)) {
                     try {
                         ExecuteHandymanInternal(word, alias.Split(' ').Skip(1).ToArray());
@@ -112,11 +113,9 @@ namespace Handyman.Core.Helpers {
             return inputText;
         }
 
-        private static void HandleDev(string command, string args, IParse parser) {
-            if (command == "parse") {
-                var res = parser.Parse(args);
-                Launcher.Current.ShowData(string.Join(" || ", res.Skip(2)));
-            }
+        private static void HandleDev(string args, IParse parser) {
+            var res = parser.Parse(args);
+            Launcher.Current.ShowData(string.Join(" || ", res.Skip(2)));
         }
         #endregion
     }

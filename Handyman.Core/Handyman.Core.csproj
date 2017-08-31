@@ -264,6 +264,10 @@
     <None Include="Resources\if_robot_88068.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Handyman.BatchPlugin\Handyman.BatchPlugin.csproj">
+      <Project>{7483868a-c019-434f-ac6c-388a1a7fe756}</Project>
+      <Name>Handyman.BatchPlugin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Handyman.CalculatorPlugin\Handyman.CalculatorPlugin.csproj">
       <Project>{0f37efa7-fc50-470a-bb65-fd3f72224aa6}</Project>
       <Name>Handyman.CalculatorPlugin</Name>

@@ -149,14 +149,16 @@ namespace Handyman.Core.Forms {
         }
 
         public void ShowData(string text, DisplayData dd = DisplayData.Launcher) {
+            // TODO: create popup
             if (dd == DisplayData.Launcher) {
-                uxInputText.Text = text;
-                uxInputText.SelectionStart = uxInputText.Text.Length;
-                uxInputText.SelectionLength = 0;
-                Show();
+                
             } else if (dd == DisplayData.PopUp) {
                 
             }
+            uxInputText.Text = text;
+            uxInputText.SelectionStart = uxInputText.Text.Length;
+            uxInputText.SelectionLength = 0;
+            Show();
         }
 
         private void OnDeactivate(object sender, EventArgs e) {

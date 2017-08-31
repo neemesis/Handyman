@@ -81,6 +81,7 @@ namespace Handyman.Core.Helpers {
                         var hotkey = new SystemHotkey(_components) {
                             Shortcut = tool.HotKey
                         };
+
                         hotkey.Pressed += delegate {
                             tool.Execute(null, Launcher.Current.ShowData);
                         };

@@ -16,6 +16,7 @@ Currently implemented plugins:
 - [GitPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.GitPlugin)
 - [TranslatorPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.TranslatorPlugin)
 - [DaysPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.DaysPlugin)
+- [BatchPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.BatchPlugin)
 
 ## Download Handyman Beta
 Download the zip from **[HERE](https://github.com/neemesis/Handyman/raw/master/Releases/Handyman_Release_Latest.zip)**
@@ -51,8 +52,8 @@ Download the zip from **[HERE](https://github.com/neemesis/Handyman/raw/master/R
 - ```{HH}```: replace this with hours **DateTime.Now.Hour.ToString()**
 - ```{MIN}```: replace this with year number **DateTime.Now.Minute.ToString()**
 - ```{SS}```: replace this with seconds **DateTime.Now.Second.ToString()**
-- ```{XU}```: **X** represent number of argument **U** meand URL encoding (ie. ```{0U}, {1U}, {3U}```)
-- ```{X}```: **X** represent number of argument (ie. ```{0}, {1}, {3}```)
+- ```{XU}```: **X** represent number of argument **U** means URL encoding (ie. ```{0U}, {1U}, {2U}```)
+- ```{X}```: **X** represent number of argument (ie. ```{0}, {1}, {2}```)
 - ```{RD}```: replace this with system drive **Path.GetPathRoot(Environment.SystemDirectory)**
 
 ###### Example 1
