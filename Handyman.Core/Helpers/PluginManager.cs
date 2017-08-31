@@ -70,7 +70,7 @@ namespace Handyman.Core.Helpers {
             _components = new Container();
 
             // we extract all the IAttributeDefinition implementations 
-            foreach (var filename in Directory.GetFiles(Application.StartupPath /* + "\\Plugins" */, "*.dll")) {
+            foreach (var filename in Directory.GetFiles(Application.StartupPath, "*.dll")) {
                 var assembly = System.Reflection.Assembly.LoadFrom(filename);
                 foreach (var type in assembly.GetTypes()) {
                     var plugin = type.GetInterface("Handyman.Framework.Interfaces.IMaster");

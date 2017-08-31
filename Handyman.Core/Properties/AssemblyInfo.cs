@@ -6,12 +6,12 @@ using System.Runtime.CompilerServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-[assembly: AssemblyTitle("Handymans")]
+[assembly: AssemblyTitle("Handyman")]
 [assembly: AssemblyDescription("Improved floating command line utility for Windows")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Serialcoder")]
-[assembly: AssemblyProduct("Handymans")]
-[assembly: AssemblyCopyright("Serialcoder 2007")]
+[assembly: AssemblyCompany("Nemesis")]
+[assembly: AssemblyProduct("Handyman")]
+[assembly: AssemblyCopyright("Nemesis")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 
@@ -26,7 +26,7 @@ using System.Runtime.CompilerServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("1.2.0.0")]
+[assembly: AssemblyVersion("2.0.0.0")]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the 
