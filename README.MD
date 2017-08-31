@@ -48,8 +48,12 @@ Download the zip from **[HERE](https://github.com/neemesis/Handyman/raw/master/R
 - ```{DD}```: replace this with the name of the day **DateTime.Now.DayOfWeek.ToString()**
 - ```{MM}```: replace this with number of the month **DateTime.Now.Month.ToString()**
 - ```{YY}```: replace this with year number **DateTime.Now.Year.ToString()**
+- ```{HH}```: replace this with hours **DateTime.Now.Hour.ToString()**
+- ```{MIN}```: replace this with year number **DateTime.Now.Minute.ToString()**
+- ```{SS}```: replace this with seconds **DateTime.Now.Second.ToString()**
 - ```{XU}```: **X** represent number of argument **U** meand URL encoding (ie. ```{0U}, {1U}, {3U}```)
 - ```{X}```: **X** represent number of argument (ie. ```{0}, {1}, {3}```)
+- ```{RD}```: replace this with system drive **Path.GetPathRoot(Environment.SystemDirectory)**
 
 ###### Example 1
 We want to launch google search with search term entered in launcher.

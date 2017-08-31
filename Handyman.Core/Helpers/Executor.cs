@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -97,6 +98,11 @@ namespace Handyman.Core.Helpers {
                 inputText = inputText.Replace("{DD}", DateTime.Now.DayOfWeek.ToString());
                 inputText = inputText.Replace("{MM}", DateTime.Now.Month.ToString());
                 inputText = inputText.Replace("{YY}", DateTime.Now.Year.ToString());
+                inputText = inputText.Replace("{HH}", DateTime.Now.Hour.ToString());
+                inputText = inputText.Replace("{MIN}", DateTime.Now.Minute.ToString());
+                inputText = inputText.Replace("{SS}", DateTime.Now.Second.ToString());
+                inputText = inputText.Replace("{RD}", Path.GetPathRoot(Environment.SystemDirectory));
+
                 for (var i = 0; i < args.Length; ++i) {
                     inputText = inputText.Replace("{" + i + "U}", System.Web.HttpUtility.UrlEncode(args[i]));
                     inputText = inputText.Replace("{" + i + "}", args[i]);

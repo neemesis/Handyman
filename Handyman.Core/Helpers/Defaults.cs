@@ -31,20 +31,6 @@ namespace Handyman.Core.Helpers {
             };
             list.Add(yt);
 
-            var x1337 = new Commands {
-                Alias = "1337x",
-                FileName = @"http://1337x.to/search/{FU}/1/",
-                Arguments = ""
-            };
-            list.Add(x1337);
-
-            var thepb = new Commands {
-                Alias = "thepb",
-                FileName = @"https://thepiratebay.org/search/{FU}/0/99/0",
-                Arguments = ""
-            };
-            list.Add(thepb);
-
             var lin = new Commands {
                 Alias = "lin",
                 FileName = @"https://www.linkedin.com/feed/",
