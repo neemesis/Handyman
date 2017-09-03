@@ -89,5 +89,26 @@
 	  "Description": "Execute system commands.",
 	  "HasConfig": false,
 	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.GitPlugin/bin/Release/Handyman.GitPlugin.dll"
+	},
+	{
+	  "Name": "Handyman.DaysPlugin",
+	  "Author": "Mirche Toshevski",
+	  "Description": "Count days.",
+	  "HasConfig": false,
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.DaysPlugin/bin/Release/Handyman.DaysPlugin.dll"
+	},
+	{
+	  "Name": "Handyman.WorkPlugin",
+	  "Author": "Mirche Toshevski",
+	  "Description": "Work / rest timer.",
+	  "HasConfig": false,
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.WorkPlugin/bin/Release/Handyman.WorkPlugin.dll"
+	},
+	{
+	  "Name": "Handyman.BatchPlugin",
+	  "Author": "Mirche Toshevski",
+	  "Description": "Execute applications in batch.",
+	  "HasConfig": false,
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.BatchPlugin/bin/Release/Handyman.BatchPlugin.dll"
 	}
 ]
