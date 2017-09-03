@@ -4,6 +4,8 @@
 
 Handyman is text-based launcher that you can esily activate with shortcut. Handyman is easy to use, has a lot of plugins and also provides interface to create your own plugins.
 
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
 Currently implemented plugins:
 - [CommandPromptPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.CommandPromptPlugin)
 - [EmailPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.EmailPlugin)

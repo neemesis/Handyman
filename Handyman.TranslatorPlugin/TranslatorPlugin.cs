@@ -57,8 +57,8 @@ namespace Handyman.TranslatorPlugin {
                 var fromLang = string.IsNullOrEmpty(lang) ? Properties.Settings.Default.DefFrom : lang.Split(':')[0];
                 var toLang = string.IsNullOrEmpty(lang) ? Properties.Settings.Default.DefTo : lang.Split(':')[1];
                 var text = string.IsNullOrEmpty(lang)
-                    ? string.Join(" ", args.Skip(1))
-                    : string.Join(" ", args.Skip(1)).Replace(lang, "");
+                    ? string.Join(" ", args)
+                    : string.Join(" ", args).Replace(lang, "");
                 var url = "https://translate.google.com/#" + fromLang + "/" + toLang + "/" + Uri.EscapeDataString(text);
                 Process.Start(url);
             }
