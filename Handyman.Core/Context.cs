@@ -50,6 +50,9 @@ namespace Handyman.Core {
         }
 
         public void Start(string alias) {
+            // Save to history
+            History.Add(alias);
+
             // Check for app commands
             if (AppForms.HandleForm(alias))
                 return;

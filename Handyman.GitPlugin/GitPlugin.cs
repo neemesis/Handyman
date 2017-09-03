@@ -37,7 +37,7 @@ namespace Handyman.GitPlugin {
         }
 
         public void Initialize() {
-            _namePaths = Framework.Persistence.Persist.Load<GitRepo>(_alias);
+            _namePaths = Framework.Persistence.Persist.Load<List<GitRepo>>(_alias);
         }
 
         private void Add(string name, string path) {

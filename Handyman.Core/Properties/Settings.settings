@@ -6,7 +6,7 @@
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
     <Setting Name="Size" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">150, 20</Value>
+      <Value Profile="(Default)">500, 25</Value>
     </Setting>
     <Setting Name="AddWordHotKey" Type="System.Windows.Forms.Shortcut" Scope="User">
       <Value Profile="(Default)">CtrlF11</Value>

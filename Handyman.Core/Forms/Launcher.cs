@@ -62,8 +62,8 @@ namespace Handyman.Core.Forms {
             StartPosition = FormStartPosition.Manual;
             //Left = Screen.PrimaryScreen.WorkingArea.Width - Width;
             //Top = Screen.PrimaryScreen.WorkingArea.Height - Height;
-            Left = ( Screen.PrimaryScreen.WorkingArea.Width - uxInputText.Size.Width ) / 2;
-            Top = ( Screen.PrimaryScreen.WorkingArea.Height - uxInputText.Size.Height ) / 2;
+            Left = (Screen.PrimaryScreen.WorkingArea.Width - uxInputText.Size.Width) / 2;
+            Top = (Screen.PrimaryScreen.WorkingArea.Height - uxInputText.Size.Height) / 2 - 50;
         }
 
         protected override void OnShown(EventArgs e) {
@@ -88,7 +88,10 @@ namespace Handyman.Core.Forms {
                 HideForm();
                 Context.Current.Start(alias);
             } else if (e.KeyCode == Keys.Escape) {
-                HideForm();
+                if (!string.IsNullOrEmpty(uxInputText.Text)) {
+                    uxInputText.Text = "";
+                } else
+                    HideForm();
             } else if (e.KeyCode == Keys.Tab) {
                 uxInputText.Text = uxInputText.Text + " ";
                 uxInputText.SelectionStart = Math.Max(0, uxInputText.Text.Length);

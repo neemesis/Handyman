@@ -182,7 +182,9 @@
     <Compile Include="Helpers\Defaults.cs" />
     <Compile Include="Helpers\Executor.cs" />
     <Compile Include="Helpers\HandymansManager.cs" />
+    <Compile Include="Helpers\History.cs" />
     <Compile Include="Helpers\PluginManager.cs" />
+    <Compile Include="Models\HistoryModel.cs" />
     <Compile Include="Models\Plugin.cs" />
     <Compile Include="HandymanContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -327,6 +329,10 @@
     <ProjectReference Include="..\Handyman.TranslatorPlugin\Handyman.TranslatorPlugin.csproj">
       <Project>{402f3724-c5d3-4148-8819-4453e37c8813}</Project>
       <Name>Handyman.TranslatorPlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Handyman.WorkPlugin\Handyman.WorkPlugin.csproj">
+      <Project>{3851ff31-2a65-489e-91cb-c84c09fd21c4}</Project>
+      <Name>Handyman.WorkPlugin</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

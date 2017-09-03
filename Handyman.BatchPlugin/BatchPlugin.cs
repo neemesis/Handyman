@@ -48,7 +48,7 @@ namespace Handyman.BatchPlugin {
         }
 
         public void Initialize() {
-            Batches = Framework.Persistence.Persist.Load<Batch>(Alias);
+            Batches = Framework.Persistence.Persist.Load<List<Batch>>(Alias);
         }
 
         public void Execute(string[] args, Action<string, DisplayData> display) {

@@ -55,9 +55,9 @@ namespace Handyman.Core.Forms
             this.uxInputText.ForeColor = global::Handyman.Core.Properties.Settings.Default.ForeColor;
             this.uxInputText.Location = new System.Drawing.Point(10, 10);
             this.uxInputText.Margin = new System.Windows.Forms.Padding(5);
-            this.uxInputText.MaximumSize = new System.Drawing.Size(250, 60);
+            this.uxInputText.MaximumSize = new System.Drawing.Size(500, 60);
             this.uxInputText.Name = "uxInputText";
-            this.uxInputText.Size = new System.Drawing.Size(250, 25);
+            this.uxInputText.Size = new System.Drawing.Size(450, 25);
             this.uxInputText.TabIndex = 0;
             this.uxInputText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.uxInputText.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnInputTextBoxKeyUp);
@@ -77,64 +77,64 @@ namespace Handyman.Core.Forms
             this.toolStripSeparator1,
             this.uxExitToolStripMenuItem});
             this.uxInputContextMenuStrip.Name = "contextMenuStrip1";
-            this.uxInputContextMenuStrip.Size = new System.Drawing.Size(143, 170);
+            this.uxInputContextMenuStrip.Size = new System.Drawing.Size(175, 170);
             this.uxInputContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.uxInputContextMenuStrip_Opening);
             // 
             // uxNewHandymanToolStripMenuItem
             // 
             this.uxNewHandymanToolStripMenuItem.Name = "uxNewHandymanToolStripMenuItem";
-            this.uxNewHandymanToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.uxNewHandymanToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.uxNewHandymanToolStripMenuItem.Text = "New Handyman...";
             this.uxNewHandymanToolStripMenuItem.Click += new System.EventHandler(this.OnNewHandymanToolStripMenuItemClick);
             // 
             // uxHandymansToolStripMenuItem
             // 
             this.uxHandymansToolStripMenuItem.Name = "uxHandymansToolStripMenuItem";
-            this.uxHandymansToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.uxHandymansToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.uxHandymansToolStripMenuItem.Text = "Handymans";
             // 
             // reloadToolStripMenuItem
             // 
             this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
-            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.reloadToolStripMenuItem.Text = "Reload";
             this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(139, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(171, 6);
             // 
             // uxSetupToolStripMenuItem
             // 
             this.uxSetupToolStripMenuItem.Name = "uxSetupToolStripMenuItem";
-            this.uxSetupToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.uxSetupToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.uxSetupToolStripMenuItem.Text = "&Setup...";
             this.uxSetupToolStripMenuItem.Click += new System.EventHandler(this.OnSetupToolStripMenuItemClick);
             // 
             // uxHelpToolStripMenuItem
             // 
             this.uxHelpToolStripMenuItem.Name = "uxHelpToolStripMenuItem";
-            this.uxHelpToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.uxHelpToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.uxHelpToolStripMenuItem.Text = "&Handymans online";
             this.uxHelpToolStripMenuItem.Click += new System.EventHandler(this.OnHelpToolStripMenuItemClick);
             // 
             // uxHideToolStripMenuItem
             // 
             this.uxHideToolStripMenuItem.Name = "uxHideToolStripMenuItem";
-            this.uxHideToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.uxHideToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.uxHideToolStripMenuItem.Text = "&Hide in Tray";
             this.uxHideToolStripMenuItem.Click += new System.EventHandler(this.OnHideToolStripMenuItemClick);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(139, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(171, 6);
             // 
             // uxExitToolStripMenuItem
             // 
             this.uxExitToolStripMenuItem.Name = "uxExitToolStripMenuItem";
-            this.uxExitToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.uxExitToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.uxExitToolStripMenuItem.Text = "&Exit";
             this.uxExitToolStripMenuItem.Click += new System.EventHandler(this.OnExitToolStripMenuItemClick);
             // 

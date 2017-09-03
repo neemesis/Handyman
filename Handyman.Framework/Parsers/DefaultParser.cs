@@ -11,7 +11,7 @@ namespace Handyman.Framework.Parsers {
             var args = new List<string>();
             var colSplit = str.Split(':');
             var start = colSplit[0].Split(' ');
-            for (var i = 1; i < ( colSplit.Length == 1 ? start.Length : start.Length - 1 ); ++i) {
+            for (var i = 0; i < ( colSplit.Length == 1 ? start.Length : start.Length - 1 ); ++i) {
                 args.Add(start[i]);
             }
             for (var i = 0; i < colSplit.Length - 1; ++i) {
@@ -21,7 +21,7 @@ namespace Handyman.Framework.Parsers {
                 var parts = colSplit[i].Split(' ').Last() + ":" + string.Join(" ", spl.Take(take));
                 args.Add(parts);
             }
-            return args.ToArray();
+            return args.Where(x => !string.IsNullOrEmpty(x)).ToArray();
         }
     }
 }

@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace Handyman.Framework.Persistence {
     public static class Persist {
+        private static string _oldSuffix = ".Handymanconfig";
+        private static string _suffix = ".hmcfg";
         private static readonly string Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\";
 
         /// <summary>
@@ -18,19 +16,18 @@ namespace Handyman.Framework.Persistence {
         /// <param name="data">Data to save</param>
         /// <param name="alias">Alias</param>
         /// <returns>Is it success?</returns>
-        public static bool Save<T>(IList<T> data, string alias) {
+        public static bool Save<T>(T data, string alias) {
             try {
-                var path = Path + alias + ".Handymanconfig";
-                var ser = new XmlSerializer(typeof(List<T>));
+                var path = Path + alias + _suffix;
+                var ser = new XmlSerializer(typeof(T));
                 var sw = new StreamWriter(path);
                 ser.Serialize(sw, data);
                 sw.Close();
                 return true;
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 return false;
             }
-            
+
         }
 
         /// <summary>
@@ -39,24 +36,32 @@ namespace Handyman.Framework.Persistence {
         /// <typeparam name="T">Type to which to convert</typeparam>
         /// <param name="alias">Alias</param>
         /// <returns>List of objects</returns>
-        public static List<T> Load<T>(string alias) {
+        public static T Load<T>(string alias) {
+            var path = Path + alias + _oldSuffix;
+            if (File.Exists(path)) {
+                var res = LoadInternal<T>(alias, path);
+                Save(res, alias);
+                File.Delete(path);
+                return res;
+            }
+            return LoadInternal<T>(alias, Path + alias + _suffix);
+        } 
+        
+        private static T LoadInternal<T>(string alias, string path) {
             try {
-                var path = Path + alias + ".Handymanconfig";
                 if (File.Exists(path)) {
-                    var serializer = new XmlSerializer(typeof(List<T>));
+                    var serializer = new XmlSerializer(typeof(T));
                     var reader = File.OpenText(path);
-                    var res = (List<T>) serializer.Deserialize(reader);
+                    var res = (T)serializer.Deserialize(reader);
                     reader.Close();
                     return res;
-                }
-                else {
-                    var res = new List<T>();
+                } else {
+                    var res = default(T);
                     Save(res, alias);
                     return res;
                 }
-            }
-            catch {
-                return new List<T>();
+            } catch (Exception e) {
+                return default(T);
             }
         }
 
@@ -73,7 +78,7 @@ namespace Handyman.Framework.Persistence {
                     return true;
                 }
                 return false;
-            } catch {return false;}
+            } catch { return false; }
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Handyman.DaysPlugin {
         }
 
         public void Initialize() {
-            Days = Framework.Persistence.Persist.Load<DaysModel>(Alias);
+            Days = Framework.Persistence.Persist.Load<List<DaysModel>>(Alias);
         }
 
         private void Add(string name, DateTime date) {
