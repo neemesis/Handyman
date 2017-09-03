@@ -27,8 +27,11 @@ namespace Handyman.SqlPlugin {
         public string Version => "1.0.0.0";
         public string HelpUrl => "https://github.com/neemesis/Handyman/blob/master/Handyman.SqlPlugin/README.MD";
         public IParse Parser { get; set; }
+        public List<string> Suggestions { get; set; }
+
         public void Initialize() {
             LoadConnections();
+            Suggestions = new List<string> { "sql set", "sql remove", "sql raw", "sql insert"};
         }
 
         private void LoadConnections() {

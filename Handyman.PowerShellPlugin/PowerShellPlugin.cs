@@ -24,8 +24,10 @@ namespace Handyman.PowerShellPlugin {
         public string Version => "1.0.0.0";
         public string HelpUrl => "https://github.com/neemesis/Handyman/blob/master/Handyman.PowerShellPlugin/README.MD";
 
+        public List<string> Suggestions { get; set; }
+
         void IMaster.Initialize() {
-            // todo restore settings
+            Suggestions = new List<string> { "ps set"};
         }
 
         private Shortcut _hotKey;

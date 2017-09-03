@@ -18,6 +18,7 @@ namespace Handyman.CalculatorPlugin {
         private Shortcut _hotKey;
         private string _alias;
         public IParse Parser { get; set; }
+        public List<string> Suggestions { get; set; }
 
         Shortcut IMaster.HotKey {
             get => _hotKey;
@@ -35,6 +36,7 @@ namespace Handyman.CalculatorPlugin {
         }
 
         public void Initialize() {
+            Suggestions = new List<string> { };
         }
 
         public void Execute(string[] args, Action<string, DisplayData> display) {

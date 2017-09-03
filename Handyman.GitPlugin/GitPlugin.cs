@@ -18,6 +18,7 @@ namespace Handyman.GitPlugin {
         private Shortcut _hotKey;
         private string _alias;
         public IParse Parser { get; set; }
+        public List<string> Suggestions { get; set; }
 
         Shortcut IMaster.HotKey {
             get => _hotKey;
@@ -38,6 +39,7 @@ namespace Handyman.GitPlugin {
 
         public void Initialize() {
             _namePaths = Framework.Persistence.Persist.Load<List<GitRepo>>(_alias);
+            Suggestions = new List<string> {"git add", "git set", "git delete", "git pull", "git clone", "git commit" };
         }
 
         private void Add(string name, string path) {

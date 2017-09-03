@@ -65,11 +65,12 @@ namespace Handyman.Core.Helpers {
             }
         }
 
-        public static List<IMaster> LoadPlugins(out IContainer _components) {
+        public static List<IMaster> LoadPlugins(out IContainer _components, out List<string> sgs) {
             var tools = new List<IMaster>();
             _components = new Container();
 
             // we extract all the IAttributeDefinition implementations 
+            sgs = new List<string>();
             foreach (var filename in Directory.GetFiles(Application.StartupPath, "*.dll")) {
                 var assembly = System.Reflection.Assembly.LoadFrom(filename);
                 foreach (var type in assembly.GetTypes()) {
@@ -77,6 +78,12 @@ namespace Handyman.Core.Helpers {
                     if (plugin != null) {
                         var tool = (IMaster)Activator.CreateInstance(type);
                         tool.Initialize();
+
+                        sgs.Add(tool.Alias);
+                        sgs.Add("help " + tool.Alias);
+                        if (tool.Suggestions != null) {
+                            sgs.AddRange(tool.Suggestions);
+                        }
 
                         var hotkey = new SystemHotkey(_components) {
                             Shortcut = tool.HotKey

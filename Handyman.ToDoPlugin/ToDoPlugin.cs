@@ -26,6 +26,8 @@ namespace Handyman.ToDoPlugin {
         public string Version => "1.0.0.0";
         public string HelpUrl => "https://github.com/neemesis/Handyman/blob/master/Handyman.ToDoPlugin/README.MD";
         public IParse Parser { get; set; }
+        public List<string> Suggestions { get; set; }
+
         private void DeleteToDo(string name) {
             if (ToDos == null)
                 return;
@@ -78,6 +80,7 @@ namespace Handyman.ToDoPlugin {
 
         public void Initialize() {
             LoadToDos();
+            Suggestions = new List<string> {"todo add", "todo delete", "todo done" };
         }
 
         public void Execute(string[] args, Action<string, DisplayData> display) {

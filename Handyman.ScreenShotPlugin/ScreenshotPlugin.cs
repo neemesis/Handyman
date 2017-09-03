@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Handyman.Framework.Components;
 using Handyman.Framework.Entities;
@@ -13,6 +14,8 @@ namespace Handyman.ScreenShotPlugin {
             _alias = "screenshot";
             _hotKey = Shortcut.ShiftF12;
         }
+
+        public List<string> Suggestions { get; set; }
 
         void IMaster.Initialize() {
 

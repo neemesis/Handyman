@@ -1,5 +1,6 @@
 ﻿using Handyman.Framework.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 using Handyman.Framework.Entities;
@@ -32,6 +33,7 @@ namespace Handyman.SysPugin {
         }
 
         public IParse Parser { get; set; }
+        public List<string> Suggestions { get; set; }
 
         public void Execute(string[] args, Action<string, DisplayData> display = null) {
             var cmdArgs = "shutdown ";
@@ -83,6 +85,7 @@ namespace Handyman.SysPugin {
         }
 
         public void Initialize() {
+            Suggestions = new List<string> { "sys shutdown", "sys restart", "sys hibernate", "sys logoff", "sys abort"};
             //throw new NotImplementedException();
         }
     }

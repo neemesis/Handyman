@@ -18,6 +18,7 @@ namespace Handyman.WorkPlugin {
         public Shortcut HotKey { get; set; }
         public string Alias { get; set; }
         public IParse Parser { get; set; }
+        public List<string> Suggestions { get; set; }
 
         private Work Work { get; set; }
         private Timer Timer { get; set; }
@@ -37,6 +38,7 @@ namespace Handyman.WorkPlugin {
                 Work = new Work {WorkMin = 57, RestMin = 13};
                 Save();
             }
+            Suggestions = new List<string> { "work stop", "work status", "work reset"};
         }
 
         private void Save() => Framework.Persistence.Persist.Save(Work, Alias);

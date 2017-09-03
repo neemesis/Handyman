@@ -17,6 +17,7 @@ namespace Handyman.TranslatorPlugin {
         public string Version => "1.0.0.0";
         public string HelpUrl => "https://github.com/neemesis/Handyman/blob/master/Handyman.TranslatorPlugin/README.MD";
         public IParse Parser { get; set; }
+        public List<string> Suggestions { get; set; }
 
         private Shortcut _hotKey;
         private string _alias;
@@ -39,6 +40,7 @@ namespace Handyman.TranslatorPlugin {
         }
 
         public void Initialize() {
+            Suggestions = new List<string> {"tr set from", "tr set to" };
         }
 
         public async void Execute(string[] args, Action<string, DisplayData> display) {

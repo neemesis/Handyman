@@ -29,11 +29,29 @@ namespace Handyman.Core.Helpers {
 
             if (ent == null) {
                 ent = new HistoryModel {Alias = alias, Hits = 0};
+                _history.Add(ent);
             }
             ent.Date = DateTime.Now;
             ++ent.Hits;
 
             SaveHistory();
+        }
+
+        public static List<string> Get(string text) {
+            LoadHistory();
+            return _history.Where(x => x.Alias.Contains(text))
+                .OrderByDescending(x => x.Hits)
+                .ThenByDescending(x => x.Date)
+                .Select(x => x.Alias)
+                .ToList();
+        }
+
+        public static List<string> GetAll() {
+            LoadHistory();
+            return _history.OrderByDescending(x => x.Hits)
+                .ThenByDescending(x => x.Date)
+                .Select(x => x.Alias)
+                .ToList();
         }
     }
 }

@@ -40,6 +40,7 @@ namespace Handyman.Core.Forms
             this.uxHideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.uxExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uxListBox = new System.Windows.Forms.ListBox();
             this.uxInputContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -138,14 +139,28 @@ namespace Handyman.Core.Forms
             this.uxExitToolStripMenuItem.Text = "&Exit";
             this.uxExitToolStripMenuItem.Click += new System.EventHandler(this.OnExitToolStripMenuItemClick);
             // 
+            // uxListBox
+            // 
+            this.uxListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.uxListBox.FormattingEnabled = true;
+            this.uxListBox.ItemHeight = 14;
+            this.uxListBox.Location = new System.Drawing.Point(0, 44);
+            this.uxListBox.Margin = new System.Windows.Forms.Padding(0);
+            this.uxListBox.Name = "uxListBox";
+            this.uxListBox.Size = new System.Drawing.Size(450, 84);
+            this.uxListBox.TabIndex = 1;
+            this.uxListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.uxListBox_DrawItem);
+            this.uxListBox.SelectedIndexChanged += new System.EventHandler(this.uxListBox_SelectedIndexChanged);
+            // 
             // Launcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
             this.ClientSize = new System.Drawing.Size(663, 316);
             this.ContextMenuStrip = this.uxInputContextMenuStrip;
             this.ControlBox = false;
+            this.Controls.Add(this.uxListBox);
             this.Controls.Add(this.uxInputText);
             this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::Handyman.Core.Properties.Settings.Default, "Position", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -179,5 +194,6 @@ namespace Handyman.Core.Forms
 		private System.Windows.Forms.ToolStripMenuItem uxHelpToolStripMenuItem;
         private System.ComponentModel.IContainer components;
         private System.Windows.Forms.ToolStripMenuItem reloadToolStripMenuItem;
+        private System.Windows.Forms.ListBox uxListBox;
     }
 }

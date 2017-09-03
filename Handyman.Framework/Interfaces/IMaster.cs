@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Handyman.Framework.Entities;
 
@@ -37,6 +38,8 @@ namespace Handyman.Framework.Interfaces {
         /// Custom parser, if it's null the default parser is used
         /// </summary>
         IParse Parser { get; set; }
+
+        List<string> Suggestions { get; set; }
 
         /// <summary>
         /// Called when application is started. Load your data here

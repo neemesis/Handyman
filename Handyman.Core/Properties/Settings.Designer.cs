@@ -82,7 +82,7 @@ namespace Handyman.Core.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("229, 229, 234")]
+        [global::System.Configuration.DefaultSettingValueAttribute("39, 69, 81")]
         public global::System.Drawing.Color Backcolor {
             get {
                 return ((global::System.Drawing.Color)(this["Backcolor"]));
@@ -94,7 +94,7 @@ namespace Handyman.Core.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("27, 30, 35")]
+        [global::System.Configuration.DefaultSettingValueAttribute("247, 247, 242")]
         public global::System.Drawing.Color ForeColor {
             get {
                 return ((global::System.Drawing.Color)(this["ForeColor"]));
@@ -122,6 +122,54 @@ namespace Handyman.Core.Properties {
         public string DownloadURL {
             get {
                 return ((string)(this["DownloadURL"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("68, 56, 80")]
+        public global::System.Drawing.Color ListSelectedBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ListSelectedBackColor"]));
+            }
+            set {
+                this["ListSelectedBackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color ListSelectedForeColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ListSelectedForeColor"]));
+            }
+            set {
+                this["ListSelectedForeColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("237, 237, 239")]
+        public global::System.Drawing.Color ListUnselectedBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ListUnselectedBackColor"]));
+            }
+            set {
+                this["ListUnselectedBackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color ListUnselectedForeColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ListUnselectedForeColor"]));
+            }
+            set {
+                this["ListUnselectedForeColor"] = value;
             }
         }
     }

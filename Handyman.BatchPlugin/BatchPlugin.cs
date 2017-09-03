@@ -18,6 +18,7 @@ namespace Handyman.BatchPlugin {
         public Shortcut HotKey { get; set; }
         public string Alias { get; set; }
         public IParse Parser { get; set; }
+        public List<string> Suggestions { get; set; }
 
         private List<Batch> Batches { get; set; }
 
@@ -25,6 +26,7 @@ namespace Handyman.BatchPlugin {
             Alias = "batch";
             HotKey = Shortcut.None;
             Parser = new BatchParser();
+            Suggestions = new List<string> { "batch create", "batch delete", "batch change" };
         }
 
         private void Save() {

@@ -20,9 +20,10 @@ Currently implemented plugins:
 - [TranslatorPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.TranslatorPlugin)
 - [DaysPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.DaysPlugin)
 - [BatchPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.BatchPlugin)
+- [WorkPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.WorkPlugin)
 
 ## Download Handyman Beta
-Download the zip from **[HERE](https://github.com/neemesis/Handyman/raw/master/Releases/Handyman_Release_Latest.zip)**
+Download the zip from **[HERE](https://github.com/neemesis/Handyman/raw/master/Releases/Handyman.zip)**
 
 ## How to use Handyman
 - Initial shortcut for starting Handyman is **Shift - F1**, but you can change it.

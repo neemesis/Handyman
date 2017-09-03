@@ -22,9 +22,10 @@ namespace Handyman.CommandPromptPlugin {
         public string Version => "1.0.0.0";
         public string HelpUrl => "https://github.com/neemesis/Handyman/blob/master/Handyman.CommandPromptPlugin/README.MD";
         public IParse Parser { get; set; }
+        public List<string> Suggestions { get; set; }
 
         public void Initialize() {
-            //throw new NotImplementedException();
+            Suggestions = new List<string> { "cmd set" };
         }
 
         public void Execute(string[] args, Action<string, DisplayData> display) {

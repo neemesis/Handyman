@@ -1,6 +1,7 @@
 using System.Windows.Forms;
 using Handyman.Framework.Interfaces;
 using System;
+using System.Collections.Generic;
 using Handyman.Framework.Entities;
 
 namespace Handyman.ScratchPadPlugin {
@@ -17,6 +18,8 @@ namespace Handyman.ScratchPadPlugin {
         string IMaster.Version => "1.0";
         public string HelpUrl => "https://github.com/neemesis/Handyman/blob/master/Handyman.ScratchPadPlugin/README.MD";
         public IParse Parser { get; set; }
+        public List<string> Suggestions { get; set; }
+
         void IMaster.Initialize() {
             // todo restore settings
         }

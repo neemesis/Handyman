@@ -15,6 +15,7 @@ namespace Handyman.DaysPlugin {
         public Shortcut HotKey { get; set; }
         public string Alias { get; set; }
         public IParse Parser { get; set; }
+        public List<string> Suggestions { get; set; }
         private List<DaysModel> Days { get; set; }
 
         public DaysPlugin() {
@@ -24,6 +25,7 @@ namespace Handyman.DaysPlugin {
 
         public void Initialize() {
             Days = Framework.Persistence.Persist.Load<List<DaysModel>>(Alias);
+            Suggestions = new List<string> {"days add", "days delete", "days set"};
         }
 
         private void Add(string name, DateTime date) {

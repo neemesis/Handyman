@@ -23,6 +23,7 @@ namespace Handyman.EmailPlugin {
         public string Version => "1.0.0.0";
         public string HelpUrl => "https://github.com/neemesis/Handyman/blob/master/Handyman.EmailPlugin/README.MD";
         public IParse Parser { get; set; }
+        public List<string> Suggestions { get; set; }
         private Shortcut _hotKey;
         private string _alias;
 
@@ -83,7 +84,7 @@ namespace Handyman.EmailPlugin {
         }
 
         public void Initialize() {
-            
+            Suggestions = new List<string> { "email set email", "email set pass", "email set host", "email set port"};
         }
 
         private void DisplayHelp() {

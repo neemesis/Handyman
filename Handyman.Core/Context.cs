@@ -16,6 +16,7 @@ namespace Handyman.Core {
         public List<IMaster> Tools { get; set; }
         private static IParse Parser { get; set; }
         private System.ComponentModel.IContainer __components;
+        public List<string> Suggestions { get; set; }
         #endregion
 
         private Context() {
@@ -27,9 +28,13 @@ namespace Handyman.Core {
             }
             #endregion
 
+            Suggestions = new List<string>();
+            Suggestions.AddRange(History.GetAll());
             Parser = new DefaultParser();
             Handymans = HandymansManager.Load();
-            Tools = PluginManager.LoadPlugins(out __components);
+            Tools = PluginManager.LoadPlugins(out __components, out List<string> sgs);
+            Suggestions.AddRange(sgs);
+            Suggestions.AddRange(Handymans.Select(x => x.Alias));
         }
 
         #region Public Methods
@@ -50,31 +55,39 @@ namespace Handyman.Core {
         }
 
         public void Start(string alias) {
-            // Save to history
-            History.Add(alias);
-
             // Check for app commands
-            if (AppForms.HandleForm(alias))
+            if (AppForms.HandleForm(alias)) {
+                History.Add(alias);
                 return;
+            }
 
             // Use HelpUrl to open online help
-            if (Executor.ExecuteHelp(Tools, alias))
+            if (Executor.ExecuteHelp(Tools, alias)) {
+                History.Add(alias);
                 return;
+            }
 
             // Check for list packages or install
-            if (PluginManager.Handle(alias))
+            if (PluginManager.Handle(alias)) {
+                History.Add(alias);
                 return;
+            }
 
             // Try to find tool to execute
-            if (Executor.ExecuteTool(Tools, alias, Parser, SetError))
+            if (Executor.ExecuteTool(Tools, alias, Parser, SetError)) {
+                History.Add(alias);
                 return;
+            }
 
             // Try to find Handyman to execute
-            if (Executor.ExecuteHandyman(Handymans, alias, SetError))
+            if (Executor.ExecuteHandyman(Handymans, alias, SetError)) {
+                History.Add(alias);
                 return;
-            
+            }
+
             // Fallback execute cmd command
             Executor.ExecuteFallback(alias);
+            History.Add(alias);
         }
 
         private static void SetError(Exception e = null) {

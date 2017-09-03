@@ -22,6 +22,7 @@ namespace Handyman.RestPlugin {
         public string Version => "1.0.0.0";
         public string HelpUrl => "https://github.com/neemesis/Handyman/blob/master/Handyman.RestPlugin/README.MD";
         public IParse Parser { get; set; }
+        public List<string> Suggestions { get; set; }
         private Shortcut _hotKey;
         private string _alias;
 
@@ -37,6 +38,7 @@ namespace Handyman.RestPlugin {
         }
 
         public void Initialize() {
+            Suggestions = new List<string> { "rest get", "rest post" };
         }
 
         public void Execute(string[] args, Action<string, DisplayData> display = null) {

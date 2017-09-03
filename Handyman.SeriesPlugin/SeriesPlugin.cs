@@ -31,6 +31,7 @@ namespace Handyman.SeriesPlugin {
         public string Version => "1.0.0.0";
         public string HelpUrl => "https://github.com/neemesis/Handyman/blob/master/Handyman.SeriesPlugin/README.MD";
         public IParse Parser { get; set; }
+        public List<string> Suggestions { get; set; }
         private Shortcut _hotKey;
         private string _alias;
 
@@ -114,6 +115,7 @@ namespace Handyman.SeriesPlugin {
 
         public void Initialize() {
             LoadSeriesList();
+            Suggestions = new List<string> {"tv play", "tv next", "tv prev", "tv set" };
         }
 
         private static Tuple<int, int, string> SearchBySeasonEpisode(Series s, string ses, string ep, Action<string, DisplayData> display, bool forward = true) {
