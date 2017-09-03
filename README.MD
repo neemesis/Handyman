@@ -124,4 +124,6 @@ The syntax for new plugins is **JSON** object like this
 if your plugin contains **.config** file you need to provide the config file and set **HasConfig** needs to be true. If your plugin contains another **.dll**-s you will need to find a way to provide / specify them.
 
 ## Video
-TBA
+[![Video1](https://img.youtube.com/vi/gGUeETOb0_E/0.jpg)](https://www.youtube.com/watch?v=gGUeETOb0_E)
+
+[![Video2](https://img.youtube.com/vi/UDHLvaHaUZI/0.jpg)](https://www.youtube.com/watch?v=UDHLvaHaUZI)
