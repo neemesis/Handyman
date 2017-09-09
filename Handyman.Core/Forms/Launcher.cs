@@ -90,6 +90,7 @@ namespace Handyman.Core.Forms {
 
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
+            uxInputText.Focus();
 
             UpdateAutoCompletion();
         }
@@ -381,7 +382,8 @@ namespace Handyman.Core.Forms {
                     uxInputText.Enabled = true;
                     PluginCallback?.Invoke(selectedText);
                 } else if (e.KeyCode == Keys.Escape) {
-                    
+                    uxInputText.Text = "";
+                    ClearList();
                 }
             }
         }

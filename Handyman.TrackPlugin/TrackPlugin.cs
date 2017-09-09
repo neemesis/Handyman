@@ -96,7 +96,7 @@ namespace Handyman.TrackPlugin {
                 Finish();
             } else if (args[0] == "today") {
                 var finalize = CrunchData();
-                display("Today times:", DisplayData.Question, finalize, null);
+                display("today projects", DisplayData.Question, finalize, null);
             } else if (args.Length == 1) {
                 AddD(args[0]);
             } else {

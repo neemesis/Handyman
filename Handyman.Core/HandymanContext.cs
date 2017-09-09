@@ -99,9 +99,11 @@ namespace Handyman.Core {
         private void ShowForm() {
             if (Launcher.Current.Visible) {
                 Launcher.Current.Activate();
+                Launcher.Current.BringToFront();
                 Launcher.Current.Focus();
             } else {
                 Launcher.Current.Show();
+                Launcher.Current.BringToFront();
                 Launcher.Current.Focus();
             }
         }
