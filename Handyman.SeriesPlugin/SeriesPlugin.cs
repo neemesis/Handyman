@@ -90,10 +90,10 @@ namespace Handyman.SeriesPlugin {
             return MediaExtensions.Contains(Path.GetExtension(filename), StringComparer.OrdinalIgnoreCase);
         }
 
-        private static string Search(string sDir, string name, string season, string episode, Action<string, DisplayData> display) {
+        private static string Search(string sDir, string name, string season, string episode, Action<string, DisplayData, List<string>, Action<string>> display) {
             try {
                 foreach (var f in Directory.GetFiles(sDir)) {
-                    display(f, DisplayData.Launcher);
+                    display(f, DisplayData.Launcher, null, null);
                     if (IsVideo(f) && CheckFile(f.ToLower(), name, season, episode))
                         return f;
                 }
@@ -118,7 +118,7 @@ namespace Handyman.SeriesPlugin {
             Suggestions = new List<string> {"tv play", "tv next", "tv prev", "tv set" };
         }
 
-        private static Tuple<int, int, string> SearchBySeasonEpisode(Series s, string ses, string ep, Action<string, DisplayData> display, bool forward = true) {
+        private static Tuple<int, int, string> SearchBySeasonEpisode(Series s, string ses, string ep, Action<string, DisplayData, List<string>, Action<string>> display, bool forward = true) {
             if (forward) {
                 for (var i = int.Parse(ses.Substring(1)); i < 30; ++i) {
                     for (var j = int.Parse(ep.Substring(1)) + 1; j < 30; ++j) {
@@ -139,15 +139,15 @@ namespace Handyman.SeriesPlugin {
             return null;
         }
 
-        public void Execute(string[] args, Action<string, DisplayData> display) {
+        public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
             if (args.Length < 1 || args.Length > 0 && args[0] == "help") {
                 DisplayHelp();
             } else if (args[0] == "play" && args.Length == 3) {
                 var path = Search(Properties.Settings.Default.Location, args[1].ToLower(), args[2].Substring(0, 3).ToLower(), args[2].Substring(3, 3).ToLower(), display);
                 if (string.IsNullOrEmpty(path))
-                    display("No results! " + Properties.Settings.Default.Location, DisplayData.Launcher);
+                    display("No results! " + Properties.Settings.Default.Location, DisplayData.Launcher, null, null);
                 else
-                    display("Found!", DisplayData.Launcher);
+                    display("Found!", DisplayData.Launcher, null, null);
                 if (!string.IsNullOrEmpty(path)) {
                     var s = new Series {
                         Name = args[1].ToLower(),

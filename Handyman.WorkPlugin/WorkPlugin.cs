@@ -43,7 +43,7 @@ namespace Handyman.WorkPlugin {
 
         private void Save() => Framework.Persistence.Persist.Save(Work, Alias);
 
-        public void Execute(string[] args, Action<string, DisplayData> display) {
+        public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
             if (args.Length == 0) {
                 if (Status == 0)
                     Start(1, display);
@@ -69,13 +69,13 @@ namespace Handyman.WorkPlugin {
             } else if (args.Length == 1 && args[0] == "reset") {
               Start(0, display);  
             } else {
-                display("Invalid command!", DisplayData.Launcher);
+                display("Invalid command!", DisplayData.Launcher, null, null);
                 return;
             }
-            display("Done", DisplayData.Launcher);
+            display("Done", DisplayData.Launcher, null, null);
         }
 
-        private void DisplayStatus(Action<string, DisplayData> display) {
+        private void DisplayStatus(Action<string, DisplayData, List<string>, Action<string>> display) {
             var tn = DateTime.Now - Started;
             var outMsg = "";
             switch (Status) {
@@ -89,16 +89,16 @@ namespace Handyman.WorkPlugin {
                     outMsg = $"rest: {(int)tn.TotalMinutes} of {Work.RestMin} min.";
                     break;
             }
-            display(outMsg, DisplayData.Launcher);
+            display(outMsg, DisplayData.Launcher, null, null);
         }
 
-        private void Start(int work, Action<string, DisplayData> display) {
+        private void Start(int work, Action<string, DisplayData, List<string>, Action<string>> display) {
             if (work == 1) {
                 Status = 1;
                 Timer.Stop();
                 Timer.Interval = Work.WorkMin * 60 * 1000;
                 Timer.Tick += (sender, args) => {
-                    display("work period over", DisplayData.Launcher);
+                    display("work period over", DisplayData.Launcher, null, null);
                     Start(2, display);
                 };
                 Started = DateTime.Now;
@@ -108,7 +108,7 @@ namespace Handyman.WorkPlugin {
                 Timer.Stop();
                 Timer.Interval = Work.WorkMin * 60 * 1000;
                 Timer.Tick += (sender, args) => {
-                    display("rest period over", DisplayData.Launcher);
+                    display("rest period over", DisplayData.Launcher, null, null);
                     Start(2, display);
                 };
                 Started = DateTime.Now;
@@ -116,7 +116,7 @@ namespace Handyman.WorkPlugin {
             } else if (work == 0) {
                 Status = 0;
                 Timer.Stop();
-                display("timer stoped", DisplayData.Launcher);
+                display("timer stoped", DisplayData.Launcher, null, null);
             }
         }
     }

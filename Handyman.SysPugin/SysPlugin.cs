@@ -35,7 +35,7 @@ namespace Handyman.SysPugin {
         public IParse Parser { get; set; }
         public List<string> Suggestions { get; set; }
 
-        public void Execute(string[] args, Action<string, DisplayData> display = null) {
+        public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display = null) {
             var cmdArgs = "shutdown ";
             if (args[0] == "shutdown") {
                 if (args.Length == 1) {

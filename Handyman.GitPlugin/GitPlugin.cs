@@ -72,7 +72,7 @@ namespace Handyman.GitPlugin {
             Framework.Utilities.CMD("git push -u origin master", path, out _);
         }
 
-        public void Execute(string[] args, Action<string, DisplayData> display) {
+        public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
             if (args[0] == "add") {
                 var name = args.SingleOrDefault(x => x.StartsWith("n:"));
                 var path = args.SingleOrDefault(x => x.StartsWith("p:"));
@@ -94,7 +94,7 @@ namespace Handyman.GitPlugin {
                 Commit(string.IsNullOrEmpty(name) ? args[1] : name.Split(':')[1], string.IsNullOrEmpty(msg) ? args[2] : msg.Split(':')[1]);
             }
 
-            display("Done", DisplayData.Launcher);
+            display("Done", DisplayData.Launcher, null, null);
         }
     }
 }

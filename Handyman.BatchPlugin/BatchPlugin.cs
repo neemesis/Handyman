@@ -53,7 +53,7 @@ namespace Handyman.BatchPlugin {
             Batches = Framework.Persistence.Persist.Load<List<Batch>>(Alias);
         }
 
-        public void Execute(string[] args, Action<string, DisplayData> display) {
+        public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
             if (args.Length > 2 && args[0] == "create") {
                 Add(args[1], args.Skip(2).ToList());
             } else if (args.Length == 2 && args[0] == "delete") {
@@ -66,10 +66,10 @@ namespace Handyman.BatchPlugin {
                     Process.Start(a);
                 }
             } else {
-                display("Command not found!", DisplayData.Launcher);
+                display("Command not found!", DisplayData.Launcher, null, null);
                 return;
             }
-            display("Done", DisplayData.Launcher);
+            display("Done", DisplayData.Launcher, null, null);
         }
     }
 }

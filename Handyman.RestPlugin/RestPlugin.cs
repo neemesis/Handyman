@@ -41,7 +41,7 @@ namespace Handyman.RestPlugin {
             Suggestions = new List<string> { "rest get", "rest post" };
         }
 
-        public void Execute(string[] args, Action<string, DisplayData> display = null) {
+        public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display = null) {
             if (args.Length < 2 || args[0] == "help") {
                 return;
             } else if (args[0] == "get") {

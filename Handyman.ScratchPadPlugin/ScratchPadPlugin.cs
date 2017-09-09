@@ -24,7 +24,7 @@ namespace Handyman.ScratchPadPlugin {
             // todo restore settings
         }
 
-        void IMaster.Execute(string[] args, Action<string, DisplayData> display) {
+        void IMaster.Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
 
             ScratchPad.Current.Show();
             ScratchPad.Current.Height = Screen.PrimaryScreen.WorkingArea.Height;

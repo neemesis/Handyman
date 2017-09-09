@@ -83,7 +83,7 @@ namespace Handyman.ToDoPlugin {
             Suggestions = new List<string> {"todo add", "todo delete", "todo done" };
         }
 
-        public void Execute(string[] args, Action<string, DisplayData> display) {
+        public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
             if (args.Length > 0 && args[0] == "help") {
                 DisplayHelp();
             } else if (args.Length == 0 || args.Length > 0 && args[0] == "list") {

@@ -23,6 +23,7 @@ namespace Handyman.Core.Helpers {
         }
 
         public static void Add(string alias) {
+            alias = alias.Trim();
             LoadHistory();
 
             var ent = _history.SingleOrDefault(x => x.Alias == alias);

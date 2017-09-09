@@ -151,6 +151,7 @@ namespace Handyman.Core.Forms
             this.uxListBox.TabIndex = 1;
             this.uxListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.uxListBox_DrawItem);
             this.uxListBox.SelectedIndexChanged += new System.EventHandler(this.uxListBox_SelectedIndexChanged);
+            this.uxListBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.uxListBox_KeyUp);
             // 
             // Launcher
             // 

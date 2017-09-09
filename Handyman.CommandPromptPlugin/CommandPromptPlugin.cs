@@ -28,7 +28,7 @@ namespace Handyman.CommandPromptPlugin {
             Suggestions = new List<string> { "cmd set" };
         }
 
-        public void Execute(string[] args, Action<string, DisplayData> display) {
+        public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
 
             if (args.Length == 0 || args.Length > 0 && args[0] == "help") {
                 var dlg1 = new Form {

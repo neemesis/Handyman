@@ -37,7 +37,7 @@ namespace Handyman.EmailPlugin {
             set => _alias = value;
         }
 
-        public void Execute(string[] args, Action<string, DisplayData> display) {
+        public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
             if (args.Length < 2 || args[0] == "help") {
                 DisplayHelp();
                 return;

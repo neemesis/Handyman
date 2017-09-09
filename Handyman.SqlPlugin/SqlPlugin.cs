@@ -70,7 +70,7 @@ namespace Handyman.SqlPlugin {
             sw.Close();
         }
 
-        public void Execute(string[] args, Action<string, DisplayData> display) {
+        public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
             if (args.Length < 1 || args.Any() && args[0] == "help") {
                 DisplayHelp();
             } else if (args.Length > 2 && args[0] == "set") {

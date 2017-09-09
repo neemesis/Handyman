@@ -21,7 +21,7 @@ namespace Handyman.ScreenShotPlugin {
 
         }
 
-        void IMaster.Execute(string[] args, Action<string, DisplayData> display) {
+        void IMaster.Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
             var hwnd = (IntPtr)NativeWin32.GetForegroundWindow();
 
 

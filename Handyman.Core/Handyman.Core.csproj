@@ -326,6 +326,10 @@
       <Project>{f16a7066-bf28-415b-b98a-1f3a47b1fc8a}</Project>
       <Name>Handyman.ToDoPlugin</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Handyman.TrackPlugin\Handyman.TrackPlugin.csproj">
+      <Project>{a48bd93c-71f0-43ec-aa58-2c7ce7bd31a8}</Project>
+      <Name>Handyman.TrackPlugin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Handyman.TranslatorPlugin\Handyman.TranslatorPlugin.csproj">
       <Project>{402f3724-c5d3-4148-8819-4453e37c8813}</Project>
       <Name>Handyman.TranslatorPlugin</Name>

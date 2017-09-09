@@ -43,7 +43,7 @@ namespace Handyman.TranslatorPlugin {
             Suggestions = new List<string> {"tr set from", "tr set to" };
         }
 
-        public async void Execute(string[] args, Action<string, DisplayData> display) {
+        public async void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
             if (args[0] == "set") {
                 if (args[1] == "from") {
                     Properties.Settings.Default.DefFrom = args[2];

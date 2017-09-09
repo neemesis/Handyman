@@ -39,8 +39,8 @@ namespace Handyman.CalculatorPlugin {
             Suggestions = new List<string> { };
         }
 
-        public void Execute(string[] args, Action<string, DisplayData> display) {
-            display(new DataTable().Compute(string.Join("", args), null).ToString(), DisplayData.Launcher);
+        public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
+            display(new DataTable().Compute(string.Join("", args), null).ToString(), DisplayData.Launcher, null, null);
         }
     }
 }

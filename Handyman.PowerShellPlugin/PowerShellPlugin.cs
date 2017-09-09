@@ -45,7 +45,7 @@ namespace Handyman.PowerShellPlugin {
         }
         public IParse Parser { get; set; }
 
-        public void Execute(string[] args, Action<string, DisplayData> display) {
+        public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
             if (args.Length > 0 && args[0] == "set") {
                 Properties.Settings.Default.PowerShellScriptLocation = string.Join("", args.Skip(1));
                 return;

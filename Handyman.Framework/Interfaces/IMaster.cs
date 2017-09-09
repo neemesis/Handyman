@@ -50,6 +50,10 @@ namespace Handyman.Framework.Interfaces {
         /// </summary>
         /// <param name="args">List of arguments returned from the parser.</param>
         /// <param name="display">Function used to display short data on the launcher. Use it like this display("Some string Data", DisplayData)</param>
-        void Execute(string[] args, Action<string, DisplayData> display);
+        void Execute(string[] args, 
+            Action<string, 
+            DisplayData, 
+            List<string>, 
+            Action<string>> display);
     }
 }

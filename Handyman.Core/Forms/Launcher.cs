@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
@@ -15,6 +16,10 @@ namespace Handyman.Core.Forms {
         private bool _updateList = true;
         private string _originalAlias { get; set; }
 
+        private DisplayData Mode { get; set; }
+        private Action<string> PluginCallback { get; set; }
+        private List<string> PluginChoices { get; set; }
+
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
             IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
@@ -22,6 +27,7 @@ namespace Handyman.Core.Forms {
         private Launcher() {
             InitializeComponent();
 
+            // set Ubuntu font as default font
             var fontData = Properties.Resources.Ubuntu_L;
             var fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
             System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
@@ -34,6 +40,10 @@ namespace Handyman.Core.Forms {
 
             uxInputText.Font = MyFont;
 
+            // set default mode to DisplayData.Default
+            Mode = DisplayData.Default;
+
+            // setup listbox items
             uxListBox.DrawMode = DrawMode.OwnerDrawFixed;
             uxListBox.BackColor = uxInputText.BackColor;
             uxListBox.Font = MyFont;
@@ -74,8 +84,8 @@ namespace Handyman.Core.Forms {
             StartPosition = FormStartPosition.Manual;
             //Left = Screen.PrimaryScreen.WorkingArea.Width - Width;
             //Top = Screen.PrimaryScreen.WorkingArea.Height - Height;
-            Left = (Screen.PrimaryScreen.WorkingArea.Width - uxInputText.Size.Width) / 2;
-            Top = (Screen.PrimaryScreen.WorkingArea.Height - uxInputText.Size.Height) / 2 - 160;
+            Left = ( Screen.PrimaryScreen.WorkingArea.Width - uxInputText.Size.Width ) / 2;
+            Top = ( Screen.PrimaryScreen.WorkingArea.Height - uxInputText.Size.Height ) / 2 - 160;
         }
 
         protected override void OnShown(EventArgs e) {
@@ -84,6 +94,9 @@ namespace Handyman.Core.Forms {
             UpdateAutoCompletion();
         }
 
+        /// <summary>
+        /// Update autocomplete appender
+        /// </summary>
         public void UpdateAutoCompletion() {
             uxInputText.AutoCompleteMode = AutoCompleteMode.Append;
             uxInputText.AutoCompleteSource = AutoCompleteSource.CustomSource;
@@ -93,39 +106,59 @@ namespace Handyman.Core.Forms {
             uxInputText.AutoCompleteCustomSource = sr;
         }
 
+
+        /// <summary>
+        /// Clear listbox
+        /// </summary>
         private void ClearList() {
             uxListBox.Items.Clear();
             uxListBox.Height = 0;
             Height = uxInputText.Size.Height + 19;
         }
 
-
+        /// <summary>
+        /// Handle KeyUp on input box using mode's
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnInputTextBoxKeyUp(object sender, KeyEventArgs e) {
+            if (e.KeyCode == Keys.Escape) {
+                CleanLauncher();
+            } else if (e.KeyCode == Keys.Tab) {
+                TabPressed();
+            }
+
+            switch (Mode) {
+                case DisplayData.Default:
+                    DefaultMode(e);
+                    break;
+                case DisplayData.Question:
+                    break;
+                case DisplayData.Launcher:
+                    break;
+                case DisplayData.PopUp:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Handle default input on launcher
+        /// </summary>
+        /// <param name="e"></param>
+        private void DefaultMode(KeyEventArgs e) {
+            Debug.WriteLine("DM");
             if (e.KeyCode == Keys.Enter) {
                 ClearList();
                 var alias = uxInputText.Text;
                 HideForm();
                 Context.Current.Start(alias);
-            } else if (e.KeyCode == Keys.Escape) {
-                if (!string.IsNullOrEmpty(uxInputText.Text)) {
-                    uxInputText.Text = "";
-                } else
-                    HideForm();
-                ClearList();
-            } else if (e.KeyCode == Keys.Tab) {
-                uxInputText.Text = uxInputText.Text + " ";
-                uxInputText.SelectionStart = Math.Max(0, uxInputText.Text.Length);
-                uxInputText.SelectionLength = 0;
-                UpdateList();
             } else if (e.KeyCode == Keys.Down) {
                 _updateList = false;
                 uxListBox.SelectedIndex = Math.Min(uxListBox.SelectedIndex + 1, uxListBox.Items.Count - 1);
             } else if (e.KeyCode == Keys.Up) {
                 _updateList = false;
                 if (uxListBox.SelectedIndex - 1 < 0) {
-                    uxInputText.Text = _originalAlias;
-                    uxInputText.SelectionStart = Math.Max(0, uxInputText.Text.Length);
-                    uxInputText.SelectionLength = 0;
+                    ChangeText(_originalAlias);
                     uxListBox.SelectedItem = null;
                     return;
                 }
@@ -142,9 +175,32 @@ namespace Handyman.Core.Forms {
             }
         }
 
-        private void UpdateList() {
+        /// <summary>
+        /// Clean launcher text, list and hide form
+        /// </summary>
+        private void CleanLauncher() {
             if (!string.IsNullOrEmpty(uxInputText.Text)) {
-                var suggestions = Context.Current.Suggestions.Where(x => x.Contains(uxInputText.Text)).ToList();
+                uxInputText.Text = "";
+            } else
+                HideForm();
+            ClearList();
+        }
+
+        /// <summary>
+        /// Tab pressed event
+        /// </summary>
+        private void TabPressed() {
+            ChangeText(uxInputText.Text + " ");
+            UpdateList();
+        }
+
+        /// <summary>
+        /// Update suggestions list.
+        /// </summary>
+        /// <param name="sug"></param>
+        private void UpdateList(List<string> sug = null) {
+            if (!string.IsNullOrEmpty(uxInputText.Text)) {
+                var suggestions = sug ?? Context.Current.Suggestions.Where(x => x.Contains(uxInputText.Text)).ToList();
                 uxListBox.Items.Clear();
                 foreach (var a in suggestions)
                     uxListBox.Items.Add(a);
@@ -205,17 +261,51 @@ namespace Handyman.Core.Forms {
             }
         }
 
-        public void ShowData(string text, DisplayData dd = DisplayData.Launcher) {
-            // TODO: create popup
-            if (dd == DisplayData.Launcher) {
-                
-            } else if (dd == DisplayData.PopUp) {
-                
-            }
+        /// <summary>
+        /// Change launcher text and set index to end
+        /// </summary>
+        /// <param name="text"></param>
+        private void ChangeText(string text) {
             uxInputText.Text = text;
             uxInputText.SelectionStart = uxInputText.Text.Length;
             uxInputText.SelectionLength = 0;
+        } 
+
+        /// <summary>
+        /// Calback from plugins to show data on launcher
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="dd"></param>
+        /// <param name="choices"></param>
+        /// <param name="callback"></param>
+        public void ShowData(string text, 
+            DisplayData dd = DisplayData.Launcher, 
+            List<string> choices = null, 
+            Action<string> callback = null) {
+            
+            // TODO: create popup
+            if (dd == DisplayData.Launcher) {
+                ChangeText(text);
+            } else if (dd == DisplayData.PopUp) {
+
+            } else if (dd == DisplayData.Question) {
+                ChangeText(text);
+                PluginCallback = callback;
+                PluginChoices = choices;
+                DisplayQuestion();
+            }
             Show();
+            Focus();
+            uxInputText.Focus();
+        }
+
+        /// <summary>
+        /// Display question on launcher
+        /// </summary>
+        private void DisplayQuestion() {
+            Mode = DisplayData.Question;
+            uxInputText.Enabled = false;
+            UpdateList(PluginChoices);
         }
 
         private void OnDeactivate(object sender, EventArgs e) {
@@ -223,7 +313,7 @@ namespace Handyman.Core.Forms {
         }
 
         private void OnInputTextBoxMouseDown(object sender, MouseEventArgs e) {
-            if (uxInputText.Text == "error :(") {
+            if (uxInputText.Text == "error :(" || uxInputText.Text == "Done" || uxInputText.Text == "Done!") {
                 uxInputText.Text = "";
             }
         }
@@ -232,6 +322,11 @@ namespace Handyman.Core.Forms {
             Context.Current.Handymans = HandymansManager.Load();
         }
 
+        /// <summary>
+        /// Draw suggestions
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void uxListBox_DrawItem(object sender, DrawItemEventArgs e) {
             e.DrawBackground();
 
@@ -249,14 +344,14 @@ namespace Handyman.Core.Forms {
 
                 // Set text color
                 var itemText = uxListBox.Items[itemIndex].ToString();
-                var itemTextColorBrush = isItemSelected 
-                    ? new SolidBrush(Properties.Settings.Default.ListSelectedForeColor) 
+                var itemTextColorBrush = isItemSelected
+                    ? new SolidBrush(Properties.Settings.Default.ListSelectedForeColor)
                     : new SolidBrush(Properties.Settings.Default.ListUnselectedForeColor);
                 var location = uxListBox.GetItemRectangle(itemIndex).Location;
                 var stringSize = e.Graphics.MeasureString(itemText, e.Font);
-                location.X = (uxListBox.Width - 18 - (int)stringSize.Width) / 2;
+                location.X = ( uxListBox.Width - 18 - (int)stringSize.Width ) / 2;
                 location.Y += 5;
-                
+
                 g.DrawString(itemText, e.Font, itemTextColorBrush, location);
 
                 // Clean up
@@ -268,12 +363,26 @@ namespace Handyman.Core.Forms {
         }
 
         private void uxListBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (uxListBox.SelectedIndex >= 0 && uxListBox.SelectedIndex < uxListBox.Items.Count) {
+            if (uxListBox.SelectedIndex >= 0 && uxListBox.SelectedIndex < uxListBox.Items.Count && Mode != DisplayData.Question) {
                 var itemText = uxListBox.Items[uxListBox.SelectedIndex].ToString();
-                uxInputText.Text = itemText + " ";
-                uxInputText.SelectionStart = Math.Max(0, uxInputText.Text.Length);
-                uxInputText.SelectionLength = 0;
+                ChangeText(itemText + " ");
                 uxInputText.Focus();
+            }
+        }
+
+        private void uxListBox_KeyUp(object sender, KeyEventArgs e) {
+            if (Mode == DisplayData.Question) {
+                if (e.KeyCode == Keys.Enter) {
+                    var selectedText = uxListBox.GetItemText(uxListBox.SelectedItem);
+                    ClearList();
+                    Mode = DisplayData.Default;
+                    uxInputText.Text = "";
+                    HideForm();
+                    uxInputText.Enabled = true;
+                    PluginCallback(selectedText);
+                } else if (e.KeyCode == Keys.Escape) {
+                    
+                }
             }
         }
     }

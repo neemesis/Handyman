@@ -33,18 +33,26 @@ namespace Handyman.DaysPlugin {
             Framework.Persistence.Persist.Save(Days, Alias);
         }
 
-        public void Execute(string[] args, Action<string, DisplayData> display) {
+        public void TestMethod(string res) {
+            Console.WriteLine(res);
+        }
+
+        public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
+            if (args[0] == "q") {
+                display("This is the question?", DisplayData.Question, new List<string> { "Option 1", "Option 2", "Option 3"}, TestMethod);
+                return;
+            }
             if (args[0] == "add") {
                 Add(args[1], DateTime.Parse(args[2]));
-                display("Done", DisplayData.Launcher);
+                display("Done", DisplayData.Launcher, null, null);
             } else if (args[0] == "delete") {
                 Delete(args[1]);
-                display("Done", DisplayData.Launcher);
+                display("Done", DisplayData.Launcher, null, null);
             } else if (args[0] == "set") {
                 Set(args[1], DateTime.Parse(args[2]));
-                display("Done", DisplayData.Launcher);
+                display("Done", DisplayData.Launcher, null, null);
             } else {
-                display(Calc(args[0]), DisplayData.Launcher);
+                display(Calc(args[0]), DisplayData.Launcher, null, null);
             } 
         }
 
