@@ -4,6 +4,8 @@ Work time tracker.
 ##### Alias: track
 ##### Help: help track
 
+![UI](https://raw.githubusercontent.com/neemesis/Handyman/master/Pictures/trackPlugin.jpg "UI")
+
 ## Commands
 - ```add```: add project.
 - ```stop```: stop timer.
