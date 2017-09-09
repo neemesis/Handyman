@@ -23,6 +23,7 @@ Currently implemented plugins:
 - [DaysPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.DaysPlugin)
 - [BatchPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.BatchPlugin)
 - [WorkPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.WorkPlugin)
+- [TrackPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.TrackPlugin)
 
 ## Download Handyman Beta
 Download the zip from **[HERE](https://github.com/neemesis/Handyman/raw/master/Releases/Handyman.zip)**

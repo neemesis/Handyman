@@ -110,5 +110,12 @@
 	  "Description": "Execute applications in batch.",
 	  "HasConfig": false,
 	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.BatchPlugin/bin/Release/Handyman.BatchPlugin.dll"
+	},
+	{
+	  "Name": "Handyman.TrackPlugin",
+	  "Author": "Mirche Toshevski",
+	  "Description": "Track projects timing.",
+	  "HasConfig": false,
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.TrackPlugin/bin/Release/Handyman.TrackPlugin.dll"
 	}
 ]
