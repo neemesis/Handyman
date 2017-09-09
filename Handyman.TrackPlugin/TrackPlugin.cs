@@ -18,6 +18,7 @@ namespace Handyman.TrackPlugin {
         public string Alias { get; set; }
         public IParse Parser { get; set; }
         public List<string> Suggestions { get; set; }
+
         private List<Project> Projects { get; set; }
         private List<TrackData> Data { get; set; }
         private string ProjSave { get; set; }

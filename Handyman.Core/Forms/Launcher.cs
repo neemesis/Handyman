@@ -379,7 +379,7 @@ namespace Handyman.Core.Forms {
                     uxInputText.Text = "";
                     HideForm();
                     uxInputText.Enabled = true;
-                    PluginCallback(selectedText);
+                    PluginCallback?.Invoke(selectedText);
                 } else if (e.KeyCode == Keys.Escape) {
                     
                 }
