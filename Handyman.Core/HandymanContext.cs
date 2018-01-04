@@ -43,7 +43,7 @@ namespace Handyman.Core {
 
             _notifyIcon.DoubleClick += OnNotifyIconDoubleClick;
             _notifyIcon.Icon = Properties.Resources.if_robot_88068;
-            _notifyIcon.Text = "Handymans Master at your service!";
+            _notifyIcon.Text = "Handymans";
             _notifyIcon.Visible = true;
 
             // m_SystemHotkey
@@ -97,15 +97,15 @@ namespace Handyman.Core {
         /// window to front.
         /// </summary>
         private void ShowForm() {
-            if (Launcher.Current.Visible) {
-                Launcher.Current.Activate();
-                Launcher.Current.BringToFront();
-                Launcher.Current.Focus();
-            } else {
+            Launcher.Current.Activate();
+
+            if (!Launcher.Current.Visible) {
                 Launcher.Current.Show();
-                Launcher.Current.BringToFront();
-                Launcher.Current.Focus();
             }
+
+            Launcher.Current.BringToFront();
+            Launcher.Current.Focus();
+            Launcher.Current.FocusOnInput();
         }
 
         /// <summary>

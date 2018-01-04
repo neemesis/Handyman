@@ -61,6 +61,7 @@ namespace Handyman.Core.Forms
             this.uxInputText.Size = new System.Drawing.Size(450, 25);
             this.uxInputText.TabIndex = 0;
             this.uxInputText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.uxInputText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.uxInputText_KeyDown);
             this.uxInputText.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnInputTextBoxKeyUp);
             this.uxInputText.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnInputTextBoxMouseDown);
             // 

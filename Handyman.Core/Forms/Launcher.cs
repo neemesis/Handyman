@@ -66,7 +66,6 @@ namespace Handyman.Core.Forms {
                         }
                     }
                 }
-
                 return _singleton;
             }
         }
@@ -92,6 +91,11 @@ namespace Handyman.Core.Forms {
             base.OnShown(e);
             uxInputText.Focus();
 
+            UpdateAutoCompletion();
+        }
+
+        public void FocusOnInput() {
+            uxInputText.Focus();
             UpdateAutoCompletion();
         }
 
@@ -123,6 +127,7 @@ namespace Handyman.Core.Forms {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnInputTextBoxKeyUp(object sender, KeyEventArgs e) {
+            e.SuppressKeyPress = true;
             if (e.KeyCode == Keys.Escape) {
                 CleanLauncher();
             } else if (e.KeyCode == Keys.Tab) {
@@ -140,6 +145,8 @@ namespace Handyman.Core.Forms {
                 case DisplayData.PopUp:
                     break;
             }
+
+            uxInputText.Focus();
         }
 
         /// <summary>
@@ -192,22 +199,33 @@ namespace Handyman.Core.Forms {
         /// </summary>
         private void TabPressed() {
             ChangeText(uxInputText.Text + " ");
-            UpdateList();
+            UpdateList(updateLauncherText: true);
         }
 
         /// <summary>
         /// Update suggestions list.
         /// </summary>
         /// <param name="sug"></param>
-        private void UpdateList(List<string> sug = null) {
+        private void UpdateList(List<string> sug = null, bool updateLauncherText = false) {
             if (!string.IsNullOrEmpty(uxInputText.Text)) {
                 var suggestions = sug ?? Context.Current.Suggestions.Where(x => x.Contains(uxInputText.Text)).ToList();
                 uxListBox.Items.Clear();
+                Height = uxInputText.Size.Height + 19;
+
+                if (suggestions.Count < 1)
+                    return;
+
+                if (updateLauncherText) {
+                    ChangeText(suggestions[0] + " ");
+                    UpdateList();
+                }
+
                 foreach (var a in suggestions)
                     uxListBox.Items.Add(a);
                 uxListBox.Height = Math.Min(suggestions.Count, 8) * ( uxInputText.Size.Height + 10 );
                 Height = uxInputText.Size.Height + 19 + uxListBox.Height;
             }
+            uxInputText.Focus();
         }
 
         /// <summary>
@@ -380,11 +398,21 @@ namespace Handyman.Core.Forms {
                     uxInputText.Text = "";
                     HideForm();
                     uxInputText.Enabled = true;
-                    PluginCallback?.Invoke(selectedText);
+                    //PluginCallback?.Invoke(selectedText);
+                    if (PluginCallback != null)
+                        PluginCallback.Invoke(selectedText);
+                    else
+                        ClearList();
                 } else if (e.KeyCode == Keys.Escape) {
                     uxInputText.Text = "";
                     ClearList();
                 }
+            }
+        }
+
+        private void uxInputText_KeyDown(object sender, KeyEventArgs e) {
+            if (e.KeyCode == Keys.Tab) {
+                e.SuppressKeyPress = true;
             }
         }
     }

@@ -25,7 +25,7 @@ namespace Handyman.DaysPlugin {
 
         public void Initialize() {
             Days = Framework.Persistence.Persist.Load<List<DaysModel>>(Alias);
-            Suggestions = new List<string> {"days add", "days delete", "days set"};
+            Suggestions = new List<string> {"days add", "days delete", "days set", "days list"};
         }
 
         private void Add(string name, DateTime date) {
@@ -51,6 +51,12 @@ namespace Handyman.DaysPlugin {
             } else if (args[0] == "set") {
                 Set(args[1], DateTime.Parse(args[2]));
                 display("Done", DisplayData.Launcher, null, null);
+            } else if (args[0] == "list") {
+                if (Days.Count < 1) {
+                    display("no saved days", DisplayData.Launcher, null, null);
+                    return;
+                }
+                display("saved days", DisplayData.Question, Days.Select(x => x.Name + " - " + x.Date.ToString("d")).ToList(), null);
             } else {
                 display(Calc(args[0]), DisplayData.Launcher, null, null);
             } 
