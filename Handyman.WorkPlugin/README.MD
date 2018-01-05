@@ -31,6 +31,6 @@ work reset
 Get status of the timer
 ```cs
 work status
-// or if the timer is runnging just type
+// or if the timer is running just type
 work
 ```

@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Handyman.Core", "Handyman.Core\Handyman.Core.csproj", "{6F67CAF3-C557-4BEF-B233-FFB4E7C0C8BA}"
 EndProject
@@ -39,6 +39,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Handyman.WorkPlugin", "Handyman.WorkPlugin\Handyman.WorkPlugin.csproj", "{3851FF31-2A65-489E-91CB-C84C09FD21C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Handyman.TrackPlugin", "Handyman.TrackPlugin\Handyman.TrackPlugin.csproj", "{A48BD93C-71F0-43EC-AA58-2C7CE7BD31A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Handyman.DoingPlugin", "Handyman.DoingPlugin\Handyman.DoingPlugin.csproj", "{57E78126-B001-44C6-9B4B-22FFA8E9863C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -276,6 +278,18 @@ Global
 		{A48BD93C-71F0-43EC-AA58-2C7CE7BD31A8}.Release|x64.Build.0 = Release|Any CPU
 		{A48BD93C-71F0-43EC-AA58-2C7CE7BD31A8}.Release|x86.ActiveCfg = Release|Any CPU
 		{A48BD93C-71F0-43EC-AA58-2C7CE7BD31A8}.Release|x86.Build.0 = Release|Any CPU
+		{57E78126-B001-44C6-9B4B-22FFA8E9863C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57E78126-B001-44C6-9B4B-22FFA8E9863C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57E78126-B001-44C6-9B4B-22FFA8E9863C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{57E78126-B001-44C6-9B4B-22FFA8E9863C}.Debug|x64.Build.0 = Debug|Any CPU
+		{57E78126-B001-44C6-9B4B-22FFA8E9863C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{57E78126-B001-44C6-9B4B-22FFA8E9863C}.Debug|x86.Build.0 = Debug|Any CPU
+		{57E78126-B001-44C6-9B4B-22FFA8E9863C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57E78126-B001-44C6-9B4B-22FFA8E9863C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57E78126-B001-44C6-9B4B-22FFA8E9863C}.Release|x64.ActiveCfg = Release|Any CPU
+		{57E78126-B001-44C6-9B4B-22FFA8E9863C}.Release|x64.Build.0 = Release|Any CPU
+		{57E78126-B001-44C6-9B4B-22FFA8E9863C}.Release|x86.ActiveCfg = Release|Any CPU
+		{57E78126-B001-44C6-9B4B-22FFA8E9863C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

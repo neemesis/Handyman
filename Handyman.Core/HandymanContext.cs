@@ -43,7 +43,7 @@ namespace Handyman.Core {
 
             _notifyIcon.DoubleClick += OnNotifyIconDoubleClick;
             _notifyIcon.Icon = Properties.Resources.if_robot_88068;
-            _notifyIcon.Text = "Handymans";
+            _notifyIcon.Text = "Handyman";
             _notifyIcon.Visible = true;
 
             // m_SystemHotkey

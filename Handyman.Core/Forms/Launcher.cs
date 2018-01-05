@@ -332,9 +332,7 @@ namespace Handyman.Core.Forms {
         }
 
         private void OnInputTextBoxMouseDown(object sender, MouseEventArgs e) {
-            if (uxInputText.Text == "error :(" || uxInputText.Text == "Done" || uxInputText.Text == "Done!") {
-                uxInputText.Text = "";
-            }
+            CleanLauncher();
         }
 
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e) {
