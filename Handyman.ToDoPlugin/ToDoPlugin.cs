@@ -13,7 +13,6 @@ using Handyman.Framework.Entities;
 namespace Handyman.ToDoPlugin {
     public class ToDoPlugin : IMaster {
         private List<ToDo> ToDos { get; set; }
-        private readonly string _path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + Environment.UserName + ".todoHandyman";
 
         public ToDoPlugin() {
             _alias = "todo";
@@ -36,32 +35,28 @@ namespace Handyman.ToDoPlugin {
             SaveToDos();
         }
 
+        public void Initialize() {
+            ToDos = Framework.Persistence.Persist.Load<List<ToDo>>(_alias);
+            Suggestions = new List<string> { "todo add", "todo delete", "todo done" };
+        }
+
         private void LoadToDos() {
-            if (File.Exists(_path)) {
-                var serializer = new XmlSerializer(typeof(List<ToDo>));
-                var reader = File.OpenText(_path);
-                ToDos = (List<ToDo>)serializer.Deserialize(reader);
-                reader.Close();
-            } else {
-                ToDos = new List<ToDo>();
-                SaveToDos();
-            }
+            ToDos = Framework.Persistence.Persist.Load<List<ToDo>>(_alias);
         }
 
         private void InsertToDo(ToDo td) {
-            if (ToDos == null)
-                LoadToDos();
-
             ToDos.Add(td);
-            SaveToDos();
+            Framework.Persistence.Persist.Save(ToDos, _alias);
+            //if (ToDos == null)
+            //    LoadToDos();
+
+            //ToDos.Add(td);
+            //SaveToDos();
         }
 
 
         private void SaveToDos() {
-            var ser = new XmlSerializer(typeof(List<ToDo>));
-            var sw = new StreamWriter(_path);
-            ser.Serialize(sw, ToDos);
-            sw.Close();
+            Framework.Persistence.Persist.Save(ToDos, _alias);
         }
 
         private Shortcut _hotKey;
@@ -78,11 +73,6 @@ namespace Handyman.ToDoPlugin {
             set => _alias = value;
         }
 
-        public void Initialize() {
-            LoadToDos();
-            Suggestions = new List<string> {"todo add", "todo delete", "todo done" };
-        }
-
         public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
             if (args.Length > 0 && args[0] == "help") {
                 DisplayHelp();
@@ -96,8 +86,8 @@ namespace Handyman.ToDoPlugin {
                     Name = args.Single(x => x.StartsWith("n:") || x.StartsWith("name:")).Split(':')[1],
                     Description = args.SingleOrDefault(x => x.StartsWith("d:") || x.StartsWith("desc:") || x.StartsWith("description:"))?.Split(':')[1],
                 };
-                ToDos.Add(td);
-                SaveToDos();
+                InsertToDo(td);
+                //SaveToDos();
             } else if (args[0] == "delete") {
                 var td = ToDos.SingleOrDefault(x => x.Name == args[1]);
                 if (td != null) {
@@ -126,7 +116,7 @@ namespace Handyman.ToDoPlugin {
             };
 
             foreach (var i in items)
-                tl.Text += "- " + i.Name + "\r\n";
+                tl.Text += "- " + i.Name + " - " + i.Description + "\r\n";
 
             tl.Text += "=================================";
 
