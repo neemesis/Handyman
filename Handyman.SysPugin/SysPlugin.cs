@@ -37,14 +37,14 @@ namespace Handyman.SysPugin {
 
         public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display = null) {
             var cmdArgs = "shutdown ";
-            if (args[0] == "shutdown") {
+            if (args[0] == "shutdown" || args[0] == "sd") {
                 if (args.Length == 1) {
                     cmdArgs += "/s";
                 } else {
                     var mins = int.Parse(args[1]);
                     cmdArgs += "/s /t " + (mins * 60);
                 } 
-            } else if (args[0] == "restart") {
+            } else if (args[0] == "restart" || args[0] == "rs") {
                 cmdArgs += "/r";
                 if (args.Length == 1) {
                     cmdArgs += "/r";
@@ -52,7 +52,7 @@ namespace Handyman.SysPugin {
                     var mins = int.Parse(args[1]);
                     cmdArgs += "/r /t " + ( mins * 60 );
                 }
-            } else if (args[0] == "hibernate") {
+            } else if (args[0] == "hibernate" || args[0] == "hn") {
                 cmdArgs += "/h";
                 if (args.Length == 1) {
                     cmdArgs += "/h";
@@ -62,7 +62,7 @@ namespace Handyman.SysPugin {
                 }
             } else if (args[0] == "abort") {
                 cmdArgs += "/a";
-            } else if (args[0] == "logoff") {
+            } else if (args[0] == "logoff" || args[0] == "lo") {
                 cmdArgs += "/l";
                 if (args.Length == 1) {
                     cmdArgs += "/l";

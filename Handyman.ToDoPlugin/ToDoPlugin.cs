@@ -47,11 +47,6 @@ namespace Handyman.ToDoPlugin {
         private void InsertToDo(ToDo td) {
             ToDos.Add(td);
             Framework.Persistence.Persist.Save(ToDos, _alias);
-            //if (ToDos == null)
-            //    LoadToDos();
-
-            //ToDos.Add(td);
-            //SaveToDos();
         }
 
 

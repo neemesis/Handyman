@@ -117,5 +117,12 @@
 	  "Description": "Track projects timing.",
 	  "HasConfig": false,
 	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.TrackPlugin/bin/Release/Handyman.TrackPlugin.dll"
+	},
+	{
+	  "Name": "Handyman.DoingPlugin",
+	  "Author": "Mirche Toshevski",
+	  "Description": "Track when you started doing things.",
+	  "HasConfig": false,
+	  "URL": "https://github.com/neemesis/Handyman/raw/master/Handyman.DoingPlugin/bin/Release/Handyman.TrackPlugin.dll"
 	}
 ]
