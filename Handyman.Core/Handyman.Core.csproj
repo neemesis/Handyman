@@ -282,6 +282,10 @@
       <Project>{86a9efac-4f5a-47b0-9105-a681d5632dc3}</Project>
       <Name>Handyman.DaysPlugin</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Handyman.DevPlugin\Handyman.DevPlugin.csproj">
+      <Project>{7712cb16-2b91-4447-822a-6b717b4236e5}</Project>
+      <Name>Handyman.DevPlugin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Handyman.DoingPlugin\Handyman.DoingPlugin.csproj">
       <Project>{57e78126-b001-44c6-9b4b-22ffa8e9863c}</Project>
       <Name>Handyman.DoingPlugin</Name>

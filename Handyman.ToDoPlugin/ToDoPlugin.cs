@@ -13,6 +13,7 @@ using Handyman.Framework.Entities;
 namespace Handyman.ToDoPlugin {
     public class ToDoPlugin : IMaster {
         private List<ToDo> ToDos { get; set; }
+        private Action<string, DisplayData, List<string>, Action<string>> _display;
 
         public ToDoPlugin() {
             _alias = "todo";
@@ -69,10 +70,11 @@ namespace Handyman.ToDoPlugin {
         }
 
         public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
+            _display = display;
             if (args.Length > 0 && args[0] == "help") {
                 DisplayHelp(display);
             } else if (args.Length == 0 || args.Length > 0 && args[0] == "list") {
-                DisplayToDoList(ToDos, display);
+                DisplayToDoList(display);
             } else if (args[0] == "add" && args.Length > 1) {
                 var td = new ToDo {
                     Created = DateTime.Now,
@@ -102,13 +104,20 @@ namespace Handyman.ToDoPlugin {
             }
         }
 
-        private void DisplayToDoList(List<ToDo> items, Action<string, DisplayData, List<string>, Action<string>> display) {
-            var list = items.Where(x => !x.Finished).Select(x => x.Name + ": " + x.Description).ToList();
+        private void DisplayToDoList(Action<string, DisplayData, List<string>, Action<string>> display) {
+            var list = ToDos.Where(x => !x.Finished).Select(x => x.Name + ": " + x.Description).ToList();
             display("todos", DisplayData.Question, list, OnTodoClick);
         }
 
         private void OnTodoClick(string s) {
-            throw new NotImplementedException();
+            foreach (var td in ToDos) {
+                if (s.Contains(td.Name)) {
+                    td.Finished = true;
+                    SaveToDos();
+                    DisplayToDoList(_display);
+                    return;
+                }
+            }
         }
 
         private void DisplayHelp(Action<string, DisplayData, List<string>, Action<string>> display) {
@@ -119,27 +128,6 @@ namespace Handyman.ToDoPlugin {
             };
 
             display("usage", DisplayData.Question, list.ToList(), null);
-
-            //var dlg1 = new Form {
-            //    Text = "ToDo Plugin Help",
-            //    AutoScroll = true,
-            //    Size = new Size(900, 650),
-            //    Font = new Font("Arial", 14, FontStyle.Regular)
-            //};
-            //var tl = new Label {
-            //    AutoSize = true,
-            //    Text = "Usage\r\n==================\r\n"
-            //    + _alias + " help: display help\r\n"
-            //    + _alias + " add n:<name> d:<description|optional>: add new ToDo item\r\n"
-            //    + _alias + " delete <name>: delete ToDo item\r\n"
-            //    + _alias + " done <name>: set ToDo item Done\r\n"
-            //    + _alias + " list: show ToDo items\r\n"
-            //    + "=================="
-            //};
-            //dlg1.Controls.Add(tl);
-
-            //dlg1.ShowDialog();
-            //return;
         }
     }
 }

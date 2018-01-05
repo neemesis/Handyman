@@ -55,39 +55,45 @@ namespace Handyman.Core {
         }
 
         public void Start(string alias) {
-            // Check for app commands
-            if (AppForms.HandleForm(alias)) {
-                History.Add(alias);
-                return;
-            }
+            try {
 
-            // Use HelpUrl to open online help
-            if (Executor.ExecuteHelp(Tools, alias)) {
-                History.Add(alias);
-                return;
-            }
+                // Check for app commands
+                if (AppForms.HandleForm(alias)) {
+                    History.Add(alias);
+                    return;
+                }
 
-            // Check for list packages or install
-            if (PluginManager.Handle(alias)) {
-                History.Add(alias);
-                return;
-            }
+                // Use HelpUrl to open online help
+                if (Executor.ExecuteHelp(Tools, alias)) {
+                    History.Add(alias);
+                    return;
+                }
 
-            // Try to find tool to execute
-            if (Executor.ExecuteTool(Tools, alias, Parser, SetError)) {
-                History.Add(alias);
-                return;
-            }
+                // Check for list packages or install
+                if (PluginManager.Handle(alias)) {
+                    History.Add(alias);
+                    return;
+                }
 
-            // Try to find Handyman to execute
-            if (Executor.ExecuteHandyman(Handymans, alias, SetError)) {
-                History.Add(alias);
-                return;
-            }
+                // Try to find tool to execute
+                if (Executor.ExecuteTool(Tools, alias, Parser, SetError)) {
+                    History.Add(alias);
+                    return;
+                }
 
-            // Fallback execute cmd command
-            Executor.ExecuteFallback(alias);
-            History.Add(alias);
+                // Try to find Handyman to execute
+                if (Executor.ExecuteHandyman(Handymans, alias, SetError)) {
+                    History.Add(alias);
+                    return;
+                }
+
+                // Fallback execute cmd command
+                Executor.ExecuteFallback(alias);
+                History.Add(alias);
+            }
+            catch (Exception e) {
+                Launcher.Current.ChangeText("error :(");
+            }
         }
 
         private static void SetError(Exception e = null) {

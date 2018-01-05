@@ -146,6 +146,9 @@ namespace Handyman.Core.Forms {
                     break;
             }
 
+            if (e.KeyCode == Keys.Escape)
+                Mode = DisplayData.Default;
+
             uxInputText.Focus();
         }
 
@@ -284,7 +287,7 @@ namespace Handyman.Core.Forms {
         /// Change launcher text and set index to end
         /// </summary>
         /// <param name="text"></param>
-        private void ChangeText(string text) {
+        public void ChangeText(string text) {
             uxInputText.Text = text;
             uxInputText.SelectionStart = uxInputText.Text.Length;
             uxInputText.SelectionLength = 0;
@@ -406,6 +409,7 @@ namespace Handyman.Core.Forms {
                 } else if (e.KeyCode == Keys.Escape) {
                     uxInputText.Text = "";
                     ClearList();
+                    Mode = DisplayData.Default;
                 }
             }
         }

@@ -21,10 +21,10 @@ namespace Handyman.Core.Helpers {
                     try {
                         var a = alias.Replace(tool.Alias, "").Trim();
                         var args = tool.Parser?.Parse(a) ?? parser.Parse(a);
-                        if (args.Any() && args[0].Split(' ')[0].StartsWith("dev")) {
-                            HandleDev(alias, tool.Parser ?? parser);
-                            return true;
-                        }
+                        //if (args.Any() && args[0].Split(' ')[0].StartsWith("dev")) {
+                        //    HandleDev(alias, tool.Parser ?? parser);
+                        //    return true;
+                        //}
                         tool.Execute(args, Launcher.Current.ShowData);
                         return true;
                     } catch (Exception e) {

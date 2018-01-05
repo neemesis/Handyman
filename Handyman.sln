@@ -42,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Handyman.TrackPlugin", "Han
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Handyman.DoingPlugin", "Handyman.DoingPlugin\Handyman.DoingPlugin.csproj", "{57E78126-B001-44C6-9B4B-22FFA8E9863C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Handyman.DevPlugin", "Handyman.DevPlugin\Handyman.DevPlugin.csproj", "{7712CB16-2B91-4447-822A-6B717B4236E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -290,6 +292,18 @@ Global
 		{57E78126-B001-44C6-9B4B-22FFA8E9863C}.Release|x64.Build.0 = Release|Any CPU
 		{57E78126-B001-44C6-9B4B-22FFA8E9863C}.Release|x86.ActiveCfg = Release|Any CPU
 		{57E78126-B001-44C6-9B4B-22FFA8E9863C}.Release|x86.Build.0 = Release|Any CPU
+		{7712CB16-2B91-4447-822A-6B717B4236E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7712CB16-2B91-4447-822A-6B717B4236E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7712CB16-2B91-4447-822A-6B717B4236E5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7712CB16-2B91-4447-822A-6B717B4236E5}.Debug|x64.Build.0 = Debug|Any CPU
+		{7712CB16-2B91-4447-822A-6B717B4236E5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7712CB16-2B91-4447-822A-6B717B4236E5}.Debug|x86.Build.0 = Debug|Any CPU
+		{7712CB16-2B91-4447-822A-6B717B4236E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7712CB16-2B91-4447-822A-6B717B4236E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7712CB16-2B91-4447-822A-6B717B4236E5}.Release|x64.ActiveCfg = Release|Any CPU
+		{7712CB16-2B91-4447-822A-6B717B4236E5}.Release|x64.Build.0 = Release|Any CPU
+		{7712CB16-2B91-4447-822A-6B717B4236E5}.Release|x86.ActiveCfg = Release|Any CPU
+		{7712CB16-2B91-4447-822A-6B717B4236E5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

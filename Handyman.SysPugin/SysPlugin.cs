@@ -40,48 +40,48 @@ namespace Handyman.SysPugin {
             if (args[0] == "shutdown" || args[0] == "sd") {
                 if (args.Length == 1) {
                     cmdArgs += "/s";
+                    display("shuting down", DisplayData.Launcher, null, null);
                 } else {
                     var mins = int.Parse(args[1]);
                     cmdArgs += "/s /t " + (mins * 60);
+                    display($"shuting down in {mins} minutes", DisplayData.Launcher, null, null);
                 } 
             } else if (args[0] == "restart" || args[0] == "rs") {
                 cmdArgs += "/r";
                 if (args.Length == 1) {
                     cmdArgs += "/r";
+                    display("restarting", DisplayData.Launcher, null, null);
                 } else {
                     var mins = int.Parse(args[1]);
                     cmdArgs += "/r /t " + ( mins * 60 );
+                    display($"restarting in {mins} minutes", DisplayData.Launcher, null, null);
                 }
             } else if (args[0] == "hibernate" || args[0] == "hn") {
                 cmdArgs += "/h";
                 if (args.Length == 1) {
                     cmdArgs += "/h";
+                    display("going in hibernate", DisplayData.Launcher, null, null);
                 } else {
                     var mins = int.Parse(args[1]);
                     cmdArgs += "/h /t " + ( mins * 60 );
+                    display($"hibernating in {mins} minutes", DisplayData.Launcher, null, null);
                 }
             } else if (args[0] == "abort") {
                 cmdArgs += "/a";
+                display("aborted", DisplayData.Launcher, null, null);
             } else if (args[0] == "logoff" || args[0] == "lo") {
                 cmdArgs += "/l";
                 if (args.Length == 1) {
                     cmdArgs += "/l";
+                    display("logging off", DisplayData.Launcher, null, null);
                 } else {
                     var mins = int.Parse(args[1]);
                     cmdArgs += "/l /t " + ( mins * 60 );
+                    display($"logging of in {mins} minutes", DisplayData.Launcher, null, null);
                 }
             }
 
-            var startInfo = new ProcessStartInfo {
-                FileName = @"cmd.exe",
-                Arguments = cmdArgs,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
-            var process = new Process { StartInfo = startInfo };
-            process.Start();
+            var res = Framework.Utilities.CMD(cmdArgs, null, out var errors);
         }
 
         public void Initialize() {
