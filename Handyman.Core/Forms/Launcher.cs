@@ -323,7 +323,7 @@ namespace Handyman.Core.Forms {
         /// </summary>
         private void DisplayQuestion() {
             Mode = DisplayData.Question;
-            uxInputText.Enabled = false;
+            //uxInputText.Enabled = false;
             UpdateList(PluginChoices);
         }
 
@@ -332,6 +332,8 @@ namespace Handyman.Core.Forms {
         }
 
         private void OnInputTextBoxMouseDown(object sender, MouseEventArgs e) {
+            if (string.IsNullOrEmpty(uxInputText.Text))
+                return;
             CleanLauncher();
         }
 

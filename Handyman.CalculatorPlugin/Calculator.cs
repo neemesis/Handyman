@@ -36,7 +36,7 @@ namespace Handyman.CalculatorPlugin {
         }
 
         public void Initialize() {
-            Suggestions = new List<string> { };
+            Suggestions = new List<string> { "= 3 + 2", "= 6 * 7"};
         }
 
         public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {

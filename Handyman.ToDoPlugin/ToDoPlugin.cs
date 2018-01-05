@@ -70,9 +70,9 @@ namespace Handyman.ToDoPlugin {
 
         public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
             if (args.Length > 0 && args[0] == "help") {
-                DisplayHelp();
+                DisplayHelp(display);
             } else if (args.Length == 0 || args.Length > 0 && args[0] == "list") {
-                DisplayToDoList(ToDos);
+                DisplayToDoList(ToDos, display);
             } else if (args[0] == "add" && args.Length > 1) {
                 var td = new ToDo {
                     Created = DateTime.Now,
@@ -83,11 +83,13 @@ namespace Handyman.ToDoPlugin {
                 };
                 InsertToDo(td);
                 //SaveToDos();
+                display("done :)", DisplayData.Launcher, null, null);
             } else if (args[0] == "delete") {
                 var td = ToDos.SingleOrDefault(x => x.Name == args[1]);
                 if (td != null) {
                     ToDos.Remove(td);
                     SaveToDos();
+                    display("done :)", DisplayData.Launcher, null, null);
                 }
             } else if (args[0] == "done") {
                 var td = ToDos.SingleOrDefault(x => x.Name == args[1]);
@@ -95,53 +97,49 @@ namespace Handyman.ToDoPlugin {
                     td.Finished = true;
                     td.TimeFinished = DateTime.Now;
                     SaveToDos();
+                    display("done :)", DisplayData.Launcher, null, null);
                 }
             }
         }
 
-        private void DisplayToDoList(List<ToDo> items) {
-            var dlg1 = new Form {
-                Text = "ToDo",
-                AutoScroll = true,
-                Size = new Size(500, 650)
-            };
-            var tl = new Label {
-                AutoSize = true,
-                Text = "===============================\r\n"
-            };
-
-            foreach (var i in items)
-                tl.Text += "- " + i.Name + " - " + i.Description + "\r\n";
-
-            tl.Text += "=================================";
-
-            dlg1.Controls.Add(tl);
-
-            dlg1.ShowDialog();
-            return;
+        private void DisplayToDoList(List<ToDo> items, Action<string, DisplayData, List<string>, Action<string>> display) {
+            var list = items.Where(x => !x.Finished).Select(x => x.Name + ": " + x.Description).ToList();
+            display("todos", DisplayData.Question, list, OnTodoClick);
         }
 
-        private void DisplayHelp() {
-            var dlg1 = new Form {
-                Text = "Email Plugin Help",
-                AutoScroll = true,
-                Size = new Size(900, 650),
-                Font = new Font("Arial", 14, FontStyle.Regular)
-            };
-            var tl = new Label {
-                AutoSize = true,
-                Text = "Usage\r\n==================\r\n"
-                + _alias + " help: display help\r\n"
-                + _alias + " add n:<name> d:<description|optional>: add new ToDo item\r\n"
-                + _alias + " delete <name>: delete ToDo item\r\n"
-                + _alias + " done <name>: set ToDo item Done\r\n"
-                + _alias + " list: show ToDo items\r\n"
-                + "=================="
-            };
-            dlg1.Controls.Add(tl);
+        private void OnTodoClick(string s) {
+            throw new NotImplementedException();
+        }
 
-            dlg1.ShowDialog();
-            return;
+        private void DisplayHelp(Action<string, DisplayData, List<string>, Action<string>> display) {
+            var list = new[] { _alias + " add n:<name> d:<desc>: add new",
+                _alias + " delete <name>: delete ToDo item",
+                _alias + " done <name>: set ToDo item Done",
+                _alias + " list: show ToDo items"
+            };
+
+            display("usage", DisplayData.Question, list.ToList(), null);
+
+            //var dlg1 = new Form {
+            //    Text = "ToDo Plugin Help",
+            //    AutoScroll = true,
+            //    Size = new Size(900, 650),
+            //    Font = new Font("Arial", 14, FontStyle.Regular)
+            //};
+            //var tl = new Label {
+            //    AutoSize = true,
+            //    Text = "Usage\r\n==================\r\n"
+            //    + _alias + " help: display help\r\n"
+            //    + _alias + " add n:<name> d:<description|optional>: add new ToDo item\r\n"
+            //    + _alias + " delete <name>: delete ToDo item\r\n"
+            //    + _alias + " done <name>: set ToDo item Done\r\n"
+            //    + _alias + " list: show ToDo items\r\n"
+            //    + "=================="
+            //};
+            //dlg1.Controls.Add(tl);
+
+            //dlg1.ShowDialog();
+            //return;
         }
     }
 }
