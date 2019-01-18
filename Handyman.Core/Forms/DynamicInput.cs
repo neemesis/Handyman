@@ -1,9 +1,7 @@
-using System;
 using System.Windows.Forms;
 
-namespace Handyman.Core.Forms
-{
-	public partial class DynamicInput : Form
+namespace Handyman.Core.Forms {
+    public partial class DynamicInput : Form
 	{
 		public DynamicInput()
 		{

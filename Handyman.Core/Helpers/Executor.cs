@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Handyman.Core.Forms;
-using Handyman.Framework.Parsers;
 using Handyman.Framework.Entities;
 using Handyman.Framework.Interfaces;
 
@@ -21,10 +17,11 @@ namespace Handyman.Core.Helpers {
                     try {
                         var a = alias.Replace(tool.Alias, "").Trim();
                         var args = tool.Parser?.Parse(a) ?? parser.Parse(a);
-                        //if (args.Any() && args[0].Split(' ')[0].StartsWith("dev")) {
-                        //    HandleDev(alias, tool.Parser ?? parser);
-                        //    return true;
-                        //}
+                        if (args.Any() && args[0].Split(' ')[0].StartsWith("dev")) {
+                            HandleDev(alias, tool.Parser ?? parser);
+                            Console.WriteLine("Dev. Command handled!");
+                            return true;
+                        }
                         tool.Execute(args, Launcher.Current.ShowData);
                         return true;
                     } catch (Exception e) {

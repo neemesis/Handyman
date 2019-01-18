@@ -1,7 +1,5 @@
 using System;
 using System.Windows.Forms;
-using System.Drawing;
-using System.Diagnostics;
 
 using Handyman.Core.Forms;
 using Handyman.Core.Helpers;

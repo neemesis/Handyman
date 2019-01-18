@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Handyman.Framework.Entities;
 using Handyman.Framework.Interfaces;
@@ -30,6 +27,9 @@ namespace Handyman.DevPlugin {
         }
 
         public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
+            display("question", DisplayData.Question, new List<string> { "a", "b", "c" }, null);
+            return;
+
             if (args.Length == 3) {
                 if (args[0] == "levenshtein")
                     DisplayText(Levenshtein.Compute(args[1], args[2]).ToString(), display);

@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Handyman.Framework.Entities;
 using Handyman.Framework.Interfaces;
@@ -43,16 +39,14 @@ namespace Handyman.TranslatorPlugin {
             Suggestions = new List<string> {"tr set from", "tr set to" };
         }
 
-        public async void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
+        public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
             if (args[0] == "set") {
                 if (args[1] == "from") {
                     Properties.Settings.Default.DefFrom = args[2];
-                }
-                else if (args[1] == "to") {
+                } else if (args[1] == "to") {
                     Properties.Settings.Default.DefTo = args[2];
                 }
-            }
-            else {
+            } else {
                 var lang = args[0].Contains(":") ? args[0] : null;
                 var fromLang = string.IsNullOrEmpty(lang) ? Properties.Settings.Default.DefFrom : lang.Split(':')[0];
                 var toLang = string.IsNullOrEmpty(lang) ? Properties.Settings.Default.DefTo : lang.Split(':')[1];

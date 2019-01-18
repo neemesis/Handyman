@@ -28,8 +28,7 @@ namespace Handyman.Core {
             }
             #endregion
 
-            Suggestions = new List<string>();
-            Suggestions.AddRange(History.GetAll());
+            Suggestions = new List<string>(History.GetAll());
             Parser = new DefaultParser();
             Handymans = HandymansManager.Load();
             Tools = PluginManager.LoadPlugins(out __components, out List<string> sgs);

@@ -55,7 +55,7 @@ namespace Handyman.Core.Forms {
         #region Singleton
 
         private static volatile Launcher _singleton;
-        private static readonly object _syncRoot = new Object();
+        private static readonly object _syncRoot = new object();
 
         public static Launcher Current {
             get {
@@ -89,14 +89,13 @@ namespace Handyman.Core.Forms {
 
         protected override void OnShown(EventArgs e) {
             base.OnShown(e);
-            uxInputText.Focus();
-
             UpdateAutoCompletion();
+            uxInputText.Focus();
         }
 
         public void FocusOnInput() {
-            uxInputText.Focus();
             UpdateAutoCompletion();
+            uxInputText.Focus();
         }
 
         /// <summary>
@@ -107,7 +106,6 @@ namespace Handyman.Core.Forms {
             uxInputText.AutoCompleteSource = AutoCompleteSource.CustomSource;
             var sr = new AutoCompleteStringCollection();
             sr.AddRange(Context.Current.AutoCompleteSource);
-
             uxInputText.AutoCompleteCustomSource = sr;
         }
 

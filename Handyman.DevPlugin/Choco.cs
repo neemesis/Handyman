@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Handyman.DevPlugin {
+﻿namespace Handyman.DevPlugin {
     public static class Choco {
         private static bool CheckChoco() {
             var res = Framework.Utilities.CMD("choco -v &", null, out var errors);

@@ -9,9 +9,8 @@
 //------------------------------------------------------------------------------
 
 namespace Handyman.Core.Properties {
-    using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -19,7 +18,7 @@ namespace Handyman.Core.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -39,7 +38,7 @@ namespace Handyman.Core.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    var temp = new global::System.Resources.ResourceManager("Handyman.Core.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Handyman.Core.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -65,7 +64,7 @@ namespace Handyman.Core.Properties {
         /// </summary>
         internal static System.Drawing.Icon if_robot_88068 {
             get {
-                var obj = ResourceManager.GetObject("if_robot_88068", resourceCulture);
+                object obj = ResourceManager.GetObject("if_robot_88068", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -75,7 +74,7 @@ namespace Handyman.Core.Properties {
         /// </summary>
         internal static byte[] Raleway_Thin {
             get {
-                var obj = ResourceManager.GetObject("Raleway_Thin", resourceCulture);
+                object obj = ResourceManager.GetObject("Raleway_Thin", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -85,7 +84,7 @@ namespace Handyman.Core.Properties {
         /// </summary>
         internal static byte[] Ubuntu_L {
             get {
-                var obj = ResourceManager.GetObject("Ubuntu_L", resourceCulture);
+                object obj = ResourceManager.GetObject("Ubuntu_L", resourceCulture);
                 return ((byte[])(obj));
             }
         }

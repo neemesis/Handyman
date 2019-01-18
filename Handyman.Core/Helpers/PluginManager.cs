@@ -5,8 +5,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Handyman.Core.Forms;
@@ -16,14 +14,67 @@ using Handyman.Framework.Interfaces;
 
 namespace Handyman.Core.Helpers {
     public static class PluginManager {
+        public static List<IMaster> LoadPlugins(out IContainer _components, out List<string> sgs) {
+            var tools = new List<IMaster>();
+            _components = new Container();
+
+            // we extract all the IAttributeDefinition implementations 
+            sgs = new List<string>();
+            foreach (var filename in Directory.GetFiles(Application.StartupPath, "*.dll")) {
+                var assembly = System.Reflection.Assembly.LoadFrom(filename);
+                foreach (var type in assembly.GetTypes()) {
+                    var plugin = type.GetInterface("Handyman.Framework.Interfaces.IMaster");
+                    if (plugin != null) {
+                        var tool = (IMaster) Activator.CreateInstance(type);
+                        tool.Initialize();
+
+                        sgs.Add(tool.Alias);
+                        sgs.Add("help " + tool.Alias);
+                        if (tool.Suggestions != null) {
+                            sgs.AddRange(tool.Suggestions);
+                        }
+
+                        var hotkey = new SystemHotkey(_components) {
+                            Shortcut = tool.HotKey
+                        };
+
+                        hotkey.Pressed += delegate {
+                            tool.Execute(null, Launcher.Current.ShowData);
+                        };
+                        tools.Add(tool);
+                    }
+                }
+            }
+            return tools;
+        }
+
+        public static bool Handle(string alias) {
+            var parts = alias.Split(' ');
+
+            if (parts[0] == "install" && parts.Length == 2) {
+                InstallPlugin(parts[1]);
+                return true;
+            }
+            if (parts[0] == "packages") {
+                ListPlugins();
+                return true;
+            }
+
+            return false;
+        }
+
         public static void ListPlugins() {
             using (var wc = new WebClient()) {
                 var json = wc.DownloadString(Properties.Settings.Default.DownloadURL + "plugins.json");
                 var pckgs = JsonConvert.DeserializeObject<List<Plugin>>(json);
                 var form = new Form { Text = "Packages", Size = new Size(400, 600) };
                 var lb = new TextBox {
-                    AutoSize = true, ScrollBars = ScrollBars.Vertical, WordWrap = true, ReadOnly = true,
-                    Multiline = true, SelectedText = ""
+                    AutoSize = true,
+                    ScrollBars = ScrollBars.Vertical,
+                    WordWrap = true,
+                    ReadOnly = true,
+                    Multiline = true,
+                    SelectedText = ""
                 };
 
                 lb.Text = "To install package write \"install <packageName>\"\r\n\r\n";
@@ -63,55 +114,6 @@ namespace Handyman.Core.Helpers {
             } catch (Exception e) {
                 Launcher.Current.ShowData("error :(");
             }
-        }
-
-        public static List<IMaster> LoadPlugins(out IContainer _components, out List<string> sgs) {
-            var tools = new List<IMaster>();
-            _components = new Container();
-
-            // we extract all the IAttributeDefinition implementations 
-            sgs = new List<string>();
-            foreach (var filename in Directory.GetFiles(Application.StartupPath, "*.dll")) {
-                var assembly = System.Reflection.Assembly.LoadFrom(filename);
-                foreach (var type in assembly.GetTypes()) {
-                    var plugin = type.GetInterface("Handyman.Framework.Interfaces.IMaster");
-                    if (plugin != null) {
-                        var tool = (IMaster)Activator.CreateInstance(type);
-                        tool.Initialize();
-
-                        sgs.Add(tool.Alias);
-                        sgs.Add("help " + tool.Alias);
-                        if (tool.Suggestions != null) {
-                            sgs.AddRange(tool.Suggestions);
-                        }
-
-                        var hotkey = new SystemHotkey(_components) {
-                            Shortcut = tool.HotKey
-                        };
-
-                        hotkey.Pressed += delegate {
-                            tool.Execute(null, Launcher.Current.ShowData);
-                        };
-                        tools.Add(tool);
-                    }
-                }
-            }
-            return tools;
-        }
-
-        public static bool Handle(string alias) {
-            var parts = alias.Split(' ');
-
-            if (parts[0] == "install" && parts.Length == 2) {
-                InstallPlugin(parts[1]);
-                return true;
-            }
-            if (parts[0] == "packages") {
-                ListPlugins();
-                return true;
-            }
-
-            return false;
         }
     }
 }

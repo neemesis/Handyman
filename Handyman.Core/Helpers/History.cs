@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Handyman.Core.Models;
 
 namespace Handyman.Core.Helpers {
     public static class History {
         private static List<HistoryModel> _history { get; set; }
-        private static string _alias = "handymanHistory";
+        private static readonly string _alias = "handymanHistory";
 
         private static void LoadHistory() {
             _history = Framework.Persistence.Persist.Load<List<HistoryModel>>(_alias);
