@@ -6,10 +6,10 @@ using Handyman.Framework.Entities;
 
 namespace Handyman.Core.Helpers {
     public static class HandymansManager {
-        private static readonly string MWordsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + Environment.UserName + ".Handymans";
+        private static readonly string handymansLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + Environment.UserName + ".Handymans";
 
         public static List<Commands> Load() {
-            if (File.Exists(MWordsPath)) {
+            if (File.Exists(handymansLocation)) {
                 return LoadInternal();
             } else {
                 var res = Defaults.Default();
@@ -20,7 +20,7 @@ namespace Handyman.Core.Helpers {
 
         private static List<Commands> LoadInternal() {
             var serializer = new XmlSerializer(typeof(List<Commands>));
-            var reader = File.OpenText(MWordsPath);
+            var reader = File.OpenText(handymansLocation);
             var result = (List<Commands>)serializer.Deserialize(reader);
             reader.Close();
             return result;
@@ -28,7 +28,7 @@ namespace Handyman.Core.Helpers {
 
         public static void Save(List<Commands> comm) {
             var ser = new XmlSerializer(typeof(List<Commands>));
-            var sw = new StreamWriter(MWordsPath);
+            var sw = new StreamWriter(handymansLocation);
             ser.Serialize(sw, comm);
             sw.Close();
         }

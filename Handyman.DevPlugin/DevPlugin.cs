@@ -19,7 +19,6 @@ namespace Handyman.DevPlugin {
         public DevPlugin() {
             Alias = "dev";
             HotKey = Shortcut.None;
-            Initialize();
         }
 
         public void Initialize() {
@@ -27,9 +26,6 @@ namespace Handyman.DevPlugin {
         }
 
         public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
-            display("question", DisplayData.Question, new List<string> { "a", "b", "c" }, null);
-            return;
-
             if (args.Length == 3) {
                 if (args[0] == "levenshtein")
                     DisplayText(Levenshtein.Compute(args[1], args[2]).ToString(), display);

@@ -27,9 +27,7 @@ namespace Handyman.BatchPlugin {
             Suggestions = new List<string> { "batch create", "batch delete", "batch change" };
         }
 
-        private void Save() {
-            Framework.Persistence.Persist.Save(Batches, Alias);
-        }
+        private void Save() => Framework.Persistence.Persist.Save(Batches, Alias);
 
         private void Add(string name, List<string> apps) {
             var b = Batches.SingleOrDefault(x => x.Name == name);

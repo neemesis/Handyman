@@ -34,6 +34,7 @@ namespace Handyman.Core {
             Tools = PluginManager.LoadPlugins(out __components, out List<string> sgs);
             Suggestions.AddRange(sgs);
             Suggestions.AddRange(Handymans.Select(x => x.Alias));
+            Suggestions = Suggestions.Distinct().ToList();
         }
 
         #region Public Methods
@@ -89,14 +90,16 @@ namespace Handyman.Core {
                 // Fallback execute cmd command
                 Executor.ExecuteFallback(alias);
                 History.Add(alias);
+
+                Launcher.Current.HideForm();
             }
             catch (Exception e) {
-                Launcher.Current.ChangeText("error :(");
+                SetError(e);
             }
         }
 
         private static void SetError(Exception e = null) {
-            Launcher.Current.ShowData("error :(");
+            Launcher.Current.ShowData(Helpers.Res.ERROR);
         }
         #endregion
 

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using Handyman.Core.Extensions;
 using Handyman.Core.Forms;
 using Handyman.Framework.Entities;
 using Handyman.Framework.Interfaces;
@@ -12,40 +13,39 @@ namespace Handyman.Core.Helpers {
     public static class Executor {
 
         public static bool ExecuteTool(IEnumerable<IMaster> tools, string alias, IParse parser, Action<Exception> setError) {
-            foreach (var tool in tools) {
-                if (alias.StartsWith(tool.Alias)) {
-                    try {
-                        var a = alias.Replace(tool.Alias, "").Trim();
-                        var args = tool.Parser?.Parse(a) ?? parser.Parse(a);
-                        if (args.Any() && args[0].Split(' ')[0].StartsWith("dev")) {
-                            HandleDev(alias, tool.Parser ?? parser);
-                            Console.WriteLine("Dev. Command handled!");
-                            return true;
-                        }
-                        tool.Execute(args, Launcher.Current.ShowData);
-                        return true;
-                    } catch (Exception e) {
-                        setError(e);
-                        return false;
-                    }
+            var tool = tools.FirstOrDefault(x => alias.StartsWith(x.Alias));
+            if (tool == null)
+                return false;
+
+            try {
+                var a = alias.Replace(tool.Alias, "").Trim();
+                var args = tool.Parser?.Parse(a) ?? parser.Parse(a);
+                if (args.Any() && args[0].Split(' ')[0].StartsWith("dev")) {
+                    HandleDev(alias, tool.Parser ?? parser);
+                    Console.WriteLine("Dev. Command handled!");
+                    return true;
                 }
+                tool.Execute(args, Launcher.Current.ShowData);
+                return true;
+            } catch (Exception e) {
+                setError(e);
+                return false;
             }
-            return false;
         }
 
         public static bool ExecuteHandyman(IEnumerable<Commands> handymans, string alias, Action<Exception> setError) {
-            foreach (var word in handymans) {
-                if (alias.StartsWith(word.Alias)) {
-                    try {
-                        ExecuteHandymanInternal(word, alias.Split(' ').Skip(1).ToArray());
-                        return true;
-                    } catch (Exception e) {
-                        setError(e);
-                        return false;
-                    }
-                }
+            var word = handymans.FirstOrDefault(x => alias.StartsWith(x.Alias));
+
+            if (word == null)
+                return false;
+
+            try {
+                ExecuteHandymanInternal(word, alias.Split(' ').Skip(1).ToArray());
+                return true;
+            } catch (Exception e) {
+                setError(e);
+                return false;
             }
-            return false;
         }
 
         private static void ExecuteHandymanInternal(Commands word, string[] commands) {
@@ -63,13 +63,8 @@ namespace Handyman.Core.Helpers {
 
         public static bool ExecuteHelp(List<IMaster> tools, string name) {
             var parts = name.Split(' ');
-            if (parts.Length == 2 && parts[0] == "help")
-                foreach (var t in tools) {
-                    if (t.Alias == parts[1]) {
-                        Process.Start(t.HelpUrl);
-                        return true;
-                    }
-                }
+            if (parts.Length == 2 && parts[0] == Res.HELP)
+                return tools.FirstOrDefault(x => x.Alias == parts[1]).OpenHelp();
             return false;
         }
 
@@ -82,6 +77,7 @@ namespace Handyman.Core.Helpers {
                 Process.Start(info);
             } catch (Exception e) {
                 System.Media.SystemSounds.Exclamation.Play();
+                throw e;
             }
         }
 

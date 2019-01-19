@@ -46,22 +46,22 @@ namespace Handyman.Framework
 
 				var startModeLine = reader.ReadLine();
 				var slickRunStartMode = Convert.ToInt32(startModeLine.Split('=')[1]);
-				switch (slickRunStartMode)
-				{
-					case 5:
-						word.StartUpMode = System.Diagnostics.ProcessWindowStyle.Normal;
-						break;
+				//switch (slickRunStartMode)
+				//{
+				//	case 5:
+				//		word.StartUpMode = System.Diagnostics.ProcessWindowStyle.Normal;
+				//		break;
 
-					case 7:
-						word.StartUpMode = System.Diagnostics.ProcessWindowStyle.Minimized;
-						break;
+				//	case 7:
+				//		word.StartUpMode = System.Diagnostics.ProcessWindowStyle.Minimized;
+				//		break;
 
-					case 3:
-						word.StartUpMode = System.Diagnostics.ProcessWindowStyle.Maximized;
-						break;
-					default:
-						break;
-				}
+				//	case 3:
+				//		word.StartUpMode = System.Diagnostics.ProcessWindowStyle.Maximized;
+				//		break;
+				//	default:
+				//		break;
+				//}
 				word.StartUpMode = System.Diagnostics.ProcessWindowStyle.Normal;
 			
 				words.Add(word);
@@ -70,8 +70,8 @@ namespace Handyman.Framework
 			return words;
 		}
 
-		public static void ImportFile(List<Commands> words, string path)
-		{
-		}
+		//public static void ImportFile(List<Commands> words, string path)
+		//{
+		//}
 	}
 }

@@ -26,7 +26,7 @@ namespace Handyman.Core {
             // create the notify icon and it's associated context menu
             InitializeContext();
 
-            Console.WriteLine("# Handymans: " + Context.Current.Handymans.Count);
+            Console.WriteLine($"# {Res.HANDYMAN}s: {Context.Current.Handymans.Count}");
             _notifyIcon.ContextMenuStrip = Launcher.Current.ContextMenuStrip;
         }
 
@@ -41,7 +41,7 @@ namespace Handyman.Core {
 
             _notifyIcon.DoubleClick += OnNotifyIconDoubleClick;
             _notifyIcon.Icon = Properties.Resources.if_robot_88068;
-            _notifyIcon.Text = "Handyman";
+            _notifyIcon.Text = Res.HANDYMAN;
             _notifyIcon.Visible = true;
 
             // m_SystemHotkey

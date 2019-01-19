@@ -29,7 +29,7 @@ Currently implemented plugins:
 Download the zip from **[HERE](https://github.com/neemesis/Handyman/raw/master/Releases/Handyman.zip)**
 
 ## How to use Handyman
-- Initial shortcut for starting Handyman is **Shift - F1**, but you can change it.
+- Initial shortcut for starting Handyman is **Alt - 1**, but you can change it.
 - Type **help** to get info about all Handymans.
 - Type **add** to add new Handyman.
 - Type **setup** to see options.

@@ -166,6 +166,7 @@
     <Compile Include="Controls\HelpViewer.Designer.cs">
       <DependentUpon>HelpViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Forms\DynamicInput.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +184,7 @@
     <Compile Include="Helpers\Executor.cs" />
     <Compile Include="Helpers\HandymansManager.cs" />
     <Compile Include="Helpers\History.cs" />
+    <Compile Include="Helpers\Res.cs" />
     <Compile Include="Helpers\PluginManager.cs" />
     <Compile Include="Models\HistoryModel.cs" />
     <Compile Include="Models\Plugin.cs" />
@@ -261,7 +263,6 @@
     <None Include="Resources\Ubuntu-L.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App.ico" />
     <Content Include="if_robot_88068.ico" />
     <None Include="Resources\if_robot_88068.ico" />
   </ItemGroup>

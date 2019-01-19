@@ -155,11 +155,10 @@ namespace Handyman.Core.Forms {
         /// </summary>
         /// <param name="e"></param>
         private void DefaultMode(KeyEventArgs e) {
-            Debug.WriteLine("DM");
+            Debug.WriteLine("DefaultMode");
             if (e.KeyCode == Keys.Enter) {
                 ClearList();
                 var alias = uxInputText.Text;
-                HideForm();
                 Context.Current.Start(alias);
             } else if (e.KeyCode == Keys.Down) {
                 _updateList = false;
@@ -232,7 +231,7 @@ namespace Handyman.Core.Forms {
         /// <summary>
         /// Hides the form.
         /// </summary>
-        private void HideForm() {
+        public void HideForm() {
             Hide();
 
             Properties.Settings.Default.Position = Location;
@@ -267,7 +266,7 @@ namespace Handyman.Core.Forms {
 
         private void uxInputContextMenuStrip_Opening(object sender, CancelEventArgs e) {
             // update the show/hide input bar
-            uxHideToolStripMenuItem.Text = Visible ? "Hide command line" : "Show command line";
+            uxHideToolStripMenuItem.Text = Visible ? Res.HIDE_CMD : Res.SHOW_CMD;
 
             // adding Handymans
             uxHandymansToolStripMenuItem.DropDownItems.Clear();
@@ -324,7 +323,7 @@ namespace Handyman.Core.Forms {
         /// </summary>
         private void DisplayQuestion() {
             Mode = DisplayData.Question;
-            //uxInputText.Enabled = false;
+            uxInputText.Enabled = false;
             UpdateList(PluginChoices);
         }
 

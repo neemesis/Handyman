@@ -106,7 +106,7 @@ namespace Handyman.Core.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ShiftF1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Alt1")]
         public global::System.Windows.Forms.Shortcut TypeWordHotKey {
             get {
                 return ((global::System.Windows.Forms.Shortcut)(this["TypeWordHotKey"]));

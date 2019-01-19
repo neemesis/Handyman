@@ -18,18 +18,18 @@ namespace Handyman.Core.Helpers {
             var tools = new List<IMaster>();
             _components = new Container();
 
-            // we extract all the IAttributeDefinition implementations 
+            // we extract all the IMaster implementations 
             sgs = new List<string>();
-            foreach (var filename in Directory.GetFiles(Application.StartupPath, "*.dll")) {
+            foreach (var filename in Directory.GetFiles(Application.StartupPath, Res.DLL)) {
                 var assembly = System.Reflection.Assembly.LoadFrom(filename);
                 foreach (var type in assembly.GetTypes()) {
-                    var plugin = type.GetInterface("Handyman.Framework.Interfaces.IMaster");
+                    var plugin = type.GetInterface(typeof(IMaster).FullName);
                     if (plugin != null) {
                         var tool = (IMaster) Activator.CreateInstance(type);
                         tool.Initialize();
 
                         sgs.Add(tool.Alias);
-                        sgs.Add("help " + tool.Alias);
+                        sgs.Add($"{Res.HELP} {tool.Alias}");
                         if (tool.Suggestions != null) {
                             sgs.AddRange(tool.Suggestions);
                         }
@@ -51,11 +51,11 @@ namespace Handyman.Core.Helpers {
         public static bool Handle(string alias) {
             var parts = alias.Split(' ');
 
-            if (parts[0] == "install" && parts.Length == 2) {
+            if (parts[0] == Res.INSTALL && parts.Length == 2) {
                 InstallPlugin(parts[1]);
                 return true;
             }
-            if (parts[0] == "packages") {
+            if (parts[0] == Res.PACKAGES) {
                 ListPlugins();
                 return true;
             }
@@ -65,9 +65,9 @@ namespace Handyman.Core.Helpers {
 
         public static void ListPlugins() {
             using (var wc = new WebClient()) {
-                var json = wc.DownloadString(Properties.Settings.Default.DownloadURL + "plugins.json");
+                var json = wc.DownloadString(Properties.Settings.Default.DownloadURL + Res.PLUGINS_JSON);
                 var pckgs = JsonConvert.DeserializeObject<List<Plugin>>(json);
-                var form = new Form { Text = "Packages", Size = new Size(400, 600) };
+                var form = new Form { Text = Res.PACKAGES.ToUpperInvariant(), Size = new Size(400, 600) };
                 var lb = new TextBox {
                     AutoSize = true,
                     ScrollBars = ScrollBars.Vertical,
@@ -100,15 +100,17 @@ namespace Handyman.Core.Helpers {
         public static void InstallPlugin(string name) {
             try {
                 using (var wc = new WebClient()) {
-                    var json = wc.DownloadString(Properties.Settings.Default.DownloadURL + "plugins.json");
+                    var json = wc.DownloadString(Properties.Settings.Default.DownloadURL + Res.PLUGINS_JSON);
                     var pckgs = JsonConvert.DeserializeObject<List<Plugin>>(json);
                     var pckgForInstall = pckgs.SingleOrDefault(x => x.Name == name);
                     if (pckgForInstall != null) {
                         wc.DownloadFile(pckgForInstall.URL, pckgForInstall.Name + ".dll");
                         if (pckgForInstall.HasConfig)
                             wc.DownloadFile(pckgForInstall + ".config", pckgForInstall.Name + ".dll.config");
+                        Launcher.Current.ShowData("success :)");
+                        return;
                     }
-                    Launcher.Current.ShowData("success :)");
+                    Launcher.Current.ShowData("error :(");
                     return;
                 }
             } catch (Exception e) {
