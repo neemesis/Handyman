@@ -24,6 +24,7 @@ Currently implemented plugins:
 - [BatchPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.BatchPlugin)
 - [WorkPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.WorkPlugin)
 - [TrackPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.TrackPlugin)
+- [ConfigPlugin](https://github.com/neemesis/Handyman/tree/master/Handyman.ConfigPlugin)
 
 ## Download Handyman Beta
 Download the zip from **[HERE](https://github.com/neemesis/Handyman/raw/master/Releases/Handyman.zip)**
