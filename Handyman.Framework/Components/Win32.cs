@@ -1,6 +1,9 @@
+using SHDocVw;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Handyman.Framework.Components {
@@ -283,7 +286,7 @@ namespace Handyman.Framework.Components {
         [DllImport("user32")]
         private static extern UInt32 GetWindowThreadProcessId(Int32 hWnd, out Int32 lpdwProcessId);
 
-        private static Int32 GetWindowProcessId(Int32 hwnd) {
+        public static Int32 GetWindowProcessId(Int32 hwnd) {
             var pid = 1;
             GetWindowThreadProcessId(hwnd, out pid);
             return pid;
@@ -299,20 +302,146 @@ namespace Handyman.Framework.Components {
         public static string GetFocusesApp() {
             var hwnd = 0;
             hwnd = GetForegroundWindow();
-            //string appProcessName = Process.GetProcessById(GetWindowProcessID(hwnd)).ProcessName;
             var appExePath = Process.GetProcessById(GetWindowProcessId(hwnd)).MainModule.FileName;
-            //string appExeName = appExePath.Substring(appExePath.LastIndexOf(@"\") + 1);
             Console.WriteLine(appExePath);
             return appExePath;
-            //textBox1.Text = appProcessName + " | " + appExePath + " | " + appExeName;
+        }
+    }
+
+    public class EnumerateOpenedWindows {
+        const int MAXTITLE = 255;
+
+        private static List<string> lstTitles;
+        private static List<IntPtr> explrPointers;
+
+        private delegate bool EnumDelegate(IntPtr hWnd, int lParam);
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll", EntryPoint = "EnumDesktopWindows",
+        ExactSpelling = false, CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern bool EnumDesktopWindows(IntPtr hDesktop,
+        EnumDelegate lpEnumCallbackFunction, IntPtr lParam);
+
+        [DllImport("user32.dll", EntryPoint = "GetWindowText",
+        ExactSpelling = false, CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern int _GetWindowText(IntPtr hWnd,
+        StringBuilder lpWindowText, int nMaxCount);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool IsWindowVisible(IntPtr hWnd);
+
+        private static bool EnumWindowsProc(IntPtr hWnd, int lParam) {
+            string strTitle = GetWindowText(hWnd);
+            if (strTitle != "" & IsWindowVisible(hWnd)) //
+            {
+                string path = Process.GetProcessById(NativeWin32.GetWindowProcessId(hWnd.ToInt32())).MainModule.FileName;
+                lstTitles.Add(path);
+            }
+            return true;
         }
 
-        //[DllImport("user32.dll", CharSet = CharSet.Auto)]
-        //public static extern int GetWindowText(IntPtr hWnd,
-        //    out STRINGBUFFER ClassName, int nMaxCount);
+        private static bool GetExplorerWindows(IntPtr hWnd, int lParam) {
+            string strTitle = GetWindowText(hWnd);
+            if (strTitle != "" & IsWindowVisible(hWnd)) //
+            {
+                string path = Process.GetProcessById(NativeWin32.GetWindowProcessId(hWnd.ToInt32())).MainModule.FileName;
+                if (path.ToLower().Contains("explorer.exe"))
+                    explrPointers.Add(hWnd);
+            }
+            return true;
+        }
 
-        //[DllImport("user32.dll", CharSet = CharSet.Auto)]
-        //public static extern int SendMessage(IntPtr hWnd,
-        //    int msg, int wParam, int lParam);
+        /// <summary>
+        /// Return the window title of handle
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <returns></returns>
+        public static string GetWindowText(IntPtr hWnd) {
+            StringBuilder strbTitle = new StringBuilder(MAXTITLE);
+            int nLength = _GetWindowText(hWnd, strbTitle, strbTitle.Capacity + 1);
+            strbTitle.Length = nLength;
+            return strbTitle.ToString();
+        }
+
+        /// <summary>
+        /// Return titles of all visible windows on desktop
+        /// </summary>
+        /// <returns>List of titles in type of string</returns>
+        public static string[] GetDesktopWindowsTitles() {
+            lstTitles = new List<string>();
+            EnumDelegate delEnumfunc = new EnumDelegate(EnumWindowsProc);
+            bool bSuccessful = EnumDesktopWindows(IntPtr.Zero, delEnumfunc, IntPtr.Zero); //for current desktop
+
+            if (bSuccessful) {
+                return lstTitles.ToArray();
+            } else {
+                // Get the last Win32 error code
+                int nErrorCode = Marshal.GetLastWin32Error();
+                string strErrMsg = string.Format("EnumDesktopWindows failed with code {0}.", nErrorCode);
+                throw new Exception(strErrMsg);
+            }
+        }
+
+        public static IntPtr GetExplorerPointer() {
+            explrPointers = new List<IntPtr>();
+            EnumDelegate delEnumfunc = new EnumDelegate(GetExplorerWindows);
+            bool bSuccessful = EnumDesktopWindows(IntPtr.Zero, delEnumfunc, IntPtr.Zero); //for current desktop
+
+            if (bSuccessful) {
+                return explrPointers[0];
+            } else {
+                // Get the last Win32 error code
+                int nErrorCode = Marshal.GetLastWin32Error();
+                string strErrMsg = string.Format("EnumDesktopWindows failed with code {0}.", nErrorCode);
+                throw new Exception(strErrMsg);
+            }
+        }
+
+        public static string GetActiveExplorerPath() {
+            // get the active window
+            IntPtr handle = GetExplorerPointer();
+
+            // Required ref: SHDocVw (Microsoft Internet Controls COM Object) - C:\Windows\system32\ShDocVw.dll
+            var shellWindows = new ShellWindows();
+
+            // loop through all windows
+            foreach (InternetExplorer window in shellWindows) {
+                // match active window
+                if (window.HWND == (int)handle) {
+                    // Required ref: Shell32 - C:\Windows\system32\Shell32.dll
+                    var shellWindow = window.Document as Shell32.IShellFolderViewDual2;
+
+                    // will be null if you are in Internet Explorer for example
+                    if (shellWindow != null) {
+                        // Item without an index returns the current object
+                        var currentFolder = shellWindow.Folder.Items().Item();
+
+                        // special folder - use window title
+                        // for some reason on "Desktop" gives null
+                        if (currentFolder == null || currentFolder.Path.StartsWith("::")) {
+                            // Get window title instead
+                            const int nChars = 256;
+                            StringBuilder Buff = new StringBuilder(nChars);
+                            if (_GetWindowText(handle, Buff, nChars) > 0) {
+                                return Buff.ToString();
+                            }
+                        } else {
+                            return currentFolder.Path;
+                        }
+                    }
+
+                    break;
+                }
+            }
+
+            return null;
+        }
+
+        public static string GetLastActiveWindow() {
+            return GetDesktopWindowsTitles()[0];
+        }
     }
 }

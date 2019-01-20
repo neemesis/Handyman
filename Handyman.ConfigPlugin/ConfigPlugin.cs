@@ -1,4 +1,5 @@
-﻿using Handyman.Framework.Entities;
+﻿using Handyman.Framework.Components;
+using Handyman.Framework.Entities;
 using Handyman.Framework.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,10 @@ namespace Handyman.ConfigPlugin {
         }
 
         public void Execute(string[] args, Action<string, DisplayData, List<string>, Action<string>> display) {
+            display(EnumerateOpenedWindows.GetActiveExplorerPath(), DisplayData.Launcher, null, null);
+
+            return;
+
             if (args.Length != 1) {
                 display("only 1 argument allowed", DisplayData.Launcher, null, null);
                 return;
